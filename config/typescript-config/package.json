@@ -1,0 +1,11 @@
+{
+  "name": "@unimedlar/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": ["@unimedlar/eslint-config"]
+  },
+  "prettier": "@unimedlar/prettier",
+  "files": ["library.json", "node.json"]
+}

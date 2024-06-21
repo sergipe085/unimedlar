@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "555591476086",
+    "project_id": "podi-app-84b20",
+    "storage_bucket": "podi-app-84b20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555591476086:android:205a0b91ec850555281057",
+        "android_client_info": {
+          "package_name": "com.jungle_sd.appjp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl4YUuUCkwYlz9mKWmibxeQSdQWeKMWFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

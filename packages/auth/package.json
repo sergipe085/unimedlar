@@ -1,0 +1,22 @@
+{
+    "name": "@unimedlar/auth",
+    "version": "0.0.0",
+    "private": true,
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "devDependencies": {
+        "@unimedlar/eslint-config": "*",
+        "@unimedlar/prettier": "*",
+        "@unimedlar/tsconfig": "*"
+    },
+    "dependencies": {
+        "@casl/ability": "^6.7.1",
+        "zod": "^3.22.4"
+    },
+    "eslintConfig": {
+        "extends": [
+            "@jp-hub/eslint-config/node"
+        ]
+    },
+    "prettier": "@jp-hub/prettier"
+}

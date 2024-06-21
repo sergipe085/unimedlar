@@ -1,0 +1,278 @@
+{
+    "modules": [
+        {
+            "id": "saude.home",
+            "nome": "Saúde",
+            "rota": "(Saude)",
+            "descricao": "Saiba sobre suas informações como cns, vacinas, agendamentos, itens de farmácia,",
+            "icone": "🏥",
+            "disabled": false,
+            "submodules": [
+                {
+                    "id": "saude.vacinas",
+                    "nome": "Vacinas",
+                    "icone": "💉",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.dados",
+                    "nome": "Dados",
+                    "icone": "😷",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.cns",
+                    "nome": "CNS",
+                    "icone": "🪪",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.emergencia",
+                    "nome": "Emergência",
+                    "icone": "☎️",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.consultas",
+                    "nome": "Consultas",
+                    "icone": "🩺",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.encaminhamentos",
+                    "nome": "Encaminhamentos",
+                    "icone": "📋",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.medicamentos",
+                    "nome": "Medicamentos",
+                    "rota": "(medicamentos)",
+                    "icone": "💊",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.agendamentos",
+                    "nome": "Agendamentos",
+                    "rota": "(agendamentos)",
+                    "icone": "🕓",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.exames",
+                    "nome": "Exames",
+                    "icone": "🩻",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.resultadoExame",
+                    "nome": "Resulttado de Exames",
+                    "icone": "🩻",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "saude.estoque",
+                    "nome": "Estoque",
+                    "icone": "📦",
+                    "disabled": true,
+                    "submodules": []
+                }
+            ]
+        },
+        {
+            "id": "ouvidoria.home",
+            "nome": "Ouvidoria",
+            "rota": "(ouvidoria)",
+            "descricao": "Ouvidoria",
+            "icone": "❗️",
+            "disabled": false,
+            "submodules": [
+                
+            ]
+        },
+        {
+            "id": "emergencia.home",
+            "nome": "Emergência",
+            "rota": "(Emergencia)",
+            "descricao": "",
+            "icone": "🆘",
+            "disabled": true,
+            "submodules": [
+                {
+                    "id": "emergencia.policia",
+                    "nome": "Polícia",
+                    "numero": 190,
+                    "icone": "🚓",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "emergencia.bombeiro",
+                    "nome": "Bombeiro",
+                    "numero": "193",
+                    "icone": "🚒",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "id": "emergencia.emergencia",
+                    "nome": "Emergência",
+                    "numero": "193",
+                    "icone": "🚑",
+                    "disabled": false,
+                    "submodules": []
+                }
+            ]
+        },
+        {
+            "id": "eventos.home",
+            "nome": "Eventos",
+            "rota": "(Eventos)",
+            "descricao": "",
+            "icone": "🎉",
+            "disabled": true,
+            "submodules": []
+        },
+        {
+            "id": 4,
+            "nome": "Noticias",
+            "rota": "(Noticias)",
+            "descricao": "",
+            "icone": "📰",
+            "disabled": true,
+            "submodules": []
+        },
+        {
+            "id": 5,
+            "nome": "Loja",
+            "rota": "(Loja)",
+            "descricao": "",
+            "icone": "🛒",
+            "disabled": false,
+            "submodules": []
+        },
+        {
+            "id": 6,
+            "nome": "Prefeito",
+            "rota": "(Prefeito)",
+            "descricao": "",
+            "icone": "🤵‍♂",
+            "disabled": false,
+            "submodules": []
+        },
+        {
+            "id": 7,
+            "nome": "Estruturas",
+            "rota": "(Estruturas)",
+            "descricao": "",
+            "icone": "🏢",
+            "disabled": true,
+            "submodules": [
+                {
+                    "nome": "Iluminação",
+                    "icone": "💡",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Ruas",
+                    "icone": "🛣",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Obras",
+                    "icone": "🏗",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Estoque",
+                    "icone": "📦",
+                    "disabled": false,
+                    "submodules": []
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "nome": "Educação",
+            "rota": "(Educacao)",
+            "descricao": "",
+            "icone": "📚",
+            "disabled": true,
+            "submodules": [
+                {
+                    "nome": "Escolas",
+                    "icone": "🏫",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "e-Boletim",
+                    "icone": "👩‍🎓",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Matriculas",
+                    "icone": "📝",
+                    "disabled": false,
+                    "submodules": []
+                }
+                
+            ]
+        },
+        {
+            "id": 9,
+            "nome": "Turismo",
+            "rota": "(Turismo)",
+            "descricao": "",
+            "icone": "🏝",
+            "disabled": true,
+            "submodules": [
+                {
+                    "nome": "Alimentação",
+                    "icone": "👨‍🍳",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Hotéis",
+                    "icone": "🏨",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Atividades",
+                    "icone": "🏄‍♂️",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Pontos Turisticos",
+                    "icone": "🌴",
+                    "disabled": false,
+                    "submodules": []
+                },
+                {
+                    "nome": "Ouvidoria",
+                    "icone": "☎️",
+                    "disabled": false,
+                    "submodules": []
+                }
+                
+            ]
+        }
+    ]
+}

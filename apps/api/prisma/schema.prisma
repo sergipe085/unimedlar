@@ -1,0 +1,237 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["jungle_app", "pesquisa_eleitoral"]
+}
+
+// JUNGLE APP
+model USER {
+  id                 String               @id @default(uuid())
+  name               String
+  cpf                String               @unique()
+  password           String
+  created_at         DateTime             @default(now())
+  updated_at         DateTime?
+  deleted_at         DateTime?
+  audit              AUDIT[]
+  loja_cidadao       loja_cidadao[]
+  Ouvidoria          Ouvidoria[]
+  Noticias           Noticias[]
+  Respostas          RespostasOuvidoria[]
+  userSaude          USER_SAUDE?          @relation(fields: [userSaudeId], references: [id])
+  userNotification   USER_NOTIFICATION?   @relation(fields: [userNotificationId], references: [id])
+  userSaudeId        String?              @unique()
+  userNotificationId String?              @unique()
+
+  @@index([cpf])
+  @@map("users")
+  @@schema("jungle_app")
+}
+
+model USER_NOTIFICATION {
+  id         String @id @default(uuid())
+  expo_token String
+  USER       USER[]
+
+  @@map("user_notifications")
+  @@schema("jungle_app")
+}
+
+model USER_SAUDE {
+  id         String @id @default(uuid())
+  co_cidadao Int
+  USER       USER[]
+
+  @@map("user_saude")
+  @@schema("jungle_app")
+}
+
+enum AUDIT_ACTION {
+  ADD
+  DELETE
+  UPDATE
+
+  @@schema("jungle_app")
+}
+
+model AUDIT {
+  co_audit   String       @id @default(uuid())
+  user       USER         @relation(fields: [id_user], references: [id])
+  no_action  AUDIT_ACTION
+  dt_action  DateTime
+  ds_details String
+  no_entity  String
+  id_entity  String
+  id_user    String
+
+  @@map("audits")
+  @@schema("jungle_app")
+}
+
+enum SYSTEM_ACTION {
+  NONE
+
+  @@map("system_actions")
+  @@schema("jungle_app")
+}
+
+enum SYSTEM_MODULE {
+  NONE
+
+  @@map("system_modules")
+  @@schema("jungle_app")
+}
+
+model POSITION {
+  id      String          @id @default(uuid())
+  is_root Boolean         @default(false)
+  name    String          @unique
+  modules SYSTEM_MODULE[]
+  actions SYSTEM_ACTION[]
+
+  @@map("positions")
+  @@schema("jungle_app")
+}
+
+//PESQUISA ELEITORAL
+model pesquisa_eleitoral {
+  id                  String               @id @default(uuid())
+  titulo              String
+  quantidade_de_votos Int                  @default(0)
+  data_inicio         DateTime
+  data_fim            DateTime
+  candidatos          candidato_pesquisa[]
+
+  @@map("pesquisas_eleitorais")
+  @@schema("pesquisa_eleitoral")
+}
+
+model candidato_pesquisa {
+  id                    String                    @id @default(uuid())
+  candidato             candidato                 @relation(fields: [candidato_id], references: [id])
+  candidato_id          Int
+  quantidade_de_votos   Int                       @default(0)
+  votos                 candidato_pesquisa_voto[]
+  pesquisa_eleitoral    pesquisa_eleitoral?       @relation(fields: [pesquisa_eleitoral_id], references: [id])
+  pesquisa_eleitoral_id String?
+
+  @@map("candidato_pesquisa")
+  @@schema("pesquisa_eleitoral")
+}
+
+model candidato_pesquisa_voto {
+  id                    Int                 @id @default(autoincrement())
+  candidato_pesquisa    candidato_pesquisa? @relation(fields: [candidato_pesquisa_id], references: [id])
+  candidato_pesquisa_id String?
+  cpf_votador           String
+  latitude              Float
+  longitude             Float
+
+  @@map("candidato_pesquisa_voto")
+  @@schema("pesquisa_eleitoral")
+}
+
+model candidato {
+  id                 Int                  @id @default(autoincrement())
+  nome               String
+  partido            String
+  candidato_pesquisa candidato_pesquisa[]
+
+  @@map("candidatos")
+  @@schema("pesquisa_eleitoral")
+}
+
+model loja_cidadao {
+  id         String   @id @default(uuid())
+  user_id    String
+  nome       String
+  descricao  String
+  preco      Decimal
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       USER     @relation(fields: [user_id], references: [id])
+
+  @@map("loja_cidadao")
+  @@schema("jungle_app")
+}
+
+model Ouvidoria {
+  id                 String               @id @default(uuid())
+  moduloId           String
+  user_id            String
+  user               USER                 @relation(fields: [user_id], references: [id])
+  titulo             String
+  descricao          String
+  status             StatusDenuncia       @default(PENDENTE)
+  imagens            String[]
+  criado_em          DateTime             @default(now())
+  atualizado_em      DateTime             @updatedAt
+  latitude           Float?
+  longitude          Float?
+  RespostasOuvidoria RespostasOuvidoria[]
+  idade         String?
+
+  @@map("ouvidoria")
+  @@schema("jungle_app")
+}
+
+model RespostasOuvidoria {
+  id_resposta   String        @id @default(uuid())
+  tipo_resposta TiposResposta @default(ATUALIZACAO)
+  user_id       String
+  chamadoId     String
+  imagens       String[]
+  resposta      String
+  criado_em     DateTime      @default(now())
+  atualizado_em DateTime      @updatedAt
+  user          USER          @relation(fields: [user_id], references: [id])
+  ouvidoria     Ouvidoria     @relation(fields: [chamadoId], references: [id])
+
+  @@map("respostas_ouvidoria")
+  @@schema("jungle_app")
+}
+
+enum TiposResposta {
+  ATUALIZACAO
+  CORRECAO
+  CANCELAMENTO
+
+  @@schema("jungle_app")
+}
+
+enum StatusDenuncia {
+  PENDENTE
+  EM_REVISAO
+  RESOLVIDA
+  DESCARTADA
+
+  @@schema("jungle_app")
+}
+
+model ModulosApp {
+  id    String  @id @default(uuid())
+  nome  String
+  icone String?
+
+  @@map("modulosApp")
+  @@schema("jungle_app")
+}
+
+model Noticias {
+  id         String   @id @default(uuid())
+  titulo     String
+  descricao  String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user_id    String
+  user       USER     @relation(fields: [user_id], references: [id])
+  imagens    String[]
+
+  @@map("noticias")
+  @@schema("jungle_app")
+}

@@ -1,0 +1,33 @@
+{
+  "name": "unimedlar",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "startDev": "expo start"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@9.8.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "config/*"
+  ],
+  "version": "1.0.0",
+  "dependencies": {
+    "@kichiyaki/react-native-barcode-generator": "^0.6.7",
+    "react-native-svg": "^15.3.0"
+  }
+}
