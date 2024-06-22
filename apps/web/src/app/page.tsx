@@ -1,11 +1,9 @@
 "use client"
 
 import Image from "next/image";
-import { Usuarios } from "@jp-hub/api/node_modules/@prisma/client";
 import { useRouter } from "next/navigation";
 import { Title } from "./_components/text/title";
 import { Subtitle } from "./_components/text/subtitle";
-import { Button } from "./_components/button";
 
 export default function LadingPage() {
   const router = useRouter();

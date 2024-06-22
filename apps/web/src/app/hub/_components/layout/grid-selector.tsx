@@ -9,7 +9,7 @@ import { Module } from "./module";
 
 interface ISeletorGridProps {
     options: {
-        icon: LucideIcon,
+        icon: LucideIcon | null,
         title: string;
         to: string;
         activated?: boolean;
