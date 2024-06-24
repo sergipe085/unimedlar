@@ -1,0 +1,211 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id                    String  @id @default(cuid())
+  nome                  String
+  login                 String  @unique()
+  senha                 String
+  expoNotificationToken String?
+
+  cuidador Cuidador? @relation(fields: [cuidadorId], references: [id])
+  gerente  Gerente?  @relation(fields: [gerenteId], references: [id])
+
+  criadoEm     DateTime  @default(now())
+  atualizadoEm DateTime?
+  excluidoEm   DateTime?
+  cuidadorId   String?   @unique
+  gerenteId    String?   @unique
+
+  @@index([login])
+  @@map("usuarios")
+}
+
+model Procedimento {
+  id           String                    @id @default(cuid())
+  nome         String
+  materiais    MaterialProcedimento[]
+  valor        Float                     @default(0)
+  atendimentos ProcedimentoAtendimento[]
+
+  @@map("procedimentos")
+}
+
+model MaterialProcedimento {
+  id                   String       @id @default(cuid())
+  procedimento         Procedimento @relation(fields: [procedimentoId], references: [id])
+  procedimentoId       String
+  material             Material     @relation(fields: [materialId], references: [id])
+  materialId           String
+  quantidadeDeMaterial Float        @default(1)
+
+  @@map("materiaisProcedimento")
+}
+
+model Material {
+  id            String                 @id @default(cuid())
+  nome          String
+  valor         Float                  @default(0)
+  procedimentos MaterialProcedimento[]
+
+  @@map("materiais")
+}
+
+model Medicamento {
+  id           String                    @id @default(cuid())
+  nome         String
+  catmat       String
+  atendimentos ProcedimentoAtendimento[]
+
+  @@map("medicamentos")
+}
+
+model Cuidador {
+  id        String     @id @default(cuid())
+  usuario   Usuario?
+  pacientes Paciente[]
+  chamados  Chamado[]
+
+  @@map("cuidadores")
+}
+
+model Gerente {
+  id      String   @id @default(cuid())
+  usuario Usuario?
+
+  @@map("gerentes")
+}
+
+model Paciente {
+  id              String           @id @default(cuid())
+  nome            String
+  cpf             String
+  cns             String
+  endereco        String
+  latitude        Float
+  longitude       Float
+  cuidador        Cuidador?        @relation(fields: [cuidadorId], references: [id])
+  cuidadorId      String?
+  acompanhamentos Acompanhamento[]
+
+  @@map("pacientes")
+}
+
+enum UrgenciaChamado {
+  MUITO_ALTA
+  ALTA
+  MEDIA
+  BAIXA
+  MUITO_BAIXA
+}
+
+enum AssuntoChamado {
+  SAUDE_PACIENTE
+  FINANCEIRO
+  PLANO_DE_SAUDE
+}
+
+enum StatusChamado {
+  EM_ABERTO
+  FECHADO
+  CONCLUIDO
+}
+
+model Chamado {
+  id         String          @id @default(cuid())
+  reclamacao String
+  autor      Cuidador        @relation(fields: [autorId], references: [id])
+  autorId    String
+  urgencia   UrgenciaChamado
+  assunto    AssuntoChamado
+  status     StatusChamado   @default(EM_ABERTO)
+
+  realizadoEm  DateTime  @default(now())
+  finalizadoEm DateTime?
+
+  @@map("chamados")
+}
+
+enum TiposProfissionais {
+  ENFERMEIRO
+  MEDICO
+  TERAPEUTA
+  FISIOTERAPEUTA
+}
+
+model Acompanhamento {
+  id                 String               @id @default(cuid())
+  tiposProfissionais TiposProfissionais[]
+  dataInicial        DateTime
+  dataFinal          DateTime
+  paciente           Paciente             @relation(fields: [pacienteId], references: [id])
+  pacienteId         String
+  atendimentos       Atendimento[]
+
+  @@map("acompanhamentos")
+}
+
+model Atendimento {
+  id               String                    @id @default(cuid())
+  intervaloEmDia   Float
+  duracaoEmHoras   Float                     @default(0)
+  procedimentos    ProcedimentoAtendimento[]
+  acompanhamento   Acompanhamento?           @relation(fields: [acompanhamentoId], references: [id])
+  acompanhamentoId String?
+  visitas          Visita[]
+
+  @@map("atendimentos")
+}
+
+model Visita {
+  id            String      @id @default(cuid())
+  atendimento   Atendimento @relation(fields: [atendimentoId], references: [id])
+  atendimentoId String
+  dataVisita    DateTime
+
+  iniciadaEm   DateTime?
+  finalizadaEm DateTime?
+  avaliacoes   AvaliacaoVisita[]
+
+  @@map("visitas")
+}
+
+enum CriteriosAvaliacao {
+  COMPETENCIA
+  PONTUALIDADE
+  PROFISSIONALISMO
+  EDUCACAO
+}
+
+model AvaliacaoVisita {
+  id          String             @id @default(cuid())
+  visita      Visita             @relation(fields: [visitasId], references: [id])
+  visitasId   String
+  criterio    CriteriosAvaliacao
+  nota        Float
+  feedback    String?
+  realizadaEm DateTime           @default(now())
+
+  @@map("avaliacoesVisita")
+}
+
+model ProcedimentoAtendimento {
+  id             String        @id @default(cuid())
+  atendimento    Atendimento   @relation(fields: [atendimentoId], references: [id])
+  atendimentoId  String
+  procedimento   Procedimento? @relation(fields: [procedimentoId], references: [id])
+  procedimentoId String?
+  medicamento    Medicamento?  @relation(fields: [medicamentoId], references: [id])
+  medicamentoId  String?
+  quantidade     Float         @default(1)
+  duracaoEmHoras Float         @default(0)
+  visitasId      String?
+
+  @@map("procedimentosAtendimento")
+}

@@ -5,8 +5,8 @@ type Props = {
 
 } & ChildrenProps & React.HTMLAttributes<HTMLHeadingElement>
 
-export function Subtitle({ children, ...props }: Props) {
+export function Subtitle({ children, className, ...props }: Props) {
     return (
-        <h1 className={cn("font-normal text-[#183A67] text-2xl", props.className)}{...props}>{children as string}</h1>
+        <h1 className={cn("font-normal text-unimed-primary text-2xl", className)}{...props}>{children as string}</h1>
     )
 }

@@ -15,7 +15,7 @@ const fontSans = FontSans({
 
 
 export const metadata: Metadata = {
-  title: "JP Hub",
+  title: "UniLar",
   description: "JP Software Hub Pec SUS Saude",
 };
 
@@ -29,7 +29,7 @@ export default function RootLayout({
       <head>
       <link
         rel="icon"
-        href="/jp-hub-icon.png"
+        href="/unilar.svg"
         type="image/png"
         sizes="<generated>"
       />

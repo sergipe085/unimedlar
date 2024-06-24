@@ -10,13 +10,15 @@ import { useApi } from "./hub/_hooks/useApi";
 import { Header } from "./hub/_components/layout/header";
 import { Title } from "./_components/text/title";
 import { Subtitle } from "./_components/text/subtitle";
+import { Sidebar } from "./hub/_components/layout/sidebar";
 
 export default function NotFound() {
     const router = useRouter();
 
     return (
-        <div className="bg-[#F3F8FF] flex justify-end flex-row h-[100vh] p-4 pb-0">
+        <div className="bg-[#F3F8FF] flex justify-end flex-row h-[100vh] pb-0">
             {/* <ModuleSelector/> */}
+            <Sidebar/>
             {/* <div className=" lg:flex block w-full max-w-28 h-[100vh]"/> */}
             <div className="w-full flex flex-col px-4 items-center justify-center">
                 <Header/>

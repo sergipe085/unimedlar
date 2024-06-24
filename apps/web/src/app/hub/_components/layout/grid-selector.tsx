@@ -22,7 +22,7 @@ export function GridSelector({ options }: ISeletorGridProps){
 
     return(
         <div className="max-w-[1180px] flex flex-col gap-4 items-start justify-center pt-8">
-            <Subtitle>acesse um modulo</Subtitle>
+            {/* <Subtitle>acesse um modulo</Subtitle> */}
             <JPCard className="flex flex-row flex-wrap p-8 gap-8 items-center justify-between">
                 {
                     options.map(option => {

@@ -10,29 +10,42 @@ export function Header() {
     const router = useRouter();
     const pathname = usePathname();
 
+    function navigateToIndex(index: number) {
+        var targetPathname = "";
+        const routes = pathname.split("/");
+        for (let i = 0; i <= index; i++) {
+            targetPathname += routes[i];
+
+            if (i != index) {
+                targetPathname += "/"
+            }
+        }
+
+        router.push(targetPathname)
+    }
+
     return ( 
         <header className="h-20 flex items-center w-full">
             <div className="flex flex-1 flex-row justify-between">
                 <div 
                     className='flex flex-row cursor-pointer items-center justify-center' 
-                    onClick={() => {
+                >   
+                    <ChevronLeft onClick={() => {
                         if ( pathname != "/hub") {
                             router.back();
                         }
-                    }} 
-                >   
-                    <ChevronLeft className=' ' color="#183A67"/>
-                    <p className='text-[#183A67]'>{pathname.split("/").map((e, i) => {
+                    }} color="#173509"/>
+                    <p className=' text-unimed-primary'>{pathname.split("/").map((e, i) => {
                         
                         const text = `${e}${i == pathname.split("/").length - 1 ? "" : ""}`
 
                         if (i == pathname.split("/").length - 1) {
                             return (
-                                <span className='font-bold'>{text}</span>
+                                <span onClick={() => navigateToIndex(i)} className='font-bold'>{text}</span>
                             )
                         }
                         return (
-                            <>{text}/</>
+                            <span onClick={() => navigateToIndex(i)}>{text}/</span>
                         )
                     })}</p>
                 </div>
@@ -40,7 +53,7 @@ export function Header() {
                     <div className='flex flex-row gap-2 items-start'>
                         <Text>{auth_data?.user.name}, </Text>
                     </div>
-                    <LogOut color='#183A67' className=' cursor-pointer' onClick={() => {
+                    <LogOut color='#173509' className=' cursor-pointer' onClick={() => {
                         signOut();
                         router.replace("/login")
                     }}/>
