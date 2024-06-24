@@ -1,17 +1,20 @@
 import { JPCard } from "@/app/_components/layout/jp-card";
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
+import { auth } from "@/data/auth";
 import { Calendar } from "lucide-react";
+import { cookies } from "next/headers";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+    // const cookie = cookies();
+    const { user } =  await auth();
+
     return (
         <>
             <div className="flex flex-row items-end gap-4">
                 <Title>Dashboard</Title>
-                <Subtitle>Hoje</Subtitle>   
+                <Subtitle>Hoje, { user.nome }</Subtitle>   
             </div>
-
-            
             
 
             <div className="w-full">

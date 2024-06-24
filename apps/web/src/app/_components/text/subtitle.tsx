@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/schemas/lib/utils";
 import { ChildrenProps } from "@/types";
 
 type Props = {

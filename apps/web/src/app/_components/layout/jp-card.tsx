@@ -1,5 +1,5 @@
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/schemas/lib/utils";
 import React from "react"
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
