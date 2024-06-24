@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Poppins as FontSans } from "next/font/google"
 import { redirect } from "next/navigation";
 import { ApiProvider } from "./hub/_hooks/useApi";
-import { initSyncfusion } from "@/lib/syncfusion";
+import { initSyncfusion } from "@/schemas/lib/syncfusion";
 import "react-activity/dist/library.css";
 import { registerLicense } from "@syncfusion/ej2-base";
 registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cWWFCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXpec3VQQ2NfUkJ+X0c=');

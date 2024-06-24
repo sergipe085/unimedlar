@@ -1,6 +1,6 @@
 "use client"
 
-import { api } from "@/lib/api";
+import { api } from "@/schemas/lib/api";
 import { redirect } from "next/navigation";
 import React, { createContext, useCallback, useContext,  useEffect,  useState } from "react";
 
@@ -138,17 +138,17 @@ export function ApiProvider({ children }: IApiProvider) {
     const signIn = useCallback(async ({username, password, token_notification }: SignInCredentials) => {
     
             const response = await api.post(`/login`, {
-                username, 
+                login: username, 
                 password,
             });
     
-            const { token, user, pec_sus } = response.data.data;
+            const { token, user, pec_sus } = response.data;
             api.defaults.headers.common['Authorization'] = "Bearer " + token;
             
             
             
             // const auth_data_Response = await api.get("/auth")
-            const auth_data = { ...response.data.data };
+            const auth_data = { ...response.data };
             
             localStorage.setItem(`@BI-JP-${process.env.NEXT_PUBLIC_APP_NAME}:token`, token);
             localStorage.setItem(`@BI-JP-${process.env.NEXT_PUBLIC_APP_NAME}:user`, JSON.stringify(user))

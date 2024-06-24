@@ -21,7 +21,7 @@ export default function NotFound() {
             <Sidebar/>
             {/* <div className=" lg:flex block w-full max-w-28 h-[100vh]"/> */}
             <div className="w-full flex flex-col px-4 items-center justify-center">
-                <Header/>
+                <Header nome={""}/>
                 <div className="min-h-[90vh] w-full overflow-y-scroll scrollbar-hide">
                     <main className="min-h-[90vh] p-8 h-full  flex flex-col items-center justify-center">
                         {/* {children} */}

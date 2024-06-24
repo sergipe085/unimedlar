@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IMaskInput } from 'react-imask';
+import { api } from "@/schemas/lib/api";
 
 export default function Login() {
   const { signIn, auth_data } = useApi();
@@ -30,7 +31,7 @@ export default function Login() {
         token_notification: 'token_notification'
       });
       
-      router.replace("/home")
+      router.replace("/hub/dashboard")
     }
   };
 
@@ -44,13 +45,12 @@ export default function Login() {
           </div>
           <div>
             <Label>Usuário:</Label>
-            <IMaskInput
+            <Input
               value={user.username}
-              mask="000.000.000-00"
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               onChange={(e) => setUser({ ...user, username: e.currentTarget.value })}
               onKeyDown={handleEnterPress}
-              placeholder="Digite seu cpf"
+              placeholder="Digite seu login"
             />
             {/* onChange={(e) => setCpf(e.currentTarget.value)} */}
           </div>
@@ -67,12 +67,15 @@ export default function Login() {
             <Checkbox onCheckedChange={() => setVerSenha(!verSenha)} />
             <Label>Ver senha</Label>
           </div>
-          <Button disabled={(user.username == '' || user.password.length < 5) && true} onClick={() => {
-            signIn({
+          <Button disabled={(user.username == '' || user.password.length < 5) && true} onClick={async () => {
+      
+            await signIn({
               username: user.username,
               password: user.password,
               token_notification: 'token_notification'
             });
+            
+            router.replace("/hub/dashboard")
           }} className="w-full">
             <p>Entrar</p>
           </Button>
