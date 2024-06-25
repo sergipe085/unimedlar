@@ -29,6 +29,8 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="myapp"/>
         <data android:scheme="com.jungle_sd.appjp"/>
+        <data android:scheme="unimedlar"/>
+        <data android:scheme="com.jungle_sd.unimedlar"/>
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>

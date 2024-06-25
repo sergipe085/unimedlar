@@ -1,4 +1,4 @@
-package com.jungle_sd.appjp
+package com.jungle_sd.unimedlar
 
 import android.os.Build
 import android.os.Bundle
