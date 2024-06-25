@@ -10,24 +10,16 @@ import { useModulos } from '@/data/general/hooks/useModulos';
 import { router } from 'expo-router';
 import { Octicons } from '@expo/vector-icons';
 
-export default function Modulos() {
-
-  const { modulos } = useModulos()
-
-  console.log(modulos)
-
+export default function Historico() {
   return (
     <ParallaxScrollView>
       <ThemedView className='w-full flex flex-column gap-2'>
         <ThemedView className='w-full flex flex-row items-center gap-2'>
           <Octicons size={22} name='apps'></Octicons>
-          <ThemedText type="title">Módulos</ThemedText>
+          <ThemedText type="title">Histórico de consultas</ThemedText>
         </ThemedView>
           <ThemedText>Veja os modulos abaixo</ThemedText>
       </ThemedView>
-      <View style={{ paddingBottom: 30 }}>
-        <ListModules type='line' modulos={modulos} />
-      </View>
     </ParallaxScrollView>
   );
 }

@@ -9,7 +9,7 @@ export function Header() {
     return (
         <View style={{
             width: Dimensions.get("window").width,
-        }} className=" h-28 pt-8 bg-transparent flex flex-row items-center justify-between px-4">
+        }} className=" h-28 pt-8 bg-bg flex flex-row items-center justify-between px-4">
             <TouchableOpacity onPress={() => {
                 if (router.canGoBack()) {
                     router.back()
@@ -18,7 +18,7 @@ export function Header() {
                 <ChevronLeft color={"black"}/>
             </TouchableOpacity>
             <View className="flex-row items-center justify-between gap-2 flex">
-                <ThemedText>jp app</ThemedText>
+                <ThemedText>unimed lar</ThemedText>
                 <Logo/>
             </View>
         </View>

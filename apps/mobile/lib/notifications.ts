@@ -1,5 +1,27 @@
 import * as Notifications from 'expo-notifications';
 
+const sendQuestionnaireNotification = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: 'Questionário',
+        body: 'O profissional realizou o atendimento?',
+        categoryIdentifier: 'questionnaire',
+      },
+      trigger: null,
+    });
+  };
+
+  const sendFeedbackNotification = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: 'Feedback',
+        body: 'Você deseja nos enviar algum feedback?',
+        categoryIdentifier: 'feedback',
+      },
+      trigger: null,
+    });
+  };
+
 export async function registerForPushNotificationsAsync() {
     let token;
 
@@ -29,4 +51,48 @@ export async function setupHandler() {
           shouldSetBadge: true
         }),
     });   
+
+    sendQuestionnaireNotification()
+
+    Notifications.setNotificationCategoryAsync('questionnaire', [
+        {
+          identifier: 'YES',
+          buttonTitle: 'Sim',
+          options: { opensAppToForeground: false },
+        },
+        {
+          identifier: 'NO',
+          buttonTitle: 'Não',
+          options: { opensAppToForeground: false },
+        },
+      ]);
+  
+      Notifications.addNotificationResponseReceivedListener(response => {
+        const actionIdentifier = response.actionIdentifier;
+        if (actionIdentifier === 'YES' || actionIdentifier == "NO") {
+            sendFeedbackNotification();
+        }   
+      });
+  
+      Notifications.setNotificationCategoryAsync('feedback', [
+        {
+          identifier: 'SEND_FEEDBACK',
+          buttonTitle: 'Enviar Feedback',
+          options: { opensAppToForeground: false },
+          textInput: {
+            submitButtonTitle: 'Enviar',
+            placeholder: 'Digite seu feedback',
+          },
+        },
+      ]);
+  
+      Notifications.addNotificationResponseReceivedListener(response => {
+        if (response.actionIdentifier === 'SEND_FEEDBACK') {
+          const feedback = response.userText;
+          console.log({
+            response
+          })
+          console.log('Feedback:', feedback);
+        }
+      });
 }

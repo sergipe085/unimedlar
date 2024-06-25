@@ -1,7 +1,7 @@
 import { api } from "@/lib/api";
 
 type Request = {
-    username: string;
+    login: string;
     password: string;
     expoNotificationToken: string;
 }
@@ -12,5 +12,5 @@ export async function login(req: Request) {
         token_notification: req.expoNotificationToken
     });
 
-    return data.data;
+    return data;
 }

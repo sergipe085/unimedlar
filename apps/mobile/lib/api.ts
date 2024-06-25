@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosConfig = {
-    baseURL: "http://192.142.231.14:3333/api"    
+    baseURL: "https://www.unimedlar.com.br/api"    
 };
 
 const api = axios.create(axiosConfig)

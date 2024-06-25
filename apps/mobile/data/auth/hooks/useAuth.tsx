@@ -7,7 +7,7 @@ import { login } from "../api/login"
 
 export type User  = {
     id: string,
-    name: string,
+    nome: string,
     cpf: string,
 }
 
@@ -55,7 +55,7 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
 
     async function handleLogin({ username, password, expoNotificationToken }) {
         const auth = await login({
-            username,
+            login: username,
             password,
             expoNotificationToken
         })

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app-jp",
-    "slug": "app-jp",
+    "name": "unimedlar",
+    "slug": "unimedlar",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "app-jp"
+      "bundleIdentifier": "unimedlar"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.jungle_sd.appjp",
+      "package": "com.jungle_sd.unimedlar",
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
