@@ -1,7 +1,9 @@
+import { Button } from "@/app/_components/button";
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
 import { TableBody, TableHeader, TableRow } from "@/components/ui/table";
 import { getAcompanhamentos } from "@/data/acompanhamento";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 
@@ -10,7 +12,12 @@ export default async function Acompanhamentos() {
         
     return (
         <div className="w-full">
-            <Title>Acompanhamentos</Title>
+            <div className="w-full flex flex-row justify-between">
+                <Title>Acompanhamentos</Title>
+                <Link href={"/hub/acompanhamentos/novo-acompanhamento"}>
+                    <Plus/>
+                </Link>
+            </div>
             <Subtitle className="mb-4">Acompanhamentos do Unimed Lar</Subtitle>
             <>
                 <TableHeader>DATA INICIAL,DATA FINAL,DURACAO,PROFISSIONAIS NECESSÁRIOS</TableHeader>

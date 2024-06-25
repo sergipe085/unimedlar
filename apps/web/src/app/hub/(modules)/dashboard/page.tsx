@@ -44,8 +44,9 @@ export default async function Dashboard() {
                     <TableHeader>COOP.,MEDIA,PROF.,COMP.,PONT.,VISITAS</TableHeader>
                     <TableBody>{
                         [
-                            ["COOP A","8.9","8.9","8.9","8.9","12/19"],
-                            ["COOP A","8.9","8.9","8.9","8.9","12/19"]
+                            <TableRow>{["COOP A","8.9","8.9","8.9","8.9","12/19"]}</TableRow>,
+                            <TableRow>{["COOP A","8.9","8.9","8.9","8.9","12/19"]}</TableRow>
+                            
                         ]    
                     }</TableBody>
                 </div>
