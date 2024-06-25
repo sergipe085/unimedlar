@@ -9,8 +9,15 @@ import { ListModules } from '../_components/ListModules';
 import { useModulos } from '@/data/general/hooks/useModulos';
 import { router } from 'expo-router';
 import { Octicons } from '@expo/vector-icons';
+import { useHistorico } from './(modules)/api/useHistorico';
+import { InformativeCard } from '../_components/InformativeCard';
+import { Hospital } from 'lucide-react-native';
+import { formatDateString } from '@/utils/dates';
 
 export default function Historico() {
+
+  const { historico } = useHistorico()
+  console.log(JSON.stringify(historico, null, 2));
   return (
     <ParallaxScrollView>
       <ThemedView className='w-full flex flex-column gap-2'>
@@ -18,27 +25,22 @@ export default function Historico() {
           <Octicons size={22} name='apps'></Octicons>
           <ThemedText type="title">Histórico de consultas</ThemedText>
         </ThemedView>
-          <ThemedText>Veja os modulos abaixo</ThemedText>
+          <ThemedText className='mb-2'>Ultimas visistas</ThemedText>
+          {
+           historico?.length != 0 ? historico?.map(historico => {
+              return (
+                <>
+                  <InformativeCard Icon={Hospital} title={'a'}>
+                    <ThemedText>Data: {formatDateString(historico?.dataVisita)}</ThemedText>
+                    <ThemedText>Iniciada em: {historico?.iniciadaEm  ?? '-'}</ThemedText>
+                    <ThemedText>Finalizada em: {historico?.finalizadaEm ?? '-'}</ThemedText>
+                  </InformativeCard>
+                </>
+              )
+            }) : <ThemedText>Nenhuma visita encontrada</ThemedText>
+          }
       </ThemedView>
     </ParallaxScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  buttonsContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
