@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { Module } from "./module"
 import { useState } from "react"
-import { BarChart, ClipboardPlus, LayoutDashboard, LucideIcon, Megaphone, NotepadText, Settings, User } from "lucide-react"
+import { BarChart, ClipboardPlus, Database, LayoutDashboard, LucideIcon, Megaphone, NotepadText, Settings, User } from "lucide-react"
 import { cn } from "@/schemas/lib/utils"
 import { Icon } from "@/app/_components/icons/Icon"
 import { Subtitle } from "@/app/_components/text/subtitle"
@@ -36,6 +36,11 @@ const modules = [
         Icon: ClipboardPlus
     },
     {
+        name: "Acompanhamentos",
+        to: "/hub/acompanhamentos",
+        Icon: ClipboardPlus
+    },
+    {
         name: "Relatórios",
         to: "/hub/relatorios",
         Icon: NotepadText
@@ -46,9 +51,9 @@ const modules = [
         Icon: User
     },
     {
-        name: "Configurações",
-        to: "/hub/configuracoes",
-        Icon: Settings
+        name: "DB",
+        to: "/hub/database",
+        Icon: Database
     }
 ]
 

@@ -28,7 +28,7 @@ export function ThemedText({
         type === 'link' ? styles.link : undefined,
         type === 'modulo' ? styles.modulo : undefined,
         {
-          color: type != 'modulo' ? globals.colors.black : globals.colors.white,
+          color: type != 'modulo' ? globals.colors.primary : globals.colors.white,
           fontFamily: "Poppins",
         }, style
       ]}

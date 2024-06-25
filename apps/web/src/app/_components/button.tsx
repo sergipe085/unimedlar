@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/schemas/lib/utils";
 import { ChildrenProps } from "@/types";
 import { Subtitle } from "./text/subtitle";

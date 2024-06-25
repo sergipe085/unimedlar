@@ -101,7 +101,7 @@ model Acompanhamento {
   @@map("acompanhamentos")
 }
 
-model Atendimento {
+model Atendimento { 
   id             String                    @id @default(cuid())
   intervaloEmDia Float
   duracaoEmHoras Float                     @default(0)

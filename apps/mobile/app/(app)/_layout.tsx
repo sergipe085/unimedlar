@@ -69,7 +69,7 @@ export default function RootLayout() {
       /> */}
 
       <Tabs.Screen
-        name="modulos"
+        name="historico"
         options={{
           title: 'Modulos',
           tabBarIcon: ({ color, focused }) => (

@@ -14,13 +14,12 @@ import { auth } from "@/data/auth";
 export default async function AppLayout({ children }: ChildrenProps) {
     const { user } = await auth();
 
-    if (!user.gerente) {
+    if (!user || !user.gerente) {
         return redirect("/login", RedirectType.replace);
     }
 
     return (
         <div className="bg-unimed-bg flex justify-end flex-row h-[100vh] pb-0">
-            {/* <ModuleSelector/> */}
             <Sidebar/>
             <div className="w-full flex flex-col items-center justify-center">
                 <Header nome={user.nome}/>
@@ -28,10 +27,6 @@ export default async function AppLayout({ children }: ChildrenProps) {
                     <main className="min-h-[90vh] md:p-8 md:pt-0 p-2 h-auto  flex flex-col items-start justify-start">
                         {children}
                     </main>
-                    <footer className="h-[100px] w-full flex flex-row justify-between items-center">
-                        <TextBold>@jptechnologies</TextBold>
-                        <TextBold>@junglesoftwaredev</TextBold>
-                    </footer>
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@ export default function Login() {
         <ParallaxScrollView>
             <ThemedText type="title">Login</ThemedText>
             <ThemedText type="default">Insira seu email e sua senha</ThemedText>
-            <Input keyboardType="numeric" placeholder="seu cpf" value={input.username} onChangeText={(t) => setInput({ ...input, username: t })}/>
+            <Input placeholder="seu cpf" value={input.username} onChangeText={(t) => setInput({ ...input, username: t })}/>
             <Input placeholder="sua senha" value={input.password} onChangeText={(t) => setInput({ ...input, password: t })}/>
             {/* {
                 error && (

@@ -14,46 +14,87 @@ import { Octicons } from '@expo/vector-icons';
 import { Carrossel } from '@/app/_components/Carrosel';
 import Carousel from 'react-native-snap-carousel';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { InformativeCard } from '@/app/_components/InformativeCard';
+import { Hospital } from 'lucide-react-native';
+import { useVisitas } from './api/useVisitas';
+import { formatDateString } from '@/utils/dates';
 
 type Props = {
-  item : {
+  item: {
     imgUrl: string;
   }
   index: number;
 }
 
-
 export default function HomeScreen() {
   const { auth } = useAuth();
-  const { modulos } = useModulos();
-  const images = [
-    {
-      uri: 'https://www.odiariodeumaviajante.com.br/wp-content/uploads/2021/10/Lagoinha-CE-1024x576.jpeg'
-    },
-    {
-      uri: 'https://i.ytimg.com/vi/3vlvJf-cX4I/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCsttU4TXEXwHe-zw7tLDiauhFUzQ'
-    },
-    require("./../../_components/icons/ze-gotas.jpg")
-]
-
-  const width = Dimensions.get('window').width;
+  const { visitas } = useVisitas()
+  console.log(JSON.stringify(visitas, null, 2));
 
   return (
     <ParallaxScrollView>
+      <ThemedView className='w-full flex flex-row items-center gap-2'>
+        <Octicons size={22} name='home'></Octicons>
+        <ThemedText type="title">Home</ThemedText>
+      </ThemedView>
+      <ThemedText type='subtitle' >Olá, {auth?.user?.nome}</ThemedText>
       <ThemedView className='w-full flex flex-column items-start gap-2'>
-        <ThemedView className='flex flex-row gap-2 items-center'>
+        <ThemedView className='flex flex-col gap-2 w-full'>
+          <ThemedText>Essa é a sua proxima visita</ThemedText>
+          <ThemedView className='p-4 bg-green-300 rounded-sm'>
+            <ThemedView className='flex flex-row justify-between mb-2'>
+              <ThemedText className="text-xl font-extrabold">Visita para {visitas?.proximaVisita?.atendimento?.acompanhamento?.paciente?.nome}</ThemedText>
+              <ThemedText>{`${formatDateString(visitas?.proximaVisita?.dataVisita)}`}</ThemedText>
+
+            </ThemedView>
+            <ThemedText>{`Duração: ${visitas?.proximaVisita?.atendimento?.duracaoEmHoras} horas`}</ThemedText>
+            <ThemedText>Precedimentos a serem realizados:</ThemedText>
+            <ThemedView className='pl-4'>
+              {
+                visitas?.proximaVisita?.atendimento?.procedimentos?.map(procedimento => {
+                  return (
+                    <>
+                      <ThemedText>{procedimento?.quantidade} X {procedimento?.procedimentoId}</ThemedText>
+                      <ThemedText>Medicamento: {procedimento?.medicamentoId ?? 'Sem medicamento'}</ThemedText>
+                      <ThemedText>Duração do procedimento: {procedimento?.duracaoEmHoras ? `${procedimento.duracaoEmHoras} hora(s)` : '-'}</ThemedText>
+
+                    </>
+                  )
+                })
+              }
+
+            </ThemedView>
+
+          </ThemedView>
+
         </ThemedView>
+
+        <ThemedView className='flex flex-col gap-2 w-full'>
+          <ThemedText>Proximas visitas</ThemedText>
+          {
+            visitas?.proximasVisitas?.map(proximaVisita => {
+              return (
+                <InformativeCard description={`Data: ${formatDateString(proximaVisita.dataVisita)}`} highlight={true} iconColor='green' Icon={Hospital} title={'Visita'}>
+                  <ThemedText className="text-sm font-extrabold">Visita</ThemedText>
+                  <ThemedText>{`Data: ${formatDateString(proximaVisita.dataVisita)}`}</ThemedText>
+                  {proximaVisita?.atendimento?.duracaoEmHoras && <ThemedText>{`${proximaVisita?.atendimento?.duracaoEmHoras}`}</ThemedText>}
+                </InformativeCard>
+
+              )
+            })
+          }
+        </ThemedView>
+
         <ThemedView className='w-full flex flex-row items-center gap-2'>
-          {/* <HelloWave/> */}
-          <ThemedText type='subtitle' >Olá, {auth.user.name}</ThemedText>
+
         </ThemedView>
       </ThemedView>
-        <Carrossel images={images}></Carrossel>
-      
-      
-      
+      {/* <Carrossel images={images}></Carrossel> */}
 
-      <ViewJustifyBetween name={'Modulos'}
+
+
+
+      {/* <ViewJustifyBetween name={'Modulos'}
         onPress={() => { router.push("modulos") }} />
       <ListModules  type='line' modulos={modulos} />
 
@@ -61,7 +102,7 @@ export default function HomeScreen() {
       <ViewJustifyBetween name={'Noticias Recentes'} onPress={function (string: any): void {
         throw new Error('Function not implemented.');
       }}/>
-      <ListNoticias maxRender={5} />
+      <ListNoticias maxRender={5} /> */}
     </ParallaxScrollView>
   );
 }

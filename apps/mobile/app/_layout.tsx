@@ -18,6 +18,8 @@ notifications.setupHandler();
 Camera.requestCameraPermissionsAsync()
 
 export default function Root() {
+
+    notifications.useNotificationHandler()
     const [loaded] = useFonts({
         Poppins: require('../assets/fonts/Poppins-Bold.ttf'),
     });
