@@ -1,19 +1,20 @@
 import { JPCard } from "@/app/_components/layout/jp-card";
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
+import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
 import { auth } from "@/data/auth";
+import { getVisitasDoDia } from "@/data/visitas";
 import { Calendar } from "lucide-react";
 import { cookies } from "next/headers";
 
 export default async function Dashboard() {
-    // const cookie = cookies();
-    const { user } =  await auth();
+    const visitasDoDia = await getVisitasDoDia(new Date());
 
     return (
         <>
             <div className="flex flex-row items-end gap-4">
                 <Title>Dashboard</Title>
-                <Subtitle>Hoje, { user.nome }</Subtitle>   
+                <Subtitle>Hoje</Subtitle>   
             </div>
             
 
@@ -38,32 +39,36 @@ export default async function Dashboard() {
                         <Subtitle>profissionalismo</Subtitle>
                     </JPCard>
                 </div>
-                <div className=" flex flex-col w-full h-full gap-1 md:gap-2 flex-wrap pt-8">
+                <div className=" flex flex-col w-full h-full flex-wrap pt-8">
                     <Subtitle className="mt-2 mb-2">Dados por cooperativa</Subtitle>
-                    <JPCard className="p-2 md:p-8 h-12 rounded-xl md:rounded-2xl flex items-center flex-row justify-center">
-                        <Subtitle className="w-full font-bold text-[8px] md:text-lg">COOP.</Subtitle>
-                        <Subtitle className="w-full font-bold text-left text-[8px] md:text-lg">MEDIA</Subtitle>
-                        <Subtitle className="w-full font-bold text-left text-[8px] md:text-lg">PROF.</Subtitle>
-                        <Subtitle className="w-full font-bold text-left text-[8px] md:text-lg">COMP.</Subtitle>
-                        <Subtitle className="w-full font-bold text-left text-[8px] md:text-lg">PONT.</Subtitle>
-                        <Subtitle className="w-full font-bold text-left text-[8px] md:text-lg">VISITAS</Subtitle>
-                    </JPCard>
-                    <JPCard className="p-2 md:p-6 h-8 rounded-lg md:rounded-2xl flex items-center flex-row justify-between">
-                        <Subtitle className="w-full text-[8px] md:text-lg">COOP A</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">12/19</Subtitle>
-                    </JPCard>
-                    <JPCard className="p-2 md:p-6 h-8 rounded-lg md:rounded-2xl flex items-center flex-row justify-between">
-                        <Subtitle className="w-full text-[8px] md:text-lg"> A</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">8.9</Subtitle>
-                        <Subtitle className="w-full text-[8px] md:text-lg text-left">17/23</Subtitle>
-                    </JPCard>
+                    <TableHeader>COOP.,MEDIA,PROF.,COMP.,PONT.,VISITAS</TableHeader>
+                    <TableBody>{
+                        [
+                            ["COOP A","8.9","8.9","8.9","8.9","12/19"],
+                            ["COOP A","8.9","8.9","8.9","8.9","12/19"]
+                        ]    
+                    }</TableBody>
+                </div>
+                <div className=" flex flex-col w-full h-full flex-wrap pt-8">
+                    <Subtitle className="mt-2 mb-2">Visitas do dia</Subtitle>
+                    <TableHeader>ENDERECO,PROFISSIONAIS,PACIENTE</TableHeader>
+                    <TableBody>
+                        {
+                            visitasDoDia.map(visita => {
+                                return (
+                                    <TableRow>
+                                        {
+                                            [
+                                                visita.atendimento.acompanhamento?.paciente.endereco ?? "",
+                                                visita.atendimento.acompanhamento?.tiposProfissionais?.toString() ?? "",
+                                                visita.atendimento.acompanhamento?.paciente.nome ?? "",
+                                            ]
+                                        }
+                                    </TableRow>
+                                )
+                            })
+                        }
+                    </TableBody>
                 </div>
             </div>
         </>

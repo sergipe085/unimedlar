@@ -28,10 +28,10 @@ export default async function AppLayout({ children }: ChildrenProps) {
                     <main className="min-h-[90vh] md:p-8 md:pt-0 p-2 h-auto  flex flex-col items-start justify-start">
                         {children}
                     </main>
-                    <footer className="h-[100px] w-full flex flex-row justify-between items-center">
+                    {/* <footer className="h-[100px] w-full flex flex-row justify-between items-center">
                         <TextBold>@jptechnologies</TextBold>
                         <TextBold>@junglesoftwaredev</TextBold>
-                    </footer>
+                    </footer> */}
                 </div>
             </div>
         </div>

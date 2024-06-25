@@ -36,6 +36,11 @@ const modules = [
         Icon: ClipboardPlus
     },
     {
+        name: "Acompanhamentos",
+        to: "/hub/acompanhamentos",
+        Icon: ClipboardPlus
+    },
+    {
         name: "Relatórios",
         to: "/hub/relatorios",
         Icon: NotepadText
