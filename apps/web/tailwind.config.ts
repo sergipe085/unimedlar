@@ -23,6 +23,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'screen': "url('/screen.png')",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
