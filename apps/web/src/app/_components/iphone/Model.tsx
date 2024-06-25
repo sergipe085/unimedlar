@@ -8,7 +8,7 @@ useGLTF.preload("/mds.glb")
 export default function Model() {
   const group = useRef<Group>(null)
   const { nodes, materials, animations, scene } = useGLTF(
-    "/mds.glb"
+    "/models/mds.glb"
   )
   const { actions, clips } = useAnimations(animations, scene)
   const scroll = useScroll()
