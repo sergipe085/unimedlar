@@ -140,25 +140,25 @@ enum TiposProfissionais {
 }
 
 model Acompanhamento {
-  id                 String               @id @default(cuid())
-  tiposProfissionais TiposProfissionais[]
-  dataInicial        DateTime
-  dataFinal          DateTime
-  paciente           Paciente             @relation(fields: [pacienteId], references: [id])
-  pacienteId         String
-  atendimentos       Atendimento[]
+  id           String        @id @default(cuid())
+  dataInicial  DateTime
+  dataFinal    DateTime
+  paciente     Paciente      @relation(fields: [pacienteId], references: [id])
+  pacienteId   String
+  atendimentos Atendimento[]
 
   @@map("acompanhamentos")
 }
 
 model Atendimento {
-  id               String                    @id @default(cuid())
-  intervaloEmDia   Float
-  duracaoEmHoras   Float                     @default(0)
-  procedimentos    ProcedimentoAtendimento[]
-  acompanhamento   Acompanhamento?           @relation(fields: [acompanhamentoId], references: [id])
-  acompanhamentoId String?
-  visitas          Visita[]
+  id                       String                    @id @default(cuid())
+  intervaloEmDia           Float
+  duracaoEmHoras           Float                     @default(0)
+  procedimentos            ProcedimentoAtendimento[]
+  acompanhamento           Acompanhamento?           @relation(fields: [acompanhamentoId], references: [id])
+  acompanhamentoId         String?
+  visitas                  Visita[]
+  profissionaisNecessarios TiposProfissionais[]
 
   @@map("atendimentos")
 }

@@ -1,6 +1,6 @@
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { TableBody, TableHeader } from "@/components/ui/table";
+import { TableBody, TableHeader, TableRow } from "@/components/ui/table";
 import { getPacientes } from "@/data/pacientes";
 import { getUsuarios } from "@/data/usuarios";
 
@@ -15,7 +15,13 @@ export default async function Usuarios() {
                 <TableHeader>NOME,LOGIN,ID</TableHeader>
                 <TableBody>{
                     usuarios.map(usuario => {
-                        return [usuario.nome, usuario.login,usuario.id]
+                        return (
+                            <TableRow>
+                                {  
+                                    [usuario.nome, usuario.login,usuario.id]
+                                }
+                            </TableRow>
+                        )
                     })
                 }</TableBody>
             </>

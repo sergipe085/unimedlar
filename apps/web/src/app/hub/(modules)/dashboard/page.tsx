@@ -61,7 +61,7 @@ export default async function Dashboard() {
                                         {
                                             [
                                                 visita.atendimento.acompanhamento?.paciente.endereco ?? "",
-                                                visita.atendimento.acompanhamento?.tiposProfissionais?.toString() ?? "",
+                                                visita.atendimento.profissionaisNecessarios?.toString() ?? "",
                                                 visita.atendimento.acompanhamento?.paciente.nome ?? "",
                                             ]
                                         }

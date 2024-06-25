@@ -27,7 +27,7 @@ export default async function Acompanhamentos() {
                             <Link href={`/hub/acompanhamentos/${acompanhamento.id}`}>
                                 <TableRow key={acompanhamento.id} onClick={() => console.log("teste")}>
                                     {
-                                        [acompanhamento.dataInicial.toLocaleDateString("pt-BR"), acompanhamento.dataFinal.toLocaleDateString("pt-BR"), acompanhamento.dataInicial.toLocaleDateString("pt-BR"), acompanhamento.tiposProfissionais.toString()]
+                                        [acompanhamento.dataInicial.toLocaleDateString("pt-BR"), acompanhamento.dataFinal.toLocaleDateString("pt-BR"), acompanhamento.dataInicial.toLocaleDateString("pt-BR")]
                                     }
                                 </TableRow>
                             </Link>
