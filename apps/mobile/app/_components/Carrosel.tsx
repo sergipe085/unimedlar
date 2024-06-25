@@ -40,7 +40,7 @@ export function Carrossel({images}: CarrosselProps) {
                      autoplay={true}
                      autoplayDelay={500}
                      autoplayInterval={3000}
-                     loop={true}
+                    //  loop={true}
                 />
             </View>
         </>

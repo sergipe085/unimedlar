@@ -28,7 +28,7 @@ export async function getVisitasDoDia(date: Date) {
         include: {
             atendimento: {
                 include: {
-                    acompanhamento: {
+                    acompanhamento: { 
                         include: {
                             paciente: true
                         }
