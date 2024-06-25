@@ -83,9 +83,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.jungle_sd.appjp'
+    namespace 'com.jungle_sd.unimedlar'
     defaultConfig {
-        applicationId 'com.jungle_sd.appjp'
+        applicationId 'com.jungle_sd.unimedlar'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "unimedlar",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -66,7 +66,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "0fafb0ba-853a-4bf4-b095-0edb7b2b8ad6"
+        "projectId": "75e05e63-6938-4bcb-bb3f-e290c7c80aa8"
       }
     }
   }

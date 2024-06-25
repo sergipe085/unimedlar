@@ -11,7 +11,8 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "build:android": "npx expo prebuild --platform android && eas build --profile preview --platform android",
+    "build:android": "npx expo prebuild --platform android && eas build --profile preview --platform android --local",
+    "build:android:prod": "npx expo prebuild --platform android && eas build --profile production --platform android --local",
     "build:ios": "npx expo prebuild --platform ios && eas build --platform ios"
   },
   "jest": {

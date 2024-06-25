@@ -1,4 +1,4 @@
-rootProject.name = 'app-jp'
+rootProject.name = 'unimedlar'
 
 dependencyResolutionManagement {
   versionCatalogs {
