@@ -6,5 +6,6 @@ export const globals = {
         primary: "#173509",
         primary50: "#17350988",
         fg: "#082C6A99",
+        red: "#ff0000"
     }
 }
