@@ -6,7 +6,11 @@ export type AuthData = {
     user: Prisma.UsuarioGetPayload<{
         include: {
             gerente: true,
-            cuidador: true
+            cuidador: {
+                include: {
+                    pacientes: true
+                }
+            }
         }
     }>
 }
@@ -21,6 +25,7 @@ export async function auth() {
 
     const authData = jwt.verify(token.value, process.env.JWT_SECRET ?? "secret") as AuthData
     console.log(authData)
+
     return {
         ...authData
     }

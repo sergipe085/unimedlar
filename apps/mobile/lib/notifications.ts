@@ -1,4 +1,6 @@
 import * as Notifications from 'expo-notifications';
+import { router, useRouter } from 'expo-router';
+import { useEffect } from 'react';
 
 const sendQuestionnaireNotification = async () => {
     await Notifications.scheduleNotificationAsync({
@@ -53,46 +55,49 @@ export async function setupHandler() {
     });   
 
     sendQuestionnaireNotification()
+}
 
-    Notifications.setNotificationCategoryAsync('questionnaire', [
-        {
-          identifier: 'YES',
-          buttonTitle: 'Sim',
-          options: { opensAppToForeground: false },
-        },
-        {
-          identifier: 'NO',
-          buttonTitle: 'Não',
-          options: { opensAppToForeground: false },
-        },
-      ]);
+export function useNotificationHandler() {
+    const router = useRouter();
+
+    const lastNotificationResponse =
+        Notifications.useLastNotificationResponse();
+
+        useEffect(() => {
+            if (lastNotificationResponse) {
+                if (lastNotificationResponse.actionIdentifier == "YES") {
+                    router.navigate("historico")
+                }    
+            }
+        }, [lastNotificationResponse]);
+
+    useEffect(() => {
+
+        Notifications.setNotificationCategoryAsync('questionnaire', [
+            {
+                identifier: 'YES',
+                buttonTitle: 'Sim',
+                options: { opensAppToForeground: true },
+            
+            },
+            {
+                identifier: 'NO',
+                buttonTitle: 'Não',
+                options: { opensAppToForeground: false },
+            },
+        ]);
   
-      Notifications.addNotificationResponseReceivedListener(response => {
-        const actionIdentifier = response.actionIdentifier;
-        if (actionIdentifier === 'YES' || actionIdentifier == "NO") {
-            sendFeedbackNotification();
-        }   
-      });
-  
-      Notifications.setNotificationCategoryAsync('feedback', [
-        {
-          identifier: 'SEND_FEEDBACK',
-          buttonTitle: 'Enviar Feedback',
-          options: { opensAppToForeground: false },
-          textInput: {
-            submitButtonTitle: 'Enviar',
-            placeholder: 'Digite seu feedback',
-          },
-        },
-      ]);
-  
-      Notifications.addNotificationResponseReceivedListener(response => {
-        if (response.actionIdentifier === 'SEND_FEEDBACK') {
-          const feedback = response.userText;
-          console.log({
-            response
-          })
-          console.log('Feedback:', feedback);
+        const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+            const actionIdentifier = response.actionIdentifier;
+
+            if (actionIdentifier === 'YES' || actionIdentifier == "NO") {
+                // router.navigate("historico")
+                
+            }  
+        });
+
+        return () => {
+            subscription.remove()
         }
-      });
+    }, [])
 }

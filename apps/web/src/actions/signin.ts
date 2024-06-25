@@ -9,7 +9,11 @@ export async function signin({ login, password }: LoginDTO) {
         },
         include: {
             gerente: true,
-            cuidador: true
+            cuidador: {
+                include: {
+                    pacientes: true
+                }
+            }
         }
     })
 

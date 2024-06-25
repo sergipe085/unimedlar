@@ -23,6 +23,7 @@ export default async function DetalhesProcedimento({ params }: Props) {
                         NOME,VALOR
                     </TableHeader>
                     <TableBody>
+                        <></>
                         {
                             procedimento?.materiais?.map(material => {
                                 return (
