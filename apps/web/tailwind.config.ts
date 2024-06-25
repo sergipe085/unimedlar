@@ -25,6 +25,8 @@ const config = {
     extend: {
       backgroundImage: {
         'screen': "url('/screen.png')",
+        'idosa': "url('/idosa.png')",
+        'idosa2': "url('/idosa2.png')",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],

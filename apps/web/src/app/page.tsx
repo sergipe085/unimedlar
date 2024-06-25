@@ -4,60 +4,117 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Title } from "./_components/text/title";
 import { Subtitle } from "./_components/text/subtitle";
-import { MacbookScroll } from "./_components/macbook-scrool";
 import Link from "next/link";
-import Scene from "./_components/iphone/Scene";
+import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import unimed from "../../public/logo.png"
+import celular from "../../public/celular.png"
+import idosa from "../../public/idosa.png"
+
+
+import { FlipWords } from "./_components/flip-words";
+
+import dynamic from "next/dynamic"
+
+const Scene = dynamic(() => import("./_components/iphone/Scene"), { ssr: false })
 
 
 export default function LadingPage() {
-  const Badge = ({ className }: { className?: string }) => {
-    return (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 56 56"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-      >
-        <path
-          d="M56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28Z"
-          fill="#00AA45"
-        ></path>
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M28 54C42.3594 54 54 42.3594 54 28C54 13.6406 42.3594 2 28 2C13.6406 2 2 13.6406 2 28C2 42.3594 13.6406 54 28 54ZM28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z"
-          fill="#219653"
-        ></path>
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M27.0769 12H15V46H24.3846V38.8889H27.0769C34.7305 38.8889 41 32.9048 41 25.4444C41 17.984 34.7305 12 27.0769 12ZM24.3846 29.7778V21.1111H27.0769C29.6194 21.1111 31.6154 23.0864 31.6154 25.4444C31.6154 27.8024 29.6194 29.7778 27.0769 29.7778H24.3846Z"
-          fill="#24292E"
-        ></path>
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M18 11H29.0769C36.2141 11 42 16.5716 42 23.4444C42 30.3173 36.2141 35.8889 29.0769 35.8889H25.3846V43H18V11ZM25.3846 28.7778H29.0769C32.1357 28.7778 34.6154 26.39 34.6154 23.4444C34.6154 20.4989 32.1357 18.1111 29.0769 18.1111H25.3846V28.7778Z"
-          fill="white"
-        ></path>
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M17 10H29.0769C36.7305 10 43 15.984 43 23.4444C43 30.9048 36.7305 36.8889 29.0769 36.8889H26.3846V44H17V10ZM19 12V42H24.3846V34.8889H29.0769C35.6978 34.8889 41 29.7298 41 23.4444C41 17.1591 35.6978 12 29.0769 12H19ZM24.3846 17.1111H29.0769C32.6521 17.1111 35.6154 19.9114 35.6154 23.4444C35.6154 26.9775 32.6521 29.7778 29.0769 29.7778H24.3846V17.1111ZM26.3846 19.1111V27.7778H29.0769C31.6194 27.7778 33.6154 25.8024 33.6154 23.4444C33.6154 21.0864 31.6194 19.1111 29.0769 19.1111H26.3846Z"
-          fill="#24292E"
-        ></path>
-      </svg>
-    );
-  };
-
-
+  const words = [`gerenciar`, "monitorar", "planejar"];
   const router = useRouter();
 
   return (
-    <main className="h-full">
-      <Scene />
+    <main className="h-svh bg-white w-full flex flex-col">
+      <div className="p-2 w-full flex bg-white items-center justify-center fixed gap-8">
+        <Image className="h-12 w-32" src={unimed} alt={"unimed logo"}></Image> 
+        <p>miau</p>
+        <p>miau</p> 
+        <p>miau</p> 
+      </div>
+      {/* <Image src={idosa} alt=""></Image> */}
+      <div className="mt-10 bg-cover w-screen bg-idosa2 sm:bg-idosa h-[800px] sm:h-svh">
+        <div className="bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed">
+        <div className="flex h-full x justify-start pt-24 px-4 sm:px-40 sm:pb-96 sm:pt-60">
+          <div className="text-black mb-96">
+            <h2 className="mb-4 text-4xl font-semibold">O tratamento continua, mesmo fora do hospital.</h2>
+            <h4 className="mb-6 text-xl w-2/5">De casa, os pacientes continuam conectados às equipes médicas pelos apps para iOS e iPadOS entre as consultas. As organizações de saúde podem criar apps com o CareKit ou oferecer apps existentes para dar ainda mais autonomia aos pacientes. E o iPhone, o iPad, o Apple Watch, o app Saúde e apps e aparelhos médicos compatíveis com HealthKit facilitam o registro e compartilhamento de dados.</h4>
+            <button className="bg-white p-2">veja oportunidades</button>
+          </div>
+        </div>
+        </div>
+      </div>
+        <div className="text-xl sm:text-3xl mx-auto font-normal text-neutral-600 dark:text-neutral-400 items-center text-center">
+          Com o Unimed Lar você pode<br />
+          <FlipWords className="text-2xl sm:text-4xl" words={words} />
+        </div>
+      <div className="flex flex-col w-full pt-20">
+        <MacbookScroll></MacbookScroll>
+      </div>
     </main>
   );
 }
+
+
+
+export const MacbookScroll = ({
+  src,
+  showGradient,
+  title,
+  badge,
+}: {
+  src?: string;
+  showGradient?: boolean;
+  title?: string | React.ReactNode;
+  badge?: React.ReactNode;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window && window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  const scaleX = useTransform(
+    scrollYProgress,
+    [0, 0.3],
+    [1.2, isMobile ? 1 : 3]
+  );
+  const scaleY = useTransform(
+    scrollYProgress,
+    [0, 0.3],
+    [0.6, isMobile ? 1 : 1.5]
+  );
+  const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
+  const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
+  const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+  return (
+    <div
+      ref={ref}
+      className=" h-svh flex flex-col [perspective:800px] pt-40 transform md:scale-100  scale-[1] sm:scale-50"
+    >
+      <motion.h2
+        style={{
+          translateY: textTransform,
+          opacity: textOpacity,
+        }}
+        className="dark:text-white text-neutral-800 text-3xl font-bold text-center -mb-10"
+      >
+        {title || (
+          <span>
+            Sério acho que isso foi tao custoso que tinha que dar certo <br /> nao to nem brincando.
+          </span>
+        )}
+      </motion.h2>
+      <Scene />
+    </div>
+  );
+};

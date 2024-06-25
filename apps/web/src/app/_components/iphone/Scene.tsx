@@ -16,7 +16,7 @@ export default function Scene() {
     <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} className="relative h-svh">
       <directionalLight position={[-5, -5, 5]} intensity={4} />
       <Suspense fallback={<Loader />}>
-        <ScrollControls damping={0.5} pages={3}>
+        <ScrollControls damping={0.5} pages={1}>
           <Model />
         </ScrollControls>
       </Suspense>
