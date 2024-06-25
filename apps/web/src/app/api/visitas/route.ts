@@ -23,20 +23,3 @@ export async function GET(req: NextRequest) {
             }
         });
 }
-
-export async function getHistorico(req: NextRequest) {
-    const { user } = await auth();
-
-    const pacienteId = user.cuidador?.pacientes[0].id ?? "";
-    const historico = await getHistoricoVisitasDoPaciente(pacienteId);
-
-    return new Response(JSON.stringify({
-       historico
-    }),
-        {
-            status: 200,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-}

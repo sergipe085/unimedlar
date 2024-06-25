@@ -12,7 +12,7 @@ export function useVisitas() {
     }, [])
 
     return {
-        visitas,j
+        visitas
     }
 }
 export async function listVisitas(): Promise<Visitas> {
