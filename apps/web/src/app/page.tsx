@@ -56,7 +56,7 @@ export default function LadingPage() {
 
 
 
-export const MacbookScroll = ({
+const MacbookScroll = ({
   src,
   showGradient,
   title,
