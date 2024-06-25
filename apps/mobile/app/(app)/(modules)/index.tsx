@@ -25,35 +25,27 @@ type Props = {
 
 export default function HomeScreen() {
   const { auth } = useAuth();
-  const { modulos } = useModulos();
-  const images = [
-    {
-      uri: 'https://www.odiariodeumaviajante.com.br/wp-content/uploads/2021/10/Lagoinha-CE-1024x576.jpeg'
-    },
-    {
-      uri: 'https://i.ytimg.com/vi/3vlvJf-cX4I/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCsttU4TXEXwHe-zw7tLDiauhFUzQ'
-    },
-    require("./../../_components/icons/ze-gotas.jpg")
-]
-
-  const width = Dimensions.get('window').width;
 
   return (
     <ParallaxScrollView>
+      <ThemedView className='w-full flex flex-row items-center gap-2'>
+          <Octicons size={22} name='home'></Octicons>
+          <ThemedText type="title">Home</ThemedText>
+      </ThemedView>
+      <ThemedText type='subtitle' >Olá, {auth.user.nome}</ThemedText>
       <ThemedView className='w-full flex flex-column items-start gap-2'>
         <ThemedView className='flex flex-row gap-2 items-center'>
         </ThemedView>
         <ThemedView className='w-full flex flex-row items-center gap-2'>
-          {/* <HelloWave/> */}
-          <ThemedText type='subtitle' >Olá, {auth.user.name}</ThemedText>
+          
         </ThemedView>
       </ThemedView>
-        <Carrossel images={images}></Carrossel>
+        {/* <Carrossel images={images}></Carrossel> */}
       
       
       
 
-      <ViewJustifyBetween name={'Modulos'}
+      {/* <ViewJustifyBetween name={'Modulos'}
         onPress={() => { router.push("modulos") }} />
       <ListModules  type='line' modulos={modulos} />
 
@@ -61,7 +53,7 @@ export default function HomeScreen() {
       <ViewJustifyBetween name={'Noticias Recentes'} onPress={function (string: any): void {
         throw new Error('Function not implemented.');
       }}/>
-      <ListNoticias maxRender={5} />
+      <ListNoticias maxRender={5} /> */}
     </ParallaxScrollView>
   );
 }
