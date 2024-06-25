@@ -56,10 +56,8 @@ export default function LadingPage() {
   const router = useRouter();
 
   return (
-    <div className="w-full min-h-screen bg-[#f6f5f8] flex flex-col px-4 items-center justify-start">
-          <div className="overflow-hidden dark:bg-[#0B0B0F] bg-white w-full">
-      <Scene></Scene>
-    </div>
-    </div>
+    <main className="h-full">
+      <Scene />
+    </main>
   );
 }
