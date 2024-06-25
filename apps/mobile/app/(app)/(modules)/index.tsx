@@ -16,6 +16,8 @@ import Carousel from 'react-native-snap-carousel';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import { InformativeCard } from '@/app/_components/InformativeCard';
 import { Hospital } from 'lucide-react-native';
+import { useVisitas } from './api/useVisitas';
+import { formatDateString } from '@/utils/dates';
 
 type Props = {
   item: {
@@ -23,13 +25,11 @@ type Props = {
   }
   index: number;
 }
-const images = [
-  { uri: 'https://www.unimed.coop.br/site/documents/605536/9842174/2022_09_30+-+UNIMED_BANNER-DIGITAL_V4_1440x411.jpg/1698f63e-b5ea-a6c7-479f-f49620c2f6e9?t=1666635179171&download=true' },
-  { uri: 'https://www.unimedfortaleza.com.br/portaluploads/uploads/2022/06/unimed-lar.jpg' },
-  { uri: 'https://www.valordeplanosdesaude.com.br/wp-content/uploads/2019/02/home-care-unimed-capa-770x400.jpg' }
-];
+
 export default function HomeScreen() {
   const { auth } = useAuth();
+  const { visitas } = useVisitas()
+  console.log(JSON.stringify(visitas, null, 2));
 
   return (
     <ParallaxScrollView>
@@ -37,13 +37,54 @@ export default function HomeScreen() {
         <Octicons size={22} name='home'></Octicons>
         <ThemedText type="title">Home</ThemedText>
       </ThemedView>
-      <ThemedText type='subtitle' >Olá, {auth.user.nome}</ThemedText>
+      <ThemedText type='subtitle' >Olá, {auth?.user?.nome}</ThemedText>
       <ThemedView className='w-full flex flex-column items-start gap-2'>
-        <ThemedView className='flex flex-col gap-2'>
-          <ThemedText>Essa é a sua visita do dia</ThemedText>
-          <InformativeCard iconColor='green' Icon={Hospital} title={'Visita'}/>
+        <ThemedView className='flex flex-col gap-2 w-full'>
+          <ThemedText>Essa é a sua proxima visita</ThemedText>
+          <ThemedView className='p-4 bg-green-300 rounded-sm'>
+            <ThemedView className='flex flex-row justify-between mb-2'>
+              <ThemedText className="text-xl font-extrabold">Visita para {visitas?.proximaVisita?.atendimento?.acompanhamento?.paciente?.nome}</ThemedText>
+              <ThemedText>{`${formatDateString(visitas?.proximaVisita?.dataVisita)}`}</ThemedText>
+
+            </ThemedView>
+            <ThemedText>{`Duração: ${visitas?.proximaVisita?.atendimento?.duracaoEmHoras} horas`}</ThemedText>
+            <ThemedText>Precedimentos a serem realizados:</ThemedText>
+            <ThemedView className='pl-4'>
+              {
+                visitas?.proximaVisita?.atendimento?.procedimentos?.map(procedimento => {
+                  return (
+                    <>
+                      <ThemedText>{procedimento?.quantidade} X {procedimento?.procedimentoId}</ThemedText>
+                      <ThemedText>Medicamento: {procedimento?.medicamentoId ?? 'Sem medicamento'}</ThemedText>
+                      <ThemedText>Duração do procedimento: {procedimento?.duracaoEmHoras ? `${procedimento.duracaoEmHoras} hora(s)` : '-'}</ThemedText>
+
+                    </>
+                  )
+                })
+              }
+
+            </ThemedView>
+
+          </ThemedView>
+
         </ThemedView>
-        
+
+        <ThemedView className='flex flex-col gap-2 w-full'>
+          <ThemedText>Proximas visitas</ThemedText>
+          {
+            visitas?.proximasVisitas?.map(proximaVisita => {
+              return (
+                <InformativeCard description={`Data: ${formatDateString(proximaVisita.dataVisita)}`} highlight={true} iconColor='green' Icon={Hospital} title={'Visita'}>
+                  <ThemedText className="text-sm font-extrabold">Visita</ThemedText>
+                  <ThemedText>{`Data: ${formatDateString(proximaVisita.dataVisita)}`}</ThemedText>
+                  {proximaVisita?.atendimento?.duracaoEmHoras && <ThemedText>{`${proximaVisita?.atendimento?.duracaoEmHoras}`}</ThemedText>}
+                </InformativeCard>
+
+              )
+            })
+          }
+        </ThemedView>
+
         <ThemedView className='w-full flex flex-row items-center gap-2'>
 
         </ThemedView>

@@ -17,7 +17,7 @@ export async function getVisitas() {
 
     return visitas;
 }
-
+ 
 export async function getVisitasDoDia(date: Date) {
     const visitas = await db.visita.findMany({
         where: {
@@ -97,7 +97,7 @@ export async function getProximasVisitasDoPaciente(pacienteId: string) {
     console.log(visitas)
 
     return visitas;
-}
+} 
 
 export async function getHistoricoVisitasDoPaciente(pacienteId: string) {
     const visitas = await db.visita.findMany({

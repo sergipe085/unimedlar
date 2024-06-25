@@ -11,9 +11,10 @@ type Props = {
     highlight?: boolean;
     iconColor?: "red" | "yellow" | "green" | "blue";
     image?: string
+    children?: React.ReactNode;
 } & TouchableOpacityProps
 
-export function InformativeCard({ image, Icon, title, description, highlight = false, iconColor = "blue", className, ...props }: Props) {
+export function InformativeCard({ image, Icon, title, description, highlight = false, iconColor = "blue", className, children, ...props }: Props) {
     return (
         <TouchableOpacity {...props}>
             <View className={`h-[88px] min-h-[88px] px-4 ${className}`} style={{
@@ -23,7 +24,7 @@ export function InformativeCard({ image, Icon, title, description, highlight = f
                 minHeight: 88
             }}>
                 <View 
-                    className={`w-full h-full flex flex-row items-center justify-start ${highlight ? 'bg-blue-50' : ''}`}
+                    className={`w-full h-full flex flex-row items-center justify-start ${highlight ? 'bg-green-200' : ''}`}
                     style={{
                         borderRadius: 16
                     }}
@@ -39,8 +40,7 @@ export function InformativeCard({ image, Icon, title, description, highlight = f
                     </View>
                     <View className="flex flex-col">
                         <View className="h-full pt-6">
-                            <ThemedText className=" text-sm font-extrabold" >{title}</ThemedText>
-                            <ThemedText className=" text-sm" style={{ flexShrink: 1 }}>{description}</ThemedText>
+                            {children}
                         </View>
                         <Text></Text>
 
