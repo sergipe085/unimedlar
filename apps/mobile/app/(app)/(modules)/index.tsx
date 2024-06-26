@@ -18,6 +18,7 @@ import { InformativeCard } from '@/app/_components/InformativeCard';
 import { Hospital } from 'lucide-react-native';
 import { useVisitas } from './api/useVisitas';
 import { formatDateString } from '@/utils/dates';
+import { Colors } from '@/constants/Colors';
 
 type Props = {
   item: {
@@ -37,18 +38,18 @@ export default function HomeScreen() {
         <Octicons size={22} name='home'></Octicons>
         <ThemedText type="title">Home</ThemedText>
       </ThemedView>
-      <ThemedText type='subtitle' >Olá, {auth?.user?.nome}</ThemedText>
+      <ThemedText type='subtitle' >Olá, {auth?.user?.nome ?? 'Usuario não identificado'}</ThemedText>
       <ThemedView className='w-full flex flex-column items-start gap-2'>
         <ThemedView className='flex flex-col gap-2 w-full'>
-          <ThemedText>Essa é a sua proxima visita</ThemedText>
+          <ThemedText style={{color: Colors.unimedColors.laranja}}>Essa é a sua proxima visita</ThemedText>
           <ThemedView className='p-4 bg-green-300 rounded-sm'>
             <ThemedView className='flex flex-row justify-between mb-2'>
-              <ThemedText className="text-xl font-extrabold">Visita para {visitas?.proximaVisita?.atendimento?.acompanhamento?.paciente?.nome}</ThemedText>
+              <ThemedText className="text-xl font-extrabold" style={{color: Colors?.unimedColors?.laranja}}>Visita para {visitas?.proximaVisita?.atendimento?.acompanhamento?.paciente?.nome}</ThemedText>
               <ThemedText>{`${formatDateString(visitas?.proximaVisita?.dataVisita)}`}</ThemedText>
 
-            </ThemedView>
+            </ThemedView> 
             <ThemedText>{`Duração: ${visitas?.proximaVisita?.atendimento?.duracaoEmHoras} horas`}</ThemedText>
-            <ThemedText>Precedimentos a serem realizados:</ThemedText>
+            <ThemedText style={{color: Colors.unimedColors.laranja}}>Precedimentos a serem realizados:</ThemedText>
             <ThemedView className='pl-4'>
               {
                 visitas?.proximaVisita?.atendimento?.procedimentos?.map(procedimento => {

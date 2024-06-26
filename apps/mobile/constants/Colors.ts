@@ -7,6 +7,11 @@ const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
 export const Colors = {
+  unimedColors: {
+    laranja: '#F47920',
+    verde: '#008D52',
+    branco: '#fff'
+  },
   light: {
     text: '#11181C',
     background: '#fff',
