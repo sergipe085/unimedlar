@@ -185,7 +185,7 @@ model Visita {
 
 model AvaliacaoVisita {
   id                              String   @id @default(cuid())
-  visita                          Visita?
+  visita                           Visita?
   nota                            Int
   feedback                        String?
   profissionalCompareceu          Boolean?

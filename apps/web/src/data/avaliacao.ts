@@ -1,10 +1,11 @@
 import { db } from "@/lib/db";
 
+
 interface bodyAvaliacao {
     visitasId: string;
     nota: number;
     feedback: string;
-    
+
 }
 
 export async function realizarAvaliacao(visitaId: string, nota: number) {
