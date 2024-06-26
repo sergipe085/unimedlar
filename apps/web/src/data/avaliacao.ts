@@ -1,10 +1,11 @@
-import { db } from "@/schemas/lib/db";
+import { db } from "@/lib/db";
+
 
 interface bodyAvaliacao {
     visitasId: string;
     nota: number;
     feedback: string;
-    
+
 }
 
 export async function realizarAvaliacao(visitaId: string, nota: number) {
@@ -24,14 +25,17 @@ export async function realizarAvaliacao(visitaId: string, nota: number) {
     return avaliacao;
 }
 
-export async function realizarAvaliacaoFeedback(visitaId: string, feedback: string) {
-    const avaliacao = await db.avaliacaoVisita.create({
-        data: {
+export async function realizarFeedback(visitaId: string, feedback: string) {
+    const avaliacao = await db.avaliacaoVisita.upsert({
+        where: {
             visita: {
-                connect: {
-                    id: visitaId
-                }
-            },
+                id: visitaId
+            }
+        },
+        create: {
+            feedback: feedback
+        },
+        update: {
             feedback: feedback,
         }
     });
