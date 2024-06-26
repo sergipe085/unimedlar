@@ -1,8 +1,16 @@
 {
     "crons": [
-        {
-        "path": "/api/enviar-notificacoes",
-        "schedule": "*/1 * * * *"
-        }
-  ]
-}
+      {
+        "path": "/api/every-minute",
+        "schedule": "* * * * *"
+      },
+      {
+        "path": "/api/every-hour",
+        "schedule": "0 * * * *"
+      },
+      {
+        "path": "/api/every-day",
+        "schedule": "0 0 * * *"
+      }
+    ]
+  }
