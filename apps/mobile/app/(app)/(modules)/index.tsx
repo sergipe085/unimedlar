@@ -56,7 +56,7 @@ export default function HomeScreen() {
                     <>
                       <ThemedText>{procedimento?.quantidade} X {procedimento?.procedimentoId}</ThemedText>
                       <ThemedText>Medicamento: {procedimento?.medicamentoId ?? 'Sem medicamento'}</ThemedText>
-                      <ThemedText>Duração do procedimento: {procedimento?.duracaoEmHoras ? `${procedimento.duracaoEmHoras} hora(s)` : '-'}</ThemedText>
+                      <ThemedText>Duração do procedimento: {procedimento?.duracaoEmHoras != undefined && procedimento?.duracaoEmHoras != null ? `${procedimento.duracaoEmHoras} hora(s)` : '-'}</ThemedText>
 
                     </>
                   )
