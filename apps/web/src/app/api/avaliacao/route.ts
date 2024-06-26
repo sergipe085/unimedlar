@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     // Supondo que você receba os dados da visita através do corpo da requisição
     const { nota, idVisita } = await req.json();
 
-    if (!idVisita || !nota) return Error("Campos obrigatorios não enviados")
+    if (!idVisita || !nota) return 
 
     const notasAvaliacao: Record<string, { nota: number }> = {
         'muito bom': { nota: 5 },
