@@ -102,7 +102,7 @@ function SidebarUnit({ active, name, Icon, className, ...props }: SidebarUnitPro
             { ...props }
         >
             <Icon color="#173509"/>
-            <Subtitle className={`${active ? "font-bold" : "font-normal"} text-unimed-primary text-md`}>{name}</Subtitle>
+            <Subtitle className={`${active ? "font-bold" : "font-normal"} text-unimed-secundary text-md`}>{name}</Subtitle>
         </div>
     )
 }

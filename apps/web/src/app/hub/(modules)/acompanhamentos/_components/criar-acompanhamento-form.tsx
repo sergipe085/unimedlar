@@ -1,6 +1,7 @@
 "use client"
 
 import { criarAcompanhamento } from "@/actions/acompanhamentos/criarAcompanhamento";
+import { SeletorPacientes } from "@/app/hub/_components/seletores/seletor-pacientes";
 import { useFormStatus } from "react-dom";
 
 type SubmitButtonProps = {
@@ -23,9 +24,10 @@ export function CriarAcompanhamentoForm() {
 
     return (
       <form action={criarAcompanhamento} className="flex flex-col gap-y-2">
+        <SeletorPacientes/>
         <label htmlFor="text">Text</label>
         <textarea id="text" name="text" className="border-2" />
-  
+        
         <SubmitButton label="Create" loading="Creating ..." />
       </form>
     )

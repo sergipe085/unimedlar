@@ -33,7 +33,7 @@ export async function HeaderRoutes() {
                     router.back();
                 }
             }} color="#173509"/>
-            <p className=' text-unimed-primary'>{pathname.split("/").map((e, i) => {
+            <p className=' text-unimed-secundary'>{pathname.split("/").map((e, i) => {
                 
                 const text = `${e}${i == pathname.split("/").length - 1 ? "" : ""}`
 

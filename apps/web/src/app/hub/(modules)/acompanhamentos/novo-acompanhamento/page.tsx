@@ -5,6 +5,7 @@ import { getAcompanhamentos } from "@/data/acompanhamento";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { CriarAcompanhamentoForm } from "../_components/criar-acompanhamento-form";
+import { SeletorPacientes } from "@/app/hub/_components/seletores/seletor-pacientes";
 
 export default async function NovoAcompanhamento() {
     const acompanhamentos = await getAcompanhamentos();
