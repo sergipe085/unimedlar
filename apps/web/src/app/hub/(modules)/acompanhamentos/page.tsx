@@ -1,7 +1,7 @@
 import { Button } from "@/app/_components/button";
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import { TableBody, TableHeader, TableRow } from "@/components/ui/mytable";
 import { getAcompanhamentos } from "@/data/acompanhamento";
 import { Plus } from "lucide-react";
 import Link from "next/link";

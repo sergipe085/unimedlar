@@ -1,4 +1,4 @@
-import { db } from "@/schemas/lib/db";
+import { db } from "../lib/db";
 
 export async function getAcompanhamentos() {
     const acompanhamentos = await db.acompanhamento.findMany();

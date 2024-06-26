@@ -15,12 +15,12 @@ export function Header({ nome }: Props) {
     const router = useRouter();
     
     return ( 
-        <header className="h-20 flex items-center w-full">
+        <header className="h-20 px-4 flex items-center w-full">
             <div className="flex flex-1 flex-row justify-between">
                 <HeaderRoutes/>
                 <div className='flex flex-row gap-2 items-center'>
                     <div className='flex flex-row gap-2 items-start'>
-                        <Text>{nome}, </Text>
+                        <Text>{nome}</Text>
                     </div>
                     <LogOut color='#173509' className=' cursor-pointer' onClick={() => {
                         // signOut();

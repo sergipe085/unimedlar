@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IMaskInput } from 'react-imask';
-import { api } from "@/schemas/lib/api";
+import { api } from "../../../lib/api";
 
 export default function Login() {
   const { signIn, auth_data } = useApi();

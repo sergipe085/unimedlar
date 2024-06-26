@@ -1,7 +1,7 @@
 import { JPCard } from "@/app/_components/layout/jp-card";
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/mytable";
 import { auth } from "@/data/auth";
 import { getVisitasDoDia } from "@/data/visitas";
 import { Calendar } from "lucide-react";

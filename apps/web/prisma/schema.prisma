@@ -107,6 +107,11 @@ enum UrgenciaChamado {
 
 enum AssuntoChamado {
   SAUDE_PACIENTE
+  PROFISSIONAL_NAO_CUMPRIU_CARGA_HORARIA
+  PROFISSIONAL_NAO_COMPARECEU
+  PROFISSIONAL_NAO_FEZ_O_QUE_DEVERIA
+  MAL_TRATAMENTO_DO_PROFISSIONAL
+  FALTA_DE_PROFISSIONALISMO_DO_PROFISSIONAL
   FINANCEIRO
   PLANO_DE_SAUDE
 }
@@ -164,33 +169,28 @@ model Atendimento {
 }
 
 model Visita {
-  id            String      @id @default(cuid())
-  atendimento   Atendimento @relation(fields: [atendimentoId], references: [id])
-  atendimentoId String
-  dataVisita    DateTime
+  id          String           @id @default(cuid())
+  avaliacao   AvaliacaoVisita? @relation(fields: [avaliacaoVisitaId], references: [id])
+  atendimento Atendimento      @relation(fields: [atendimentoId], references: [id])
+  dataVisita  DateTime
 
-  iniciadaEm   DateTime?
-  finalizadaEm DateTime?
-  avaliacoes   AvaliacaoVisita[]
+  compareceuEm    DateTime?
+  naoCompareceuEm DateTime?
+
+  avaliacaoVisitaId String? @unique
+  atendimentoId     String
 
   @@map("visitas")
 }
 
-enum CriteriosAvaliacao {
-  COMPETENCIA
-  PONTUALIDADE
-  PROFISSIONALISMO
-  EDUCACAO
-}
-
 model AvaliacaoVisita {
-  id          String             @id @default(cuid())
-  visita      Visita             @relation(fields: [visitasId], references: [id])
-  visitasId   String
-  criterio    CriteriosAvaliacao
-  nota        Float
-  feedback    String?
-  realizadaEm DateTime           @default(now())
+  id                              String   @id @default(cuid())
+  visita                          Visita?
+  nota                            Int
+  feedback                        String?
+  profissionalCompareceu          Boolean?
+  profissionalCumpriuCargaHoraria Boolean?
+  atualizadaEm                    DateTime @default(now()) @updatedAt
 
   @@map("avaliacoesVisita")
 }
@@ -205,7 +205,6 @@ model ProcedimentoAtendimento {
   medicamentoId  String?
   quantidade     Float         @default(1)
   duracaoEmHoras Float         @default(0)
-  visitasId      String?
 
   @@map("procedimentosAtendimento")
 }

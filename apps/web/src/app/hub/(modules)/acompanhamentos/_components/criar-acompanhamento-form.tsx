@@ -13,7 +13,7 @@ export function SubmitButton({ label, loading }: SubmitButtonProps) {
 
     return (
         <button disabled={pending} type="submit" className="border-2">
-        {pending ? loading : label}
+            {pending ? loading : label}
         </button>
     );
 };

@@ -1,4 +1,4 @@
-import { db } from "@/schemas/lib/db";
+import { db } from "../lib/db";
 import { LoginDTO } from "@/schemas/loginSchema";
 import { sign } from "jsonwebtoken";
 

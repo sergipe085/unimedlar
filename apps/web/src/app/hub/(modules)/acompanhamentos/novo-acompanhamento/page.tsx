@@ -1,6 +1,6 @@
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import { TableBody, TableHeader, TableRow } from "@/components/ui/mytable";
 import { getAcompanhamentos } from "@/data/acompanhamento";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";

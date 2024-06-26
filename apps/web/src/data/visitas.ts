@@ -1,4 +1,4 @@
-import { db } from "@/schemas/lib/db";
+import { db } from "../lib/db";
 
 export async function getVisitas() {
     const visitas = await db.visita.findMany({

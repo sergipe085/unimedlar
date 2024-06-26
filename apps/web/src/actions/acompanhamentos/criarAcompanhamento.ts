@@ -1,28 +1,31 @@
 "use server"
 
-import { db } from "@/schemas/lib/db";
+import { db } from "../../lib/db";
+import { formToJSON } from "axios";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { z } from "zod";
+
+const schema = z.object({
+    idPaciente: z.string(),
+    dataInicial: z.coerce.date(),
+    dataFinal: z.coerce.date(),
+})
 
 export async function criarAcompanhamento(formData: FormData) {
-    console.log(formData);
-    
+    const req = formToJSON(formData);
+
+    const { idPaciente, dataInicial, dataFinal } = schema.parse(req);
+
     const acompanhamento = await db.acompanhamento.create({
         data: {
             paciente: {
                 connect: {
-                    id: "clxtulmmv00021rqeuotl5blu"
+                    id: idPaciente
                 }
             },
-            dataInicial: new Date(),
-            dataFinal: new Date(),
-            atendimentos: {
-                createMany: {
-                    data: [
-
-                    ]
-                }
-            }
+            dataInicial,
+            dataFinal
         }
     })
 
