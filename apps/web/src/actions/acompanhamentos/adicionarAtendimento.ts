@@ -8,20 +8,16 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-
-
 export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
     console.log(req);
 
     const data = adicionarAtendimentoSchema.parse(req);
-    return;
 
-
-    var duracaoEmHoras = 0;
+    let duracaoEmHoras = 0;
 
     for (const procedimento of data.procedimentos) {
         if (!procedimento.medicamentoId && !procedimento.procedimentoId) {
-            throw new Error("selecione pelo menos um procedimento ou um medicamento")
+            throw new Error("selecione pelo menos um procedimento ou um medicamento");
         }
 
         duracaoEmHoras += procedimento.duracaoEmHoras;
@@ -40,17 +36,22 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
         include: {
             acompanhamento: true
         }
-    })
+    });
 
     if (!atendimento.acompanhamento) {
         throw new Error("acompanhamento invalido");
     }
 
     let currentDate: Date = atendimento.acompanhamento.dataInicial;
+    const dataFinal = atendimento.acompanhamento.dataFinal;
+
+    if (!currentDate || !dataFinal) {
+        throw new Error("Data inicial ou final do acompanhamento está indefinida");
+    }
 
     const visitas: Prisma.VisitaCreateInput[] = [];
 
-    while (currentDate <= atendimento.acompanhamento.dataFinal) {
+    while (currentDate <= dataFinal) {
         visitas.push({
             atendimento: {
                 connect: {
@@ -58,11 +59,11 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
                 }
             },
             dataVisita: currentDate
-        })
+        });
 
         // Incrementa a data atual pelo intervalo especificado
         currentDate.setDate(currentDate.getDate() + data.intervaloEmDia);
     }
 
-    redirect(`/hub/acompanhamentos/${atendimento.acompanhamentoId}`);
+    redirect(`/hub/acompanhamentos/${atendimento.acompanhamento.id}`);
 }
