@@ -24,8 +24,8 @@ export default async function RelatorioVisitas() {
                                     [
                                         visita.atendimento.acompanhamento?.paciente.nome,
                                         visita.dataVisita.toLocaleDateString("pt-BR"),
-                                        visita.iniciadaEm?.toLocaleString("pt-BR") ?? "-",
-                                        visita.finalizadaEm?.toLocaleString("pt-BR") ?? "-",
+                                        // visita.iniciadaEm?.toLocaleString("pt-BR") ?? "-",
+                                        // visita.finalizadaEm?.toLocaleString("pt-BR") ?? "-",
                                     ] as string[]
                                 }
                             </TableRow>

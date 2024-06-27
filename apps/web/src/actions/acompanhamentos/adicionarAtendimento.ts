@@ -63,7 +63,7 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
 
         // Incrementa a data atual pelo intervalo especificado
         currentDate.setDate(currentDate.getDate() + data.intervaloEmDia);
-    }
+    }   
 
     redirect(`/hub/acompanhamentos/${atendimento.acompanhamento.id}`);
 }
