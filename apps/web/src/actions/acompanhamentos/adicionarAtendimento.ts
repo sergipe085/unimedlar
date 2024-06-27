@@ -22,6 +22,7 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
 
     const atendimento = await db.atendimento.create({
         data: {
+            titulo: "ATENDIMENTO TESTE",
             paciente: {
                 connect: {
                     id: data.idPaciente

@@ -19,19 +19,24 @@ export default async function Atendimentos() {
             </div>
             <Subtitle className="mb-4">Atendimentos do Unimed Lar</Subtitle>
             <>
-                <TableHeader>PACIENTE,TITULO,INTERVALO,DURACAO,DATA INICIAL,DATA FINAL,COOPERATIVA,QTD PROCEDIMENTOS,QTD VISITAS</TableHeader>
+                <TableHeader>PACIENTE,TITULO,INTERVALO,DURACAO,DATA INICIAL,DATA FINAL,COOPERATIVA,VISITAS RESTANTES,PRESENCA</TableHeader>
                 <TableBody>{
                     atendimentos.map(atendimento => {
                         return (
-                            <Link href={`/hub/atendimentos/${atendimento.id}`}>
-                                <TableRow key={atendimento.id} onClick={() => console.log("teste")}>
+                            <Link  key={atendimento.id} href={`/hub/atendimentos/${atendimento.id}`}>
+                                <TableRow onClick={() => console.log("teste")}>
                                     {
                                         [
+                                            atendimento.paciente.nome,
                                             atendimento.titulo,
-                                            atendimento.titulo,
+                                            atendimento.intervaloEmDia.toString(),
+                                            atendimento.duracaoEmHoras.toString(),
                                             atendimento.dataInicial.toLocaleDateString("pt-BR"), 
                                             atendimento.dataFinal.toLocaleDateString("pt-BR"), 
-                                            atendimento.dataInicial.toLocaleDateString("pt-BR")]
+                                            atendimento.cooperativaResponsavel?.nome ?? "-",
+                                            `${atendimento.quantidadeVisitas - atendimento.quantidadeVisitasRealizadas}`,
+                                            `${atendimento.quantidadeVisitasCompareceu / atendimento.quantidadeVisitasRealizadas}`
+                                        ]
                                     }
                                 </TableRow>
                             </Link>
