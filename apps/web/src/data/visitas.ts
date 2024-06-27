@@ -40,6 +40,9 @@ export async function getVisitasDoDia(date: Date) {
 
 export async function getProximaVisitaDoPaciente(pacienteId: string) {
     const visitas = await db.visita.findFirst({
+        select: {
+            id: true,
+        },
         where: {
             dataVisita: {
                 lte: new Date()
@@ -48,14 +51,6 @@ export async function getProximaVisitaDoPaciente(pacienteId: string) {
         },
         orderBy: {
             dataVisita: "desc"
-        },
-        include: {
-            atendimento: {
-                include: {
-                    paciente: true,
-                    procedimentos: true
-                }
-            }
         }
     });
 
@@ -93,6 +88,25 @@ export async function getHistoricoVisitasDoPaciente(pacienteId: string) {
     });
 
     console.log(visitas)
+
+    return visitas;
+}
+
+export async function getVisitasByPaciente(pacienteId: string) {
+    const visitas = await db.visita.findMany({
+        select: {
+            dataVisita: true,
+            id: true,
+            compareceuEm: true,
+            naoCompareceuEm: true
+        },
+        where: {
+            pacienteId
+        },
+        orderBy: {
+            dataVisita: "asc"
+        }
+    });
 
     return visitas;
 }
