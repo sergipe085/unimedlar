@@ -2,7 +2,7 @@ import { db } from "../lib/db";
 import { LoginDTO } from "@/schemas/loginSchema";
 import { sign } from "jsonwebtoken";
 
-export async function signin({ login, password }: LoginDTO) {
+export async function signin({ login, password, expoNotificationToken }: LoginDTO) {
     const user = await db.usuario.findUnique({
         where: {
             login
@@ -16,6 +16,17 @@ export async function signin({ login, password }: LoginDTO) {
             }
         }
     })
+
+    if (expoNotificationToken) {
+        await db.usuario.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                expoNotificationToken
+            }
+        })
+    }
 
     if (!user) {
         return null;
