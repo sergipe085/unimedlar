@@ -41,69 +41,20 @@ export default function HomeScreen() {
       <ThemedText type='subtitle'  >Olá, {auth?.user?.nome ?? 'Usuario não identificado'}</ThemedText>
       <ThemedView className='w-full flex flex-column items-start gap-2'>
         <ThemedView className='flex flex-col gap-2 w-full'>
-          <ThemedText type='subtitle' style={{color: Colors.unimedColors.laranja, fontSize: 18}}>Essa é a sua proxima visita</ThemedText>
-          <ThemedView className='p-4 bg-green-300 rounded-sm'>
-            <ThemedView className='flex flex-row justify-between mb-2'>
-              <ThemedText className="text-xl font-extrabold" style={{color: Colors?.unimedColors?.laranja}}>Visita para {visitas?.proximaVisita?.atendimento?.acompanhamento?.paciente?.nome}</ThemedText>
-              <ThemedText>{`${formatDateString(visitas?.proximaVisita?.dataVisita)}`}</ThemedText>
-
-            </ThemedView> 
-            <ThemedText>{`Duração: ${visitas?.proximaVisita?.atendimento?.duracaoEmHoras} horas`}</ThemedText>
-            <ThemedText style={{color: Colors.unimedColors.laranja}}>Precedimentos a serem realizados:</ThemedText>
-            <ThemedView className='pl-4'>
-              {
-                visitas?.proximaVisita?.atendimento?.procedimentos?.map(procedimento => {
-                  return (
-                    <>
-                      <ThemedText>{procedimento?.quantidade} X {procedimento?.procedimentoId}</ThemedText>
-                      <ThemedText>Medicamento: {procedimento?.medicamentoId ?? 'Sem medicamento'}</ThemedText>
-                      <ThemedText>Duração do procedimento: {procedimento?.duracaoEmHoras != undefined && procedimento?.duracaoEmHoras != null ? `${procedimento.duracaoEmHoras} hora(s)` : '-'}</ThemedText>
-
-                    </>
-                  )
-                })
-              }
-
+          <ThemedText type='subtitle' style={{ color: Colors.unimedColors.laranja, fontSize: 18 }}>Essa é a sua proxima visita</ThemedText>
+          <ThemedView style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <ThemedText style={{ color: Colors.unimedColors.laranja, fontSize: 13 }}>Visita - {visitas?.proximaVisita?.atendimento?.titulo}</ThemedText>
+            <ThemedView >
+              <ThemedText style={{ fontSize: 13, color: Colors.unimedColors.laranja }}>Data e turno</ThemedText>
+              <ThemedText style={{ fontSize: 13 }}>{formatDateString(visitas?.proximaVisita?.dataVisita)} - {visitas?.proximaVisita?.turno}</ThemedText>
             </ThemedView>
-
           </ThemedView>
 
         </ThemedView>
 
-        {/* <ThemedView className='flex flex-col gap-2 w-full'>
-          <ThemedText>Proximas visitas</ThemedText>
-          {
-            visitas?.proximasVisitas?.map(proximaVisita => {
-              return (
-                <InformativeCard description={`Data: ${formatDateString(proximaVisita.dataVisita)}`} highlight={true} iconColor='green' Icon={Hospital} title={'Visita'}>
-                  <ThemedText className="text-sm font-extrabold">Visita</ThemedText>
-                  <ThemedText>{`Data: ${formatDateString(proximaVisita.dataVisita)}`}</ThemedText>
-                  {proximaVisita?.atendimento?.duracaoEmHoras && <ThemedText>{`${proximaVisita?.atendimento?.duracaoEmHoras}`}</ThemedText>}
-                </InformativeCard>
-
-              )
-            })
-          }
-        </ThemedView> */}
-
-        {/* <ThemedView className='w-full flex flex-row items-center gap-2'>
-
-        </ThemedView> */}
       </ThemedView>
-      {/* <Carrossel images={images}></Carrossel> */}
 
 
-
-
-      {/* <ViewJustifyBetween name={'Modulos'}
-        onPress={() => { router.push("modulos") }} />
-      <ListModules  type='line' modulos={modulos} />
-
-
-      <ViewJustifyBetween name={'Noticias Recentes'} onPress={function (string: any): void {
-        throw new Error('Function not implemented.');
-      }}/>
-      <ListNoticias maxRender={5} /> */}
     </ParallaxScrollView>
   );
 }

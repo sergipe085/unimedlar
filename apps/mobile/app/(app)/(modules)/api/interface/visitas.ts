@@ -30,6 +30,7 @@ interface Paciente {
   interface Atendimento {
     id: string;
     intervaloEmDia: number;
+    titulo?: string
     duracaoEmHoras: number;
     acompanhamentoId: string;
     profissionaisNecessarios: any[]; // Coloque o tipo correto se souber, atualmente é um array vazio
@@ -37,13 +38,15 @@ interface Paciente {
     procedimentos: Procedimento[];
   }
   
-  interface Visita {
+export interface Visita {
     id: string;
     atendimentoId: string;
     dataVisita: string;
     iniciadaEm: string | null;
     finalizadaEm: string | null;
     atendimento: Atendimento;
+    turno?: string
+    tipo?: string 
   }
   
  export interface Visitas {

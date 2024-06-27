@@ -78,7 +78,7 @@ export default function RootLayout() {
         }}
       />
       <Tabs.Screen
-        name="historico"
+        name="historico/index"
         options={{
           title: 'Histórico',
           tabBarIcon: ({ color, focused }) => (
