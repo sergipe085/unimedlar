@@ -1,9 +1,14 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { api } from "@/lib/api";
 import { Medicamento } from "@prisma/client";
+import { SelectProps } from "@radix-ui/react-select";
 import { useEffect, useState } from "react";
 
-export function SeletorMedicamentos() {
+type Props = {
+
+} & SelectProps
+
+export function SeletorMedicamentos({ ...props }: Props) {
     const [medicamentos, setMedicamentos] = useState<Medicamento[]>([]);
 
     async function fetchMedicamentos() {
@@ -17,7 +22,7 @@ export function SeletorMedicamentos() {
     }, [])
 
     return (
-        <Select>
+        <Select { ...props }>
             <SelectTrigger>
                 <SelectValue placeholder="Selecione um medicamento" />
             </SelectTrigger>

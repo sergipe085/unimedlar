@@ -36,8 +36,8 @@ const modules = [
         Icon: ClipboardPlus
     },
     {
-        name: "Acompanhamentos",
-        to: "/hub/acompanhamentos",
+        name: "Atendimentos",
+        to: "/hub/atendimentos",
         Icon: ClipboardPlus
     },
     {
