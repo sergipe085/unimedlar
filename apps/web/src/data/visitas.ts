@@ -54,7 +54,7 @@ export async function getProximaVisitaDoPaciente(pacienteId: string) {
         },
         where: {
             dataVisita: {
-                lte: new Date()
+                gte: new Date()
             },
             pacienteId
         },
