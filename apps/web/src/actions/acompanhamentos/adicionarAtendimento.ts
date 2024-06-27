@@ -2,11 +2,8 @@
 
 import { AdicionarAtendimentoDTO, adicionarAtendimentoSchema } from "@/schemas/acompanhamento";
 import { db } from "../../lib/db";
-import { Prisma, TiposProfissionais } from "@prisma/client";
-import { formToJSON } from "axios";
-import { revalidatePath } from "next/cache";
+import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
     console.log(req);
@@ -25,25 +22,20 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
 
     const atendimento = await db.atendimento.create({
         data: {
-            acompanhamento: {
+            paciente: {
                 connect: {
-                    id: data.idAcompanhamento
+                    id: data.idPaciente
                 }
             },
             intervaloEmDia: data.intervaloEmDia,
             duracaoEmHoras: duracaoEmHoras,
-        },
-        include: {
-            acompanhamento: true
+            dataInicial: data.dataInicial,
+            dataFinal: data.dataFinal
         }
     });
 
-    if (!atendimento.acompanhamento) {
-        throw new Error("acompanhamento invalido");
-    }
-
-    let currentDate: Date = atendimento.acompanhamento.dataInicial;
-    const dataFinal = atendimento.acompanhamento.dataFinal;
+    let currentDate: Date = atendimento.dataInicial;
+    const dataFinal = atendimento.dataFinal;
 
     if (!currentDate || !dataFinal) {
         throw new Error("Data inicial ou final do acompanhamento está indefinida");
@@ -58,6 +50,11 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
                     id: atendimento.id
                 }
             },
+            paciente: {
+                connect: {
+                    id: atendimento.pacienteId
+                }
+            },
             dataVisita: currentDate
         });
 
@@ -65,5 +62,5 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
         currentDate.setDate(currentDate.getDate() + data.intervaloEmDia);
     }   
 
-    redirect(`/hub/acompanhamentos/${atendimento.acompanhamento.id}`);
+    redirect(`/hub/atendimentos/${atendimento.id}`);
 }

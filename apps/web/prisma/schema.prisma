@@ -83,16 +83,17 @@ model Gerente {
 }
 
 model Paciente {
-  id              String           @id @default(cuid())
-  nome            String
-  cpf             String
-  cns             String
-  endereco        String
-  latitude        Float
-  longitude       Float
-  cuidador        Cuidador?        @relation(fields: [cuidadorId], references: [id])
-  cuidadorId      String?
-  acompanhamentos Acompanhamento[]
+  id           String        @id @default(cuid())
+  nome         String
+  cpf          String
+  cns          String
+  endereco     String
+  latitude     Float
+  longitude    Float
+  cuidador     Cuidador?     @relation(fields: [cuidadorId], references: [id])
+  cuidadorId   String?
+  atendimentos Atendimento[]
+  Visita       Visita[]
 
   @@map("pacientes")
 }
@@ -137,6 +138,17 @@ model Chamado {
   @@map("chamados")
 }
 
+model Cooperativa {
+  id           String        @id @default(cuid())
+  nome         String
+  emailGerente String
+  senhaGerente String
+  atendimentos Atendimento[]
+  visitas      Visita[]
+
+  @@map("cooperativas")
+}
+
 enum TiposProfissionais {
   ENFERMEIRO
   MEDICO
@@ -144,48 +156,68 @@ enum TiposProfissionais {
   FISIOTERAPEUTA
 }
 
-model Acompanhamento {
-  id           String        @id @default(cuid())
-  dataInicial  DateTime
-  dataFinal    DateTime
-  paciente     Paciente      @relation(fields: [pacienteId], references: [id])
-  pacienteId   String
-  atendimentos Atendimento[]
+enum Turno {
+  MANHA
+  TARDE
+  NOITE
+}
 
-  @@map("acompanhamentos")
+enum StatusAtendimento {
+  REQUISITADO
+  EM_ANDAMENTO
+  FINALIZADO
+  CANCELADO
 }
 
 model Atendimento {
   id                       String                    @id @default(cuid())
+  titulo                   String
+  dataInicial              DateTime
+  dataFinal                DateTime
+  paciente                 Paciente                  @relation(fields: [pacienteId], references: [id])
+  pacienteId               String
   intervaloEmDia           Float
   duracaoEmHoras           Float                     @default(0)
   procedimentos            ProcedimentoAtendimento[]
-  acompanhamento           Acompanhamento?           @relation(fields: [acompanhamentoId], references: [id])
-  acompanhamentoId         String?
   visitas                  Visita[]
   profissionaisNecessarios TiposProfissionais[]
+  turno                    Turno                     @default(MANHA)
+  status                   StatusAtendimento         @default(REQUISITADO)
+  cooperativaResponsavel   Cooperativa?              @relation(fields: [cooperativaId], references: [id])
+  cooperativaId            String?
 
   @@map("atendimentos")
 }
 
+enum TipoVisita {
+  PLANEJADA
+  FLUTUANTE
+}
+
 model Visita {
-  id          String           @id @default(cuid())
-  avaliacao   AvaliacaoVisita? @relation(fields: [avaliacaoVisitaId], references: [id])
-  atendimento Atendimento      @relation(fields: [atendimentoId], references: [id])
-  dataVisita  DateTime
+  id                     String           @id @default(cuid())
+  avaliacao              AvaliacaoVisita? @relation(fields: [avaliacaoVisitaId], references: [id])
+  atendimento            Atendimento?     @relation(fields: [atendimentoId], references: [id])
+  paciente               Paciente         @relation(fields: [pacienteId], references: [id])
+  dataVisita             DateTime
+  turno                  Turno            @default(MANHA)
+  tipo                   TipoVisita       @default(PLANEJADA)
+  cooperativaResponsavel Cooperativa?     @relation(fields: [cooperativaId], references: [id])
+  cooperativaId          String?
 
   compareceuEm    DateTime?
   naoCompareceuEm DateTime?
 
   avaliacaoVisitaId String? @unique
-  atendimentoId     String
+  atendimentoId     String?
+  pacienteId        String
 
   @@map("visitas")
 }
 
 model AvaliacaoVisita {
   id                              String   @id @default(cuid())
-  visita                           Visita?
+  visita                          Visita?
   nota                            Int
   feedback                        String?
   profissionalCompareceu          Boolean?

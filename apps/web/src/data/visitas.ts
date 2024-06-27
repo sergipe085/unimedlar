@@ -5,11 +5,7 @@ export async function getVisitas() {
         include: {
             atendimento: {
                 include: {
-                    acompanhamento: {
-                        include: {
-                            paciente: true
-                        }
-                    }
+                    paciente: true
                 }
             }
         }
@@ -28,11 +24,7 @@ export async function getVisitasDoDia(date: Date) {
         include: {
             atendimento: {
                 include: {
-                    acompanhamento: { 
-                        include: {
-                            paciente: true
-                        }
-                    }
+                    paciente: true
                 }
             }
         }
@@ -49,11 +41,7 @@ export async function getProximaVisitaDoPaciente(pacienteId: string) {
             dataVisita: {
                 lte: new Date()
             },
-            atendimento: {
-                acompanhamento: {
-                    pacienteId
-                }
-            }
+            pacienteId
         },
         orderBy: {
             dataVisita: "desc"
@@ -61,11 +49,7 @@ export async function getProximaVisitaDoPaciente(pacienteId: string) {
         include: {
             atendimento: {
                 include: {
-                    acompanhamento: {
-                        include: {
-                            paciente: true
-                        }
-                    },
+                    paciente: true,
                     procedimentos: true
                 }
             }
@@ -83,11 +67,7 @@ export async function getProximasVisitasDoPaciente(pacienteId: string) {
             dataVisita: {
                 gt: new Date()
             },
-            atendimento: {
-                acompanhamento: {
-                    pacienteId
-                }
-            }
+            pacienteId
         },
         orderBy: {
             dataVisita: "asc"
@@ -105,11 +85,7 @@ export async function getHistoricoVisitasDoPaciente(pacienteId: string) {
             dataVisita: {
                 lte: new Date()
             },
-            atendimento: {
-                acompanhamento: {
-                    pacienteId
-                }
-            }
+            pacienteId
         }
     });
 

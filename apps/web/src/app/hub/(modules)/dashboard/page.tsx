@@ -60,9 +60,9 @@ export default async function Dashboard() {
                                     <TableRow>
                                         {
                                             [
-                                                visita.atendimento.acompanhamento?.paciente.endereco ?? "",
-                                                visita.atendimento.profissionaisNecessarios?.toString() ?? "",
-                                                visita.atendimento.acompanhamento?.paciente.nome ?? "",
+                                                visita.atendimento?.paciente.endereco ?? "",
+                                                visita.atendimento?.profissionaisNecessarios?.toString() ?? "",
+                                                visita.atendimento?.paciente.nome ?? "",
                                             ]
                                         }
                                     </TableRow>

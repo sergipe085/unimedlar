@@ -20,25 +20,26 @@ import { SeletorMedicamentos } from '@/app/hub/_components/seletores/seletor-med
 import { Plus, Trash, Trash2 } from 'lucide-react';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Title } from '@/app/_components/text/title';
+import { SeletorPacientes } from '@/app/hub/_components/seletores/seletor-pacientes';
 
-type Props = {
-    idAcompanhamento: string;
-}
-
-const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
+const AdicionarAtendimentoForm = () => {
     const [data, setData] = useState<AdicionarAtendimentoDTO>({
-        idAcompanhamento,
         profissionaisNecessarios: [] as any[],
         procedimentos: [
             {
                 medicamentoId: "",
                 procedimentoId: "",
                 quantidade: 1,
-                tipo: "procedimento"
+                tipo: "procedimento",
+                duracaoEmHoras: 1
             }
-        ]
+        ],
+        dataInicial: new Date(),
+        dataFinal: new Date(),
+        idPaciente: "",
+        intervaloEmDia: 1,
+        
     } as AdicionarAtendimentoDTO);
-    const [tipo, setTipo] = useState<"medicamento" | "procedimento">("procedimento");
     const [error, setError] = useState<string>();
 
     async function handleSubmit() {
@@ -55,7 +56,7 @@ const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
     }
 
     return (
-        <div>
+        <>
             <Title>Adicione um atendimento</Title>
             <div>
                 <Label>Titulo do atendimento</Label>
@@ -66,6 +67,7 @@ const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
                     onChange={(e) => setData({ ...data, intervaloEmDia: Number(e.currentTarget.value) })}
                 />
             </div>
+            <SeletorPacientes/>
             <div>
                 <Label>Intervalo em dias</Label>
                 <Input 
@@ -134,9 +136,27 @@ const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
                                         <TableCell>
                                             {
                                                 proced.tipo == "procedimento" ? (
-                                                    <SeletorProcedimentos/>
+                                                    <SeletorProcedimentos
+                                                        onValueChange={(e) => {
+                                                            const newProcedimentos = [...data.procedimentos];
+                                                            newProcedimentos[index].procedimentoId = e;
+                                                            setData({
+                                                                ...data,
+                                                                procedimentos: newProcedimentos
+                                                            })
+                                                        }}
+                                                    />
                                                 ) : (
-                                                    <SeletorMedicamentos/>
+                                                    <SeletorMedicamentos
+                                                        onValueChange={(e) => {
+                                                            const newProcedimentos = [...data.procedimentos];
+                                                            newProcedimentos[index].procedimentoId = e;
+                                                            setData({
+                                                                ...data,
+                                                                procedimentos: newProcedimentos
+                                                            })
+                                                        }}
+                                                    />
                                                 )
                                             }
                                         </TableCell>
@@ -154,7 +174,6 @@ const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
                                                         ...data,
                                                         procedimentos: newProcedimentos
                                                     })
-                                                    setData({ ...data, intervaloEmDia: Number(e.currentTarget.value) })
                                                 }}
                                             />
                                         </TableCell>
@@ -173,7 +192,6 @@ const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
                                                         ...data,
                                                         procedimentos: newProcedimentos
                                                     })
-                                                    setData({ ...data, intervaloEmDia: Number(e.currentTarget.value) })
                                                 }}
                                             />
                                         </TableCell>
@@ -196,7 +214,9 @@ const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
                     <TableFooter>
                         <TableRow>
                             <TableCell colSpan={4}>Total</TableCell>
-                            <TableCell className="text-left">$2,500.00</TableCell>
+                            <TableCell className="text-left">{data.procedimentos.reduce((total, proced) => {
+                                return total += proced.duracaoEmHoras;
+                            }, 0)}</TableCell>
                             <TableCell className="text-left">
                                 <Plus onClick={() => {
                                     setData({ ...data, procedimentos: [...data.procedimentos, {
@@ -215,7 +235,7 @@ const AdicionarAtendimentoForm = ({ idAcompanhamento }: Props) => {
 
             <Button onClick={handleSubmit}>Adicionar Atendimento</Button>
             <p>{error}</p>
-        </div>
+        </>
     )
 
 }
