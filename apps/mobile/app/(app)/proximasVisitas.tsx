@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform, TouchableOpacity, View, Text } from 'react-native';
+import { Image, StyleSheet, Platform, TouchableOpacity, View, Text, ScrollView } from 'react-native';
 
 import { HelloWave } from '@/app/_components/HelloWave';
 import ParallaxScrollView from '@/app/_components/ParallaxScrollView';
@@ -21,26 +21,29 @@ export default function Modulos() {
 
   return (
     <ParallaxScrollView>
-    <ThemedView className='w-full flex flex-column gap-2'>
-      <ThemedView className='w-full flex flex-row items-center gap-2'>
-        <Octicons size={22} name='apps'></Octicons>
-        <ThemedText type="title">Proximas visitas</ThemedText>
-      </ThemedView>
+      <ThemedView className='w-full flex flex-column gap-2'>
+        <ThemedView className='w-full flex flex-row items-center gap-2'>
+          <Octicons size={22} name='apps'></Octicons>
+          <ThemedText type="title">Proximas visitas</ThemedText>
+        </ThemedView>
         <ThemedText className='mb-2'>Proximas visistas</ThemedText>
-        {
-         visitas?.proximasVisitas?.length != 0 ? visitas?.proximasVisitas?.map(proxima => {
-            return (
-              <>
-                <InformativeCard Icon={Hospital} title={'a'}>
-                  <ThemedText>Data: {formatDateString(proxima?.dataVisita)}</ThemedText>
-                  <ThemedText>Iniciada em: {proxima?.iniciadaEm  ?? '-'}</ThemedText>
-                  <ThemedText>Finalizada em: {proxima?.finalizadaEm ?? '-'}</ThemedText>
-                </InformativeCard>
-              </>
-            )
-          }) : <ThemedText>Nenhuma visita encontrada</ThemedText>
-        }
-    </ThemedView>
-  </ParallaxScrollView>
+        <ScrollView showsVerticalScrollIndicator={false} style={{display: 'flex', height: '90%'}} >
+          {
+            visitas?.proximasVisitas?.length != 0 ? visitas?.proximasVisitas?.map(proxima => {
+              return (
+                <>
+                  <InformativeCard style={{marginBottom: 10}} key={proxima.id} Icon={Hospital} title={'a'}>
+                    <ThemedText>Data: {formatDateString(proxima?.dataVisita)}</ThemedText>
+                    <ThemedText>Turno: {proxima?.turno ?? '-'}</ThemedText>
+                    <ThemedText>Tipo: {proxima?.tipo ?? '-'}</ThemedText>
+                  </InformativeCard>
+                </>
+              )
+            }) : <ThemedText>Nenhuma visita encontrada</ThemedText>
+          }
+
+        </ScrollView>
+      </ThemedView>
+    </ParallaxScrollView>
   );
 }
