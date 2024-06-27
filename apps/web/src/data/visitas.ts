@@ -21,10 +21,19 @@ export async function getVisitasDoDia(date: Date) {
     const visitas = await db.visita.findMany({
         where: {
             dataVisita: {
-                lt: date
+                equals: date
             }
         },
         include: {
+            paciente: {
+                include: {
+                    cuidador: {
+                        include: {
+                            usuario: true
+                        }
+                    }
+                }
+            },
             atendimento: {
                 include: {
                     paciente: true
@@ -109,4 +118,14 @@ export async function getVisitasByPaciente(pacienteId: string) {
     });
 
     return visitas;
+}
+
+export async function getVisitaById(id: string) {
+    const visita = db.visita.findUnique({
+        where: {
+            id
+        }
+    })
+
+    return visita;
 }
