@@ -13,7 +13,7 @@ export default function RootLayout() {
   }
 
   if (!auth) {
-    return <Redirect href={"/login"}/>
+    return <Redirect href={"/login"} />
   }
 
   return (
@@ -22,10 +22,10 @@ export default function RootLayout() {
         tabBarActiveTintColor: globals.colors.primary,
         tabBarShowLabel: true,
         headerShown: false,
-        tabBarItemStyle:{
+        tabBarItemStyle: {
           display: "flex",
           gap: 4,
-          flexDirection: "column"       
+          flexDirection: "column"
         },
         tabBarStyle: {
           borderTopColor: "white",
@@ -42,11 +42,11 @@ export default function RootLayout() {
           },
           shadowOpacity: 0.29,
           shadowRadius: 20,
-      
+
           elevation: 7,
           borderRadius: 25,
         },
-        
+
       }}>
       <Tabs.Screen
         name="(modules)"
@@ -69,20 +69,20 @@ export default function RootLayout() {
       /> */}
 
       <Tabs.Screen
-        name="historico"
+        name="proximasVisitas"
         options={{
-          title: 'Modulos',
+          title: 'Proximas visitas',
           tabBarIcon: ({ color, focused }) => (
-            <Octicons name="apps" size={28} style={[{ marginBottom: -3 }]} color={color}/>
+            <FontAwesome name="ambulance" size={28} style={[{ marginBottom: -3 }]} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="notificacoes"
+        name="historico"
         options={{
-          title: 'Notificações',
+          title: 'Histórico',
           tabBarIcon: ({ color, focused }) => (
-            <Octicons name="bell" size={28} style={[{ marginBottom: -3 }]} color={color}/>
+            <Octicons name="history" size={28} style={[{ marginBottom: -3 }]} color={color} />
           ),
         }}
       />
@@ -91,7 +91,7 @@ export default function RootLayout() {
         options={{
           title: 'Configurações',
           tabBarIcon: ({ color, focused }) => (
-            <Octicons name="person" size={28} style={[{ marginBottom: -3 }]} color={color}/>
+            <Octicons name="person" size={28} style={[{ marginBottom: -3 }]} color={color} />
           ),
         }}
       />
