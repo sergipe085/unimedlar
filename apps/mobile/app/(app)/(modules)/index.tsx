@@ -38,10 +38,10 @@ export default function HomeScreen() {
         <Octicons size={22} name='home'></Octicons>
         <ThemedText type="title">Home</ThemedText>
       </ThemedView>
-      <ThemedText type='subtitle' >Olá, {auth?.user?.nome ?? 'Usuario não identificado'}</ThemedText>
+      <ThemedText type='subtitle'  >Olá, {auth?.user?.nome ?? 'Usuario não identificado'}</ThemedText>
       <ThemedView className='w-full flex flex-column items-start gap-2'>
         <ThemedView className='flex flex-col gap-2 w-full'>
-          <ThemedText style={{color: Colors.unimedColors.laranja}}>Essa é a sua proxima visita</ThemedText>
+          <ThemedText type='subtitle' style={{color: Colors.unimedColors.laranja, fontSize: 18}}>Essa é a sua proxima visita</ThemedText>
           <ThemedView className='p-4 bg-green-300 rounded-sm'>
             <ThemedView className='flex flex-row justify-between mb-2'>
               <ThemedText className="text-xl font-extrabold" style={{color: Colors?.unimedColors?.laranja}}>Visita para {visitas?.proximaVisita?.atendimento?.acompanhamento?.paciente?.nome}</ThemedText>
@@ -70,7 +70,7 @@ export default function HomeScreen() {
 
         </ThemedView>
 
-        <ThemedView className='flex flex-col gap-2 w-full'>
+        {/* <ThemedView className='flex flex-col gap-2 w-full'>
           <ThemedText>Proximas visitas</ThemedText>
           {
             visitas?.proximasVisitas?.map(proximaVisita => {
@@ -84,11 +84,11 @@ export default function HomeScreen() {
               )
             })
           }
-        </ThemedView>
+        </ThemedView> */}
 
-        <ThemedView className='w-full flex flex-row items-center gap-2'>
+        {/* <ThemedView className='w-full flex flex-row items-center gap-2'>
 
-        </ThemedView>
+        </ThemedView> */}
       </ThemedView>
       {/* <Carrossel images={images}></Carrossel> */}
 

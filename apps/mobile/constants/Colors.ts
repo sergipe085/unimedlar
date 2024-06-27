@@ -10,7 +10,8 @@ export const Colors = {
   unimedColors: {
     laranja: '#F47920',
     verde: '#008D52',
-    branco: '#fff'
+    branco: '#fff',
+    verdeClaro: '#bbf7d0'
   },
   light: {
     text: '#11181C',
