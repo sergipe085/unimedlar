@@ -21,10 +21,13 @@ import { Plus, Trash, Trash2 } from 'lucide-react';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Title } from '@/app/_components/text/title';
 import { SeletorPacientes } from '@/app/hub/_components/seletores/seletor-pacientes';
+import { Calendar } from '@/components/ui/calendar';
+import { getDatesInRange } from '@/lib/utils/date';
 
 const AdicionarAtendimentoForm = () => {
     const [data, setData] = useState<AdicionarAtendimentoDTO>({
         profissionaisNecessarios: [] as any[],
+        titulo: "",
         procedimentos: [
             {
                 medicamentoId: "",
@@ -42,6 +45,10 @@ const AdicionarAtendimentoForm = () => {
     } as AdicionarAtendimentoDTO);
     const [error, setError] = useState<string>();
 
+    const canCreate = !!data.titulo && !!data.dataInicial && !!data.dataFinal && !!data.idPaciente && data.profissionaisNecessarios?.length > 0 && !!data.intervaloEmDia && data.procedimentos?.length > 0 && data.procedimentos?.every(p => {
+        return !!p.duracaoEmHoras && (!!p.medicamentoId || !!p.procedimentoId) && !!p.quantidade
+    })
+
     async function handleSubmit() {
         try {
 
@@ -56,18 +63,40 @@ const AdicionarAtendimentoForm = () => {
     }
 
     return (
-        <>
+        <div className='max-w-4xl flex flex-col justify-center  self-center pt-8 gap-4'>
             <Title>Adicione um atendimento</Title>
-            <div>
+            <div className='w-full mt-4'>
                 <Label>Titulo do atendimento</Label>
                 <Input 
-                    type='number' 
                     placeholder='Digite o titulo do atendimento'
-                    value={data.intervaloEmDia} 
-                    onChange={(e) => setData({ ...data, intervaloEmDia: Number(e.currentTarget.value) })}
+                    value={data.titulo} 
+                    onChange={(e) => setData({ ...data, titulo: e.currentTarget.value })}
                 />
             </div>
-            <SeletorPacientes/>
+            <div>
+                <Label>Paciente</Label>
+                <SeletorPacientes onValueChange={value => setData({...data, idPaciente: value})}/>
+            </div>
+
+            <div className='flex-row flex gap-4'>
+                <div>
+                    <Label>Duração</Label>
+                    <Calendar
+                        mode="range"
+                        selected={{
+                            from: data.dataInicial,
+                            to: data.dataFinal
+                        }}
+                        onSelect={(d) => setData({...data, dataInicial: d?.from ?? new Date(), dataFinal: d?.to ?? new Date()})}
+                        className="rounded-md border"
+                    />
+                </div>
+                <div>
+                    <Label>Datas selecionadas</Label>
+                    <p>Data inicial: {data.dataInicial.toLocaleDateString("pt-BR")}</p>
+                    <p>Data final: {data.dataFinal.toLocaleDateString("pt-BR")}</p>
+                </div>
+            </div>
             <div>
                 <Label>Intervalo em dias</Label>
                 <Input 
@@ -76,6 +105,11 @@ const AdicionarAtendimentoForm = () => {
                     value={data.intervaloEmDia} 
                     onChange={(e) => setData({ ...data, intervaloEmDia: Number(e.currentTarget.value) })}
                 />
+                {
+                    data.dataInicial && data.dataFinal && data.intervaloEmDia && (
+                        <p>Total de {getDatesInRange(data.dataInicial, data.dataFinal, data.intervaloEmDia).length} visitas</p>
+                    )
+                }
             </div>
 
             <div className='w-full'>
@@ -233,9 +267,9 @@ const AdicionarAtendimentoForm = () => {
                 </Table>
             </div>
 
-            <Button onClick={handleSubmit}>Adicionar Atendimento</Button>
+            <Button disabled={false} onClick={handleSubmit}>Adicionar Atendimento</Button>
             <p>{error}</p>
-        </>
+        </div>
     )
 
 }

@@ -107,20 +107,28 @@ enum UrgenciaChamado {
 }
 
 enum AssuntoChamado {
-  SAUDE_PACIENTE
-  PROFISSIONAL_NAO_CUMPRIU_CARGA_HORARIA
-  PROFISSIONAL_NAO_COMPARECEU
-  PROFISSIONAL_NAO_FEZ_O_QUE_DEVERIA
-  MAL_TRATAMENTO_DO_PROFISSIONAL
-  FALTA_DE_PROFISSIONALISMO_DO_PROFISSIONAL
+  SAUDE_DO_PACIENTE
+  CARGA_HORARIA_DO_PROFFISIONAL
+  COMPARECIMENTO_DO_PROFISSIONAL
+  PROFISSIONAL_FEZ_O_QUE_DEVERIA
+  QUALIDADE_DO_ATENDIMENTO
+  TRATAMENTO_DO_PROFISSIONAL
+  PROFISSIONALISMO_DO_PROFISSIONAL
   FINANCEIRO
   PLANO_DE_SAUDE
+  OUTRO
 }
 
 enum StatusChamado {
   EM_ABERTO
   FECHADO
   CONCLUIDO
+}
+
+enum TipoChamado {
+  RECLAMACAO
+  ELOGIO
+  OUTRO
 }
 
 model Chamado {
@@ -130,6 +138,7 @@ model Chamado {
   autorId    String
   urgencia   UrgenciaChamado
   assunto    AssuntoChamado
+  tipo       TipoChamado     @default(OUTRO)
   status     StatusChamado   @default(EM_ABERTO)
 
   realizadoEm  DateTime  @default(now())

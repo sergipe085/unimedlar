@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export const adicionarAtendimentoSchema = z.object({
     idPaciente: z.string(),
+    titulo: z.string(),
     intervaloEmDia: z.number().min(1, 'Intervalo deve ser no mínimo 1 dia'),
     procedimentos: z.array(z.object({
         procedimentoId: z.string().optional().nullable(),

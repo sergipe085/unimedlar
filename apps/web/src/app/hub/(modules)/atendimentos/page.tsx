@@ -34,8 +34,8 @@ export default async function Atendimentos() {
                                             atendimento.dataInicial.toLocaleDateString("pt-BR"), 
                                             atendimento.dataFinal.toLocaleDateString("pt-BR"), 
                                             atendimento.cooperativaResponsavel?.nome ?? "-",
-                                            `${atendimento.quantidadeVisitas - atendimento.quantidadeVisitasRealizadas}`,
-                                            `${atendimento.quantidadeVisitasCompareceu / atendimento.quantidadeVisitasRealizadas}`
+                                            `${atendimento.quantidadeVisitas - atendimento.quantidadeVisitasRealizadas}/${atendimento.quantidadeVisitas}`,
+                                            `${atendimento.quantidadeVisitasRealizadas != 0 ? atendimento.quantidadeVisitasCompareceu / atendimento.quantidadeVisitasRealizadas : "-"}`
                                         ]
                                     }
                                 </TableRow>

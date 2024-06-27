@@ -22,7 +22,7 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
 
     const atendimento = await db.atendimento.create({
         data: {
-            titulo: "ATENDIMENTO TESTE",
+            titulo: data.titulo,
             paciente: {
                 connect: {
                     id: data.idPaciente
@@ -45,19 +45,23 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
     const visitas: Prisma.VisitaCreateInput[] = [];
 
     while (currentDate <= dataFinal) {
-        visitas.push({
-            atendimento: {
-                connect: {
-                    id: atendimento.id
-                }
-            },
-            paciente: {
-                connect: {
-                    id: atendimento.pacienteId
-                }
-            },
-            dataVisita: currentDate
-        });
+        await db.visita.create({
+            data: {
+                atendimento: {
+                    connect: {
+                        id: atendimento.id
+                    }
+                },
+                paciente: {
+                    connect: {
+                        id: atendimento.pacienteId
+                    }
+                },
+                dataVisita: currentDate
+            }
+        })
+
+        console.log(currentDate);
 
         // Incrementa a data atual pelo intervalo especificado
         currentDate.setDate(currentDate.getDate() + data.intervaloEmDia);

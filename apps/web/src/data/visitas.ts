@@ -8,6 +8,9 @@ export async function getVisitas() {
                     paciente: true
                 }
             }
+        },
+        orderBy: {
+            dataVisita: "desc"
         }
     });
 

@@ -1,5 +1,7 @@
+import { generateChamadoFromFeedback } from "@/actions/generateChamadoFromFeedback";
 import { auth } from "@/data/auth";
 import { realizarAvaliacao, realizarAvaliacaoFeedback } from "@/data/avaliacao";
+import { classificateMessage } from "@/lib/openai";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -11,9 +13,11 @@ export async function POST(req: NextRequest) {
  
     // Exemplo de como salvar a visita
     const visitaSalva = await realizarAvaliacaoFeedback(idVisita, feedback);
-
+    const chamado = await generateChamadoFromFeedback(feedback);
+    
     return new Response(JSON.stringify({
-        visitaSalva
+        visitaSalva,
+        chamado
     }),
         {
             status: 200,

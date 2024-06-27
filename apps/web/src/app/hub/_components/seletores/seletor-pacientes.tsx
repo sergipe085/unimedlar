@@ -26,7 +26,7 @@ export function SeletorPacientes({ ...props }: Props) {
     return (
         <Select { ...props }>
             <SelectTrigger>
-                <SelectValue placeholder="Selecione um procedimento" />
+                <SelectValue placeholder="Selecione o paciente" />
             </SelectTrigger>
             <SelectContent className=''>
                 <SelectGroup>
