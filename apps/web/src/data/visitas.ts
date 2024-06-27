@@ -124,6 +124,19 @@ export async function getVisitaById(id: string) {
     const visita = db.visita.findUnique({
         where: {
             id
+        },
+        include: {
+            atendimento: {
+                include: {
+                    procedimentos: {
+                        include: {
+                            procedimento: true,
+                            medicamento: true
+                        }
+                    }
+                }
+            },
+            avaliacao: true
         }
     })
 
