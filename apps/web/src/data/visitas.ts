@@ -59,7 +59,7 @@ export async function getProximaVisitaDoPaciente(pacienteId: string) {
             pacienteId
         },
         orderBy: {
-            dataVisita: "desc"
+            dataVisita: "asc"
         }
     });
 
