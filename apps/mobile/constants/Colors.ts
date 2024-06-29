@@ -11,7 +11,9 @@ export const Colors = {
     laranja: '#F47920',
     verde: '#008D52',
     branco: '#fff',
-    verdeClaro: '#bbf7d0'
+    verdeClaro: '#bbf7d0',
+    vermelho: "#FF5F5F",
+    verdeEscuro: '#337170'
   },
   light: {
     text: '#11181C',

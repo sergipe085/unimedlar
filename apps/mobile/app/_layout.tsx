@@ -12,6 +12,7 @@ import { Camera } from 'expo-camera';
 import { LoadingProvider } from '@/data/general/hooks/useLoading';
 import "../global.css"
 import { Header } from './_components/Header';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 SplashScreen.preventAutoHideAsync();
 notifications.setupHandler();
@@ -23,17 +24,17 @@ export default function Root() {
     const [loaded] = useFonts({
         Poppins: require('../assets/fonts/Poppins-Bold.ttf'),
     });
-    
+
     useEffect(() => {
         if (loaded) {
             SplashScreen.hideAsync();
         }
     }, [loaded]);
-    
+
     useEffect(() => {
         notifications.registerForPushNotificationsAsync().then(console.log);
     }, [])
-    
+
     if (!loaded) {
         return null;
     }
@@ -41,10 +42,12 @@ export default function Root() {
 
     return (
         <ThemeProvider value={DarkTheme}>
-            <AuthProvider>    
+            <AuthProvider>
                 <LoadingProvider>
-                    <Header/>
-                    <Slot />
+                    <GestureHandlerRootView style={{ flex: 1 }}>
+                        <Header />
+                        <Slot />
+                    </GestureHandlerRootView>
                 </LoadingProvider>
             </AuthProvider>
         </ThemeProvider>

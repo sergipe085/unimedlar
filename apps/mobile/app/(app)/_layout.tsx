@@ -57,35 +57,7 @@ export default function RootLayout() {
           ),
         }}
       />
-
-      {/* <Tabs.Screen
-        name="saude"
-        options={{
-          title: 'Saude',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      /> */}
-
-      <Tabs.Screen
-        name="proximasVisitas"
-        options={{
-          title: 'Proximas visitas',
-          tabBarIcon: ({ color, focused }) => (
-            <FontAwesome name="ambulance" size={28} style={[{ marginBottom: -3 }]} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="historico/index"
-        options={{
-          title: 'Histórico',
-          tabBarIcon: ({ color, focused }) => (
-            <Octicons name="history" size={28} style={[{ marginBottom: -3 }]} color={color} />
-          ),
-        }}
-      />
+    
       <Tabs.Screen
         name="settings"
         options={{

@@ -40,17 +40,14 @@ interface Paciente {
   
 export interface Visita {
     id: string;
-    atendimentoId: string;
     dataVisita: string;
-    iniciadaEm: string | null;
-    finalizadaEm: string | null;
-    atendimento: Atendimento;
-    turno?: string
-    tipo?: string 
+    compareceuEm: Date | null;
+    naoCompareceuEm: Date | null;
+
   }
   
  export interface Visitas {
     proximaVisita: Visita;
-    proximasVisitas: Visita[];
+    visitas: Visita[];
   }
   

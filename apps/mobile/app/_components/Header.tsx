@@ -10,7 +10,7 @@ export function Header() {
     return (
         <View style={{
             width: Dimensions.get("window").width,
-            backgroundColor: Colors.unimedColors.verde
+            backgroundColor: Colors.unimedColors.verdeEscuro
         }} className=" h-20 pt-8 bg-[#008D52] flex flex-row items-center justify-between px-4">
             <TouchableOpacity onPress={() => {
                 if (router.canGoBack()) {
