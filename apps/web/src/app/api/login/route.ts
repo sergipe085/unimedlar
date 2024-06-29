@@ -7,11 +7,12 @@ export async function POST(req: NextRequest) {
     // console.log(await req.text())
     const body = await req.json();
     console.log(body)
-    const { login, password } = loginSchema.parse(body);
+    const { login, password, expoNotificationToken } = loginSchema.parse(body);
 
     const authData = await signin({
         login,
-        password
+        password,
+        expoNotificationToken
     })
 
     if (!authData) {
