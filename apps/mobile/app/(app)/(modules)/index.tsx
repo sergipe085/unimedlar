@@ -24,8 +24,7 @@ export default function HomeScreen() {
 
   return (
 
-    <ParallaxScrollView >
-      <ThemedView className='bg-blue'>
+      <ThemedView style={{padding: 15, flex: 1}} className='bg-blue'>
         <ThemedView className='w-full flex flex-row items-center gap-2'>
           <Octicons size={22} name='home'></Octicons>
           <ThemedText type="title">Home</ThemedText>
@@ -37,6 +36,6 @@ export default function HomeScreen() {
       </ThemedView>
 
 
-    </ParallaxScrollView>
+    // </ParallaxScrollView>
   );
 }

@@ -111,7 +111,7 @@ export default function ListarVisitas() {
         bottomSheetref.current.expand()
     }
     return (
-
+        <>
         <ThemedView style={{ display: 'flex', flexDirection: 'column' }} >
             {/* <ThemedText>{bodyAvaliacao.feedback}</ThemedText>
             <ThemedText>{bodyAvaliacao.cumpriuHorario ? 'sim' : 'nao'}</ThemedText>
@@ -142,9 +142,10 @@ export default function ListarVisitas() {
 
             </ThemedView>
 
-            <Modal bottomSheetref={bottomSheetref} detalhes={detalhes}
-                setBodyAvaliacao={setBodyAvaliacao} bodyAvaliacao={bodyAvaliacao} />
 
         </ThemedView>
+            <Modal bottomSheetref={bottomSheetref} detalhes={detalhes}
+                setBodyAvaliacao={setBodyAvaliacao} bodyAvaliacao={bodyAvaliacao} />
+        </>
     );
 }

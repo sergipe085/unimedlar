@@ -99,7 +99,7 @@ export function CardVisita({ visitaSelecionada, abrir, setCompareceu }: Props) {
                         <Text style={{ color: Colors.unimedColors.branco }}>Ver detalhes</Text>
                     </TouchableOpacity>
                     {
-                        // new Date(visitas?.visitas[visita]?.dataVisita) < new Date() &&
+                        new Date(detalhes?.dataVisita) < new Date() &&
                         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '50%' }}>
                             <ThemedText style={{ color: Colors?.unimedColors?.laranja }}>Essa visita foi realizada?</ThemedText>
                             <View style={{ display: 'flex', width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>

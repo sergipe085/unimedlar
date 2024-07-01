@@ -14,7 +14,7 @@ import muitoFeliz from '@/assets/images/rostos/muito-feliz.png';
 import { Button } from './Button'
 
 export function Modal({ bottomSheetref, detalhes, setBodyAvaliacao, bodyAvaliacao }) {
-  const snapPoints = useMemo(() => ["30%", "80%", "100%"], [])
+  const snapPoints = useMemo(() => ["30%", "80%"], [])
 
 
   const opcoes = [
