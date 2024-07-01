@@ -8,15 +8,19 @@ interface bodyAvaliacao {
 
 }
 
-export async function realizarAvaliacao(visitaId: string, nota: number) {
+export async function realizarAvaliacao(visitaId: string, nota: number, feedback: string, cumpriuHorario: boolean, compareceu: boolean) {
     const { avaliacao } = await db.visita.update({
         where: {
             id: visitaId
         },
         data: {
+            
             avaliacao: {
                 create: {
-                    nota
+                    nota,
+                    feedback,
+                     profissionalCumpriuCargaHoraria: cumpriuHorario,
+                     profissionalCompareceu: compareceu
                 }
             }
         },

@@ -5,7 +5,7 @@ import { NextRequest } from "next/server";
 export async function POST(req: NextRequest) {
 
     // Supondo que você receba os dados da visita através do corpo da requisição
-    const { nota, idVisita } = await req.json();
+    const { qualidadeAtendimento, idVisita, cumpriuHorario, feedback, compareceu } = await req.json();
 
     // if (!idVisita || !nota) return 
 
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     };
  
     // Exemplo de como salvar a visita
-    const visitaSalva = await realizarAvaliacao(idVisita, notasAvaliacao[nota].nota);
+    const visitaSalva = await realizarAvaliacao(idVisita, notasAvaliacao[qualidadeAtendimento].nota, feedback, cumpriuHorario, compareceu);
 
     return new Response(JSON.stringify({
         visitaSalva
