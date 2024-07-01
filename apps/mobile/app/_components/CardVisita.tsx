@@ -12,6 +12,7 @@ import { router } from "expo-router";
 interface Props {
     visitaSelecionada: string;
     abrir: () => void;
+    setCompareceu: (boolean: boolean) => void;
 }
 function formatarData(dataISO: string) {
     const timeZone = 'UTC'; // Use o fuso horário UTC para evitar mudanças de dia
@@ -52,10 +53,10 @@ function formatarData(dataISO: string) {
 
 function capitalizeFirstLetter(string) {
     return string?.charAt(0)?.toUpperCase() + string?.slice(1);
-  }
+}
 
 
-export function CardVisita({ visitaSelecionada, abrir }: Props) {
+export function CardVisita({ visitaSelecionada, abrir, setCompareceu }: Props) {
 
     const { detalhes } = useDetalhes(visitaSelecionada);
 
@@ -63,8 +64,8 @@ export function CardVisita({ visitaSelecionada, abrir }: Props) {
         <>
             <View style={{ display: 'flex', flexDirection: 'column', width: '100%', borderWidth: 1, borderRadius: 8, borderColor: '#5b5c65', height: 'auto' }}>
                 <View style={{ display: 'flex', flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#5b5c65' }}>
-                    <View style={{width: '30%', padding: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRightColor: '#5b5c65', borderRightWidth: 1 }}>
-                        <Text style={{fontSize: 20}}>{detalhes?.turno}</Text>
+                    <View style={{ width: '30%', padding: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRightColor: '#5b5c65', borderRightWidth: 1 }}>
+                        <Text style={{ fontSize: 20 }}>{detalhes?.turno}</Text>
                         <Text>{formatarData(detalhes?.dataVisita).diaDaSemana}, {formatarData(detalhes?.dataVisita).dataFormatada}</Text>
                     </View>
                     <View style={{ padding: 4, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', width: '100%', gap: 10 }}>
@@ -88,24 +89,22 @@ export function CardVisita({ visitaSelecionada, abrir }: Props) {
 
 
 
-                <View style={{ display: 'flex', flexDirection: 'row', width: '100%', alignItems:'center', justifyContent: 'center', gap: 20, paddingVertical: 20 }}>
-                    <TouchableOpacity  onPress={() => router.push({
-                                    pathname: "detalhes-visita",
-                                    params: {
-                                        ...detalhes as any
-                                    }
-                                })} style={{ backgroundColor: Colors.unimedColors.laranja, padding: 6, paddingHorizontal: 10, borderRadius: 8 }}>
+                <View style={{ display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center', gap: 20, paddingVertical: 20 }}>
+                    <TouchableOpacity onPress={() => router.push({
+                        pathname: "detalhes-visita",
+                        params: {
+                            ...detalhes as any
+                        }
+                    })} style={{ backgroundColor: Colors.unimedColors.laranja, padding: 6, paddingHorizontal: 10, borderRadius: 8 }}>
                         <Text style={{ color: Colors.unimedColors.branco }}>Ver detalhes</Text>
                     </TouchableOpacity>
                     {
                         // new Date(visitas?.visitas[visita]?.dataVisita) < new Date() &&
                         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '50%' }}>
                             <ThemedText style={{ color: Colors?.unimedColors?.laranja }}>Essa visita foi realizada?</ThemedText>
-                            <View style={{ display: 'flex',width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <BotaoRedondo type={'sim'} onPress={abrir} />
-                                <BotaoRedondo type={'nao'} onPress={function (): void {
-                                    throw new Error('Function not implemented.');
-                                }} />
+                            <View style={{ display: 'flex', width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <BotaoRedondo type={'sim'} onPress={() => { abrir(); setCompareceu(true); }} />
+                                <BotaoRedondo type={'nao'} onPress={() => setCompareceu(false)} />
                             </View>
                         </View>
                     }

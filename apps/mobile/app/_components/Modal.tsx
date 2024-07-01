@@ -13,11 +13,9 @@ import feliz from '@/assets/images/rostos/feliz.png';
 import muitoFeliz from '@/assets/images/rostos/muito-feliz.png';
 import { Button } from './Button'
 
-export function Modal({ bottomSheetref, detalhes }) {
+export function Modal({ bottomSheetref, detalhes, setBodyAvaliacao, bodyAvaliacao }) {
   const snapPoints = useMemo(() => ["30%", "80%", "100%"], [])
 
-  const [avaliacao, setAvaliacao] = useState<string>('');
-  const [cumpriu, setCumpriu] = useState<boolean>()
 
   const opcoes = [
     { opcao: 'MUITO RUIM', url: chorando },
@@ -51,12 +49,13 @@ export function Modal({ bottomSheetref, detalhes }) {
           <View>
             <Text>Profissional cumpriu carga horaria prevista? ({detalhes?.atendimento?.duracaoEmHoras} horas)</Text>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20 }}>
-              <View style={{ borderWidth: cumpriu == true ? 2 : 0, borderRadius: 10, borderColor: Colors.unimedColors.verde }}>
-                <BotaoRedondo type={'sim'} onPress={() => setCumpriu(true)} />
+              <View style={{ borderWidth: bodyAvaliacao.cumpriuHorario == true ? 2 : 0, borderRadius: 10, borderColor: Colors.unimedColors.verde }}>
+                <BotaoRedondo type={'sim'} onPress={() => setBodyAvaliacao({ ...bodyAvaliacao, cumpriuHorario: true })} />
               </View>
-              <View style={{ borderWidth: cumpriu == false ? 2 : 0, borderRadius: 10, borderColor: Colors.unimedColors.vermelho }}>
-                <BotaoRedondo type={'nao'} onPress={() => setCumpriu(false)} />
+              <View style={{ borderWidth: bodyAvaliacao.cumpriuHorario == false ? 2 : 0, borderRadius: 10, borderColor: Colors.unimedColors.vermelho }}>
+                <BotaoRedondo type={'nao'} onPress={() => setBodyAvaliacao({ ...bodyAvaliacao, cumpriuHorario: false })} />
               </View>
+
             </View>
 
           </View>
@@ -68,9 +67,9 @@ export function Modal({ bottomSheetref, detalhes }) {
                 <TouchableOpacity
                   key={index}
                   style={{ backgroundColor: 'transparent', padding: 4, alignItems: 'center' }}
-                  onPress={() => setAvaliacao(opcao.opcao)}
+                  onPress={() => setBodyAvaliacao({ ...bodyAvaliacao, qualidadeAtendimento: opcao.opcao })}
                 >
-                  <View style={{ borderColor: avaliacao === opcao.opcao ? Colors.unimedColors.verde : '#e8e8e8', padding: 4, borderRadius: 5, borderWidth: avaliacao == opcao.opcao ? 2 : 0 }}>
+                  <View style={{ borderColor: bodyAvaliacao.qualidadeAtendimento === opcao.opcao ? Colors.unimedColors.verde : '#e8e8e8', padding: 4, borderRadius: 5, borderWidth: bodyAvaliacao.qualidadeAtendimento == opcao.opcao ? 2 : 0 }}>
                     <Image style={{ height: 40, width: 40 }} source={opcao.url} />
                   </View>
                   <Text>{(opcao.opcao).toLowerCase()}</Text>
@@ -79,13 +78,14 @@ export function Modal({ bottomSheetref, detalhes }) {
             </View>
           </View>
           <View>
+            {/* <Text style={{ marginBottom: 2 }}>Deseja enviar um feedback adicional?</Text> */}
             <Text style={{ marginBottom: 2 }}>Deseja enviar um feedback adicional?</Text>
-            <TextInput numberOfLines={3} placeholder='feedback' style={{ backgroundColor: 'white', borderRadius: 10, paddingHorizontal: 10 }} />
+            <TextInput onChangeText={(text) => setBodyAvaliacao({ ...bodyAvaliacao, feedback: text })} numberOfLines={3} placeholder='feedback' style={{ backgroundColor: 'white', borderRadius: 10, paddingHorizontal: 10 }} />
           </View>
-          
-            <Button type={'default'}>
-              <Text>Enviar avaliação</Text>
-            </Button>
+
+          <Button type={'default'}>
+            <Text>Enviar avaliação</Text>
+          </Button>
 
         </View>
       </BotomSheet>

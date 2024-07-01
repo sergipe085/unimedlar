@@ -47,7 +47,7 @@ export type Detalhes = {
     avaliacaoVisitaId: string | null;
     atendimentoId: string;
     pacienteId: string;
-    // atendimento: Atendimento;
+    atendimento: Atendimento;
     avaliacao: any | null;
   }
   

@@ -6,13 +6,13 @@ import { useDetalhes } from "../(app)/(modules)/_api/useVisitas"
 import { CardVisita } from "./CardVisita"
 import { View } from "react-native"
 
-export default function DetalhesVisita({visitaSelecionada, abrir}) {
+export default function DetalhesVisita({visitaSelecionada, abrir, setCompareceu}) {
 
     // const { detalhes } = useDetalhes(visitaSelecionada)
 
     return (
         <View >
-        <CardVisita visitaSelecionada={visitaSelecionada} abrir={abrir} />
+        <CardVisita visitaSelecionada={visitaSelecionada} abrir={abrir} setCompareceu={setCompareceu}  />
             {/* <ThemedView style={{ display: 'flex', gap: 10 }}>
                 <ThemedView>
                     <ThemedText style={{ color: Colors.unimedColors.laranja }}>Visita</ThemedText>
