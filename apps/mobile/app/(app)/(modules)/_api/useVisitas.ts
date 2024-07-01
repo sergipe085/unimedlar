@@ -36,7 +36,7 @@ interface Procedimento {
     procedimentos: Procedimento[];
   }
   
-  interface Detalhes {
+export type Detalhes = {
     id: string;
     dataVisita: string;
     turno: string;
@@ -47,7 +47,7 @@ interface Procedimento {
     avaliacaoVisitaId: string | null;
     atendimentoId: string;
     pacienteId: string;
-    atendimento: Atendimento;
+    // atendimento: Atendimento;
     avaliacao: any | null;
   }
   

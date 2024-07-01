@@ -29,7 +29,7 @@ export function ThemedText({
         type === 'modulo' ? styles.modulo : undefined,
         {
           color: type != 'modulo' ? globals.colors.primary : globals.colors.white,
-          fontFamily: "Montserrat",
+          fontFamily: "Poppins",
         }, style
       ]}
       {...rest}

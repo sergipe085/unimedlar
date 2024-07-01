@@ -7,6 +7,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Visitas } from "../(app)/(modules)/_api/interface/visitas";
 import { useDetalhes } from "../(app)/(modules)/_api/useVisitas";
 import { format, toZonedTime } from "date-fns-tz";
+import { router } from "expo-router";
 
 interface Props {
     visitaSelecionada: string;
@@ -88,7 +89,12 @@ export function CardVisita({ visitaSelecionada, abrir }: Props) {
 
 
                 <View style={{ display: 'flex', flexDirection: 'row', width: '100%', alignItems:'center', justifyContent: 'center', gap: 20, paddingVertical: 20 }}>
-                    <TouchableOpacity style={{ backgroundColor: Colors.unimedColors.laranja, padding: 6, paddingHorizontal: 10, borderRadius: 8 }}>
+                    <TouchableOpacity  onPress={() => router.push({
+                                    pathname: "detalhes-visita",
+                                    params: {
+                                        ...detalhes as any
+                                    }
+                                })} style={{ backgroundColor: Colors.unimedColors.laranja, padding: 6, paddingHorizontal: 10, borderRadius: 8 }}>
                         <Text style={{ color: Colors.unimedColors.branco }}>Ver detalhes</Text>
                     </TouchableOpacity>
                     {

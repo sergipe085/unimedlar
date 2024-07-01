@@ -70,6 +70,8 @@ export default function ListarVisitas() {
     // laranja forte - proxima visita 
     // laranja claro, proximas visitas
 
+    // console.log(detalhes)
+
 
     function getCorVisita(visita: Visita) {
         if (visita.compareceuEm) {

@@ -34,7 +34,6 @@ export default function HomeScreen() {
         {/* <ThemedText type='subtitle'>Seu planejamento</ThemedText> */}
         <ListarVisitas />
 
-      
       </ThemedView>
 
 
