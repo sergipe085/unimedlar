@@ -10,12 +10,22 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import unimed from "../../public/logo.png"
 import celular from "../../public/celular.png"
 import idosa from "../../public/idosa.png"
-
-
+import marina from "../../public/marina.png"
+import mafius from "../../public/mafius.png"
+import sergio from "../../public/sergio.png"
+import thiago from "../../public/thiago.png"
+import home from "../../public/tela-home.png"
+import detalhes from "../../public/detalhes.png"
+import meusChamados from "../../public/meus-chamados.png"
+import chamados from "../../public/chamado.png"
 import { FlipWords } from "./_components/flip-words";
 
 import dynamic from "next/dynamic"
 import { Label } from "@/components/ui/label";
+import { BackgroundGradient } from "./_components/backgroundGradient";
+import { BackgroundGradient2 } from "./_components/backgroundGradient2";
+import { BackgroundGradient3 } from "./_components/backgroundGradient3";
+import { BackgroundGradient4 } from "./_components/backgroundGradient4";
 
 const Scene = dynamic(() => import("./_components/iphone/Scene"), { ssr: false })
 
@@ -26,11 +36,83 @@ export default function LadingPage() {
 
   return (
     <main className="h-svh bg-white w-full flex flex-col">
-      <div className="p-2 w-full flex bg-white items-center justify-center fixed gap-8">
-        <Image className="h-12 w-32" src={unimed} alt={"unimed logo"}></Image> 
-        <p>miau</p>
-        <p>miau</p> 
-        <p>miau</p> 
+      <div className="p-2 w-full flex bg-white items-center justify-center fixed gap-8 z-50">
+        <Image className="h-12 w-32" src={unimed} alt={"unimed logo"}></Image>
+        <div className="hidden sm:flex gap-2">
+          <p>miau</p>
+          <p>miau</p> 
+          <p>miau</p> 
+        </div>
+      </div>
+      <motion.div 
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}    
+        className="pt-20 px-4 flex flex-col md:flex-row w-full md:px-20  justify-center bg bg-gradient-to-b from-white to-[#BDEBBC]">
+          <div className="md:w-1/2 flex flex-col gap-2 md:gap-8 lg:py-36 p-2">
+            <h1 className=" text-[#0A5F55] text-3xl font-bold lg:text-7xl">Inovando o acompanhamento do home care</h1>
+            <h2 className="text-xl md:text-3xl">Monitoramento de Qualidade em Tempo Real para Serviços Domiciliares da Unimed Lar</h2>
+          </div>
+          <Image className="md:w-1/3" src={home} alt="home screen"></Image>
+      </motion.div>
+      <div className="w-full flex md:px-72 gap-8 md:p-96 p-8">
+        <motion.div
+          initial={{ opacity: 0.0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }} 
+          className="items-center bg-[#F47920] rounded-3xl flex p-8 md:p-12 flex-col gap-8"  
+        >
+          <h1 className="text-white text-xl font-bold lg:text-3xl">Canal de Reclamação Classificatório</h1>
+          <div className="w-full flex flex-col md:flex-row gap-8">
+            <motion.div 
+            initial={{ opacity: 0.0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.3,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className=" bg-gray-200 rounded-3xl p-8 md:-mb-96 flex flex-col gap-2 items-center"  
+            >
+              <h1 className="font-bold text-xl">Criação de um chamado</h1>
+              <Image src={chamados} alt=""></Image>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0.0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+              className=" bg-gray-200 rounded-3xl p-8 md:-mb-96 flex flex-col gap-2 items-center"    
+            >
+              <h1 className="font-bold text-xl">Visualização dos chamados</h1>
+              <Image src={meusChamados} alt=""></Image>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0.0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+                ease: "easeInOut",
+              }}  
+              className=" bg-gray-200 rounded-3xl p-8 md:-mb-96 flex flex-col gap-2 items-center" 
+              >
+                <h1 className="font-bold text-xl">Status do chamado feito</h1>
+              <Image src={detalhes} alt=""></Image>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
       {/* <Image src={idosa} alt=""></Image> */}
       <div className="mt-10 bg-cover w-screen zoom-in-125 bg-idosa2 sm:bg-idosa h-[800px] sm:h-svh">
@@ -113,13 +195,40 @@ export default function LadingPage() {
           </div>
         </div>
       </div>
+      <div className="w-full flex flex-col pt-20 px-96 items-center justify-center gap-8 hidden sm:flex">
+        <motion.div
+          initial={{ opacity: 0.0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}        
+          >
+            <p>
+            Conheça o time unimed lar
+            </p>
+          </motion.div>
+        <div className="w-full items-center justify-center gap-2 hidden sm:flex">
+          <BackgroundGradient className=" rounded-[22px]  bg-white dark:bg-zinc-900 origin-bottom" > 
+            <Image className=" rounded-3xl " src={marina} alt="Marina Vergara"></Image>
+          </BackgroundGradient>
+          <BackgroundGradient3 className="">
+            <Image className="rounded-3xl" src={mafius} alt="Mateus Levi"></Image>
+          </BackgroundGradient3>
+          <BackgroundGradient2>
+            <Image className="rounded-3xl" src={sergio} alt="Sérgio Banhos"></Image>
+          </BackgroundGradient2>
+          <BackgroundGradient4>
+            <Image className=" rounded-3xl 6" src={thiago} alt="Thiago Santos"></Image>
+          </BackgroundGradient4>
+        </div>
+      </div>
         {/* <div className="text-xl sm:text-3xl mx-auto font-normal text-neutral-600 dark:text-neutral-400 items-center text-center">
           Com o Unimed Lar você pode<br />
           <FlipWords className="text-2xl sm:text-4xl" words={words} />
         </div> */}
-      <div className="flex flex-col w-full">
-        <MacbookScroll></MacbookScroll>
-      </div>
+      
     </main>
   );
 }
@@ -169,18 +278,18 @@ const MacbookScroll = ({
   return (
     <div
       ref={ref}
-      className="h-[800px] sm:h-svh flex flex-col [perspective:800px] pt-2 sm:pt-40 transform md:scale-100  sm:scale-50"
+      className="h-[800px] sm:h-svh flex flex-col [perspective:800px] transform md:scale-100  sm:scale-50 mt-10"
     >
       <motion.h2
         style={{
           translateY: textTransform,
           opacity: textOpacity,
         }}
-        className=" dark:text-white text-neutral-800 text-xl font-bold text-center -mb-10"
+        className=" dark:text-white text-neutral-800 text-xl font-bold text-center "
       >
         {title || (
           <span>
-            Agilidade na palma da mão<br /> visualização de consultas a seu dispor
+            Agilidade na palma da mão,<br /> visualização de consultas a seu dispor.
           </span>
         )}
       </motion.h2>
