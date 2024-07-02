@@ -18,6 +18,15 @@ import home from "../../public/tela-home.png"
 import detalhes from "../../public/detalhes.png"
 import meusChamados from "../../public/meus-chamados.png"
 import chamados from "../../public/chamado.png"
+import subHero from "../../public/subHero.png"
+import ouvi from "../../public/ouvi.png"
+import visit from "../../public/visit.png"
+import search from "../../public/search.png"
+import atend from "../../public/atend.png"
+
+
+
+
 import { FlipWords } from "./_components/flip-words";
 
 import dynamic from "next/dynamic"
@@ -40,7 +49,8 @@ export default function LadingPage() {
       <div className="p-2 w-full flex flex-row bg-white items-center justify-center fixed gap-8 z-50">
         <Image className="h-12 w-32" src={unimed} alt={"unimed logo"}></Image>
         <div className="hidden sm:flex gap-2 items-center">
-          <Link href={"#funcionalidades"}>funcionalidades</Link> 
+          <Link href={"#funcionalidades"}>funcionalidades</Link>
+          <Link href={"#atendimentos"}>atendimentos</Link>
           <Link href={"#time"}>conheça o time</Link> 
           
         </div>
@@ -61,12 +71,12 @@ export default function LadingPage() {
             <h1 className="  text-unimed-primary text-3xl font-bold lg:text-7xl">Inovando o acompanhamento do home care</h1>
             <Subtitle className="text-xl md:text-3xl">Monitoramento de qualidade em tempo real para Serviços Domiciliares Terceirizados da Unimed Lar</Subtitle>
             <Link className=" max-w-xs" href={"#funcionalidades"}>
-              <Button className="w-full" onClick={async () => null}>Saiba mais</Button>
+              <Button className="px-8 py-2" onClick={async () => null}>Saiba mais</Button>
             </Link>
           </div>
-          <Image className="md:w-2/5 -mb-36" src={home} alt="home screen"></Image>
+          <Image className="md:w-2/5 -mb-36 z-0" src={home} alt="home screen"></Image>
       </motion.div>
-      <div id="funcionalidades"  className="w-full flex md:px-72 gap-8 md:p-96 p-8">
+      <div id="funcionalidades"  className="w-full flex md:px-60 gap-12 p-8 z-10 bg-white ">
         <motion.div
           initial={{ opacity: 0.0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,11 +85,58 @@ export default function LadingPage() {
             duration: 0.8,
             ease: "easeInOut",
           }} 
-          className="items-center bg-[#F47920] rounded-3xl flex p-8 md:p-12 flex-col gap-8"  
+          className="items-center flex flex-col text-center justify-center w-full gap-8"  
         >
-         
+          <motion.div
+            initial={{ opacity: 0.0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="w-full" 
+          > 
+            <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Como o Unimed Lar funciona?</h1>
+            <Subtitle>Um app com uma interface simples ao usuário e de fácil visualização de visitas</Subtitle>
+          </motion.div>
+          <div className="w-full flex md:gap-8 flex-col md:flex-row items-center md:items-start text-start">
+            <Image className="md:w-1/2" src={subHero} alt=""></Image>
+            <div className="w-full flex flex-col gap-8 pt-14 items-center">
+              <div className="w-full flex flex-col md:flex-row gap-4"> 
+                <div className="w-full flex flex-col gap-2 items-start">
+                  <div className="w-full flex gap-4 items-center">
+                    <Image className=" w-16" src={visit} alt=""></Image>
+                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Visualizacão de visitas</h1>
+                  </div>
+                  <h2>Listagem das visitas do paciente por dias do mês</h2>
+                </div>
+                <div className="w-full flex flex-col gap-2 items-start">
+                  <div className="w-full flex gap-4 items-center">
+                    <Image className=" w-16" src={search} alt=""></Image>
+                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Avaliação do atendimento</h1>
+                  </div>
+                  <h2>Listagem das visitas do paciente por dias do mês</h2>
+                </div>
+              </div>
+              <div className="w-full flex flex-col gap-2 items-start">
+                  <div className="w-full flex gap-4 items-center">
+                    <Image className=" w-16" src={ouvi} alt=""></Image>
+                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Ouvidoria</h1>
+                  </div>
+                  <h2>Listagem das visitas do paciente por dias do mês</h2>
+                </div>
+            </div>
+          </div>
           
         </motion.div>
+      </div>
+      <div id="atendimentos" className="w-full p-8 items-center flex flex-col">
+        <div className="w-full min-h-[400px] md:p-20 md:min-h-[900px] bg-[#B1D34B] rounded-3xl items-center text-center flex flex-col">
+          <h1>Acompanhamento dos pacientes</h1>
+          miau
+        </div>
+        <Image className="md:w-4/5 -mt-[200px] md:-mt-[700px]" src={atend} alt=""></Image>
       </div>
       {/* <Image src={idosa} alt=""></Image> */}
       <div className="mt-10 bg-cover w-screen zoom-in-125 bg-idosa2 sm:bg-idosa h-[800px] sm:h-svh">
