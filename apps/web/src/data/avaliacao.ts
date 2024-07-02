@@ -19,7 +19,9 @@ export async function jaTemAvaliacao(visitaId: string) {
 }
 
 export async function realizarAvaliacao(visitaId: string, nota: number, feedback: string, cumpriuHorario: boolean, compareceu: boolean) {
-    const { avaliacao } = await db.visita.update({
+    
+    
+    const { avaliacao, atendimento } = await db.visita.update({
         where: {
             id: visitaId
         },
@@ -34,9 +36,26 @@ export async function realizarAvaliacao(visitaId: string, nota: number, feedback
             }
         },
         include: {
-            avaliacao: true
+            avaliacao: true,
+            atendimento: true
         }
     });
+
+    if (atendimento?.cooperativaId) {
+        await db.visita.update({
+            where: {
+                id: visitaId
+            },
+            data: {
+                cooperativaResponsavel: {
+                    connect: {
+                        id: atendimento.cooperativaId
+                    }
+                } 
+            }
+        })
+    }
+
 
     console.log(avaliacao)
 
