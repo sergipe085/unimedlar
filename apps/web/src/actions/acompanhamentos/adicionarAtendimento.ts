@@ -34,7 +34,14 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
             dataFinal: data.dataFinal,
             procedimentos: {
                 createMany: {
-                    data: data.procedimentos
+                    data: data.procedimentos.map(proced => {
+                        return {
+                            procedimentoId: proced.procedimentoId,
+                            medicamentoId: proced.medicamentoId,
+                            quantidade: proced.quantidade,
+                            duracaoEmHoras: proced.duracaoEmHoras
+                        }
+                    })
                 }
             }
         }
