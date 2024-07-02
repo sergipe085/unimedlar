@@ -9,7 +9,7 @@ export const adicionarAtendimentoSchema = z.object({
         procedimentoId: z.string().optional().nullable(),
         medicamentoId: z.string().optional().nullable(),
         quantidade: z.number().min(1, 'Quantidade deve ser no mínimo 1'),
-        duracaoEmHoras: z.number().min(1, 'Duração deve ser no mínimo 1 hora'),
+        duracaoEmHoras: z.number().min(0.2, 'Duração deve ser no mínimo 0,2 hora'),
         tipo: z.enum(["procedimento", "medicamento"])
     })).min(1, 'Adicione pelo menos um procedimento'),
     profissionaisNecessarios: z.array(z.enum([TiposProfissionais.ENFERMEIRO, TiposProfissionais.FISIOTERAPEUTA, TiposProfissionais.MEDICO])).min(1, 'Adicione pelo menos um profissional'),

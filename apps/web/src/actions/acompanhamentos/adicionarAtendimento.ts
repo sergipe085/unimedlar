@@ -39,9 +39,19 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
 
                         // if (pr)
 
+
+                        var data: any = {};
+
+                        if (proced.procedimentoId) {
+                            data["procedimentoId"] = proced.procedimentoId;
+                        }
+
+                        if (proced.medicamentoId) {
+                            data["medicamentoId"] = proced.medicamentoId;
+                        }
+
                         return {
-                            procedimproentoId: proced.procedimentoId ?? null,
-                            medicamentoId: proced.medicamentoId ?? null,
+                            ...data,
                             quantidade: proced.quantidade,
                             duracaoEmHoras: proced.duracaoEmHoras,
                         }
