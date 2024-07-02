@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import { useApi } from "../../hub/_hooks/useApi";
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IMaskInput } from 'react-imask';
 import { api } from "../../../lib/api";
+import { Button } from "@/app/_components/button";
 
 export default function Login() {
   const { signIn, auth_data } = useApi();

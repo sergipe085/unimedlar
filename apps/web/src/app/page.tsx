@@ -26,6 +26,7 @@ import { BackgroundGradient } from "./_components/backgroundGradient";
 import { BackgroundGradient2 } from "./_components/backgroundGradient2";
 import { BackgroundGradient3 } from "./_components/backgroundGradient3";
 import { BackgroundGradient4 } from "./_components/backgroundGradient4";
+import { Button } from "./_components/button";
 
 const Scene = dynamic(() => import("./_components/iphone/Scene"), { ssr: false })
 
@@ -38,10 +39,14 @@ export default function LadingPage() {
     <main className="h-svh bg-white w-full flex flex-col">
       <div className="p-2 w-full flex flex-row bg-white items-center justify-center fixed gap-8 z-50">
         <Image className="h-12 w-32" src={unimed} alt={"unimed logo"}></Image>
-        <div className="hidden sm:flex gap-2">
+        <div className="hidden sm:flex gap-2 items-center">
           <Link href={"#funcionalidades"}>funcionalidades</Link> 
           <Link href={"#time"}>conheça o time</Link> 
+          
         </div>
+        <Link className=" max-w-xs" href={"/login"}>
+            <Button className="w-full" onClick={async () => null}>Acessar</Button>
+        </Link>
       </div>
       <motion.div 
         initial={{ opacity: 0.0, y: 40 }}
@@ -53,8 +58,11 @@ export default function LadingPage() {
         }}    
         className="pt-20 px-4 flex flex-col md:flex-row w-full md:px-20  justify-center bg bg-gradient-to-b from-white to-[#BDEBBC]">
           <div className="md:w-1/2 flex flex-col gap-2 md:gap-8 lg:py-36 p-2">
-            <h1 className=" text-[#0A5F55] text-3xl font-bold lg:text-7xl">Inovando o acompanhamento do home care</h1>
+            <h1 className="  text-unimed-primary text-3xl font-bold lg:text-7xl">Inovando o acompanhamento do home care</h1>
             <Subtitle className="text-xl md:text-3xl">Monitoramento de qualidade em tempo real para Serviços Domiciliares Terceirizados da Unimed Lar</Subtitle>
+            <Link className=" max-w-xs" href={"#funcionalidades"}>
+              <Button className="w-full" onClick={async () => null}>Saiba mais</Button>
+            </Link>
           </div>
           <Image className="md:w-1/3" src={home} alt="home screen"></Image>
       </motion.div>
@@ -126,7 +134,7 @@ export default function LadingPage() {
         </div>
       </div>
       <div className="w-full items-center justify-center flex py-20 flex-col gap-10">
-        <div className="flex flex-col gap-4 text-center px-12">
+        <div className="flex flex-col gap-4 text-center md:px-12">
           <Label className="sm:text-3xl">Revolucionando o Home Care com tecnologia de ponta.</Label>
           <Label className="sm:text-xl text-gray-400">Usando as melhores tecnologias com inovação para proporcionar conforto e segurança.</Label>
         </div>

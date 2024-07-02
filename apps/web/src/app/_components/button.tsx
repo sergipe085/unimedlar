@@ -10,7 +10,7 @@ type Props = {
     
 } & ChildrenProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export function Button({ children, onClick, ...props }: Props) {
+export function Button({ children, onClick, className, ...props }: Props) {
     const [loading, setLoading] = useState<boolean>(false);
 
     async function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -28,7 +28,7 @@ export function Button({ children, onClick, ...props }: Props) {
     }
 
     return (
-        <button disabled={loading} className={cn("bg-[#008D52] p-4 flex items-center justify-center rounded-2xl", props.className)} onClick={handleClick} {...props}>
+        <button disabled={loading} className={cn("bg-[#008D52] p-4 flex items-center justify-center rounded-2xl", className)} onClick={handleClick} {...props}>
             <Subtitle className={`${loading ? "text-[#008D52]" : "text-[#ffffff]"} font-semibold text-md`}>{children}</Subtitle>
             
             {
