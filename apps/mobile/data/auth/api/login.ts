@@ -12,5 +12,7 @@ export async function login(req: Request) {
         token_notification: req.expoNotificationToken
     });
 
+    console.log(data)
+
     return data;
 }

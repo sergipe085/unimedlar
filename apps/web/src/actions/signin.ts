@@ -9,11 +9,7 @@ export async function signin({ login, password, expoNotificationToken }: LoginDT
         },
         include: {
             gerente: true,
-            cuidador: {
-                include: {
-                    pacientes: true
-                }
-            }
+            cuidador: true
         }
     })
 
