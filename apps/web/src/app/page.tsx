@@ -23,7 +23,8 @@ import ouvi from "../../public/ouvi.png"
 import visit from "../../public/visit.png"
 import search from "../../public/search.png"
 import atend from "../../public/atend.png"
-
+import frame1 from "../../public/frame1.png"
+import frame2 from "../../public/frame2.png"
 
 
 
@@ -102,8 +103,8 @@ export default function LadingPage() {
           </motion.div>
           <div className="w-full flex md:gap-8 flex-col md:flex-row items-center md:items-start text-start">
             <Image className="md:w-1/2" src={subHero} alt=""></Image>
-            <div className="w-full flex flex-col gap-8 pt-14 items-center">
-              <div className="w-full flex flex-col md:flex-row gap-4"> 
+            <div className="w-full flex flex-col md:gap-12 gap-8 pt-14 items-center justify-center">
+
                 <div className="w-full flex flex-col gap-2 items-start">
                   <div className="w-full flex gap-4 items-center">
                     <Image className=" w-16" src={visit} alt=""></Image>
@@ -118,7 +119,6 @@ export default function LadingPage() {
                   </div>
                   <h2>Listagem das visitas do paciente por dias do mês</h2>
                 </div>
-              </div>
               <div className="w-full flex flex-col gap-2 items-start">
                   <div className="w-full flex gap-4 items-center">
                     <Image className=" w-16" src={ouvi} alt=""></Image>
@@ -132,9 +132,9 @@ export default function LadingPage() {
         </motion.div>
       </div>
       <div id="atendimentos" className="w-full p-8 items-center flex flex-col">
-        <div className="w-full min-h-[400px] md:p-20 md:min-h-[900px] bg-[#B1D34B] rounded-3xl items-center text-center flex flex-col">
-          <h1>Acompanhamento dos pacientes</h1>
-          miau
+        <div className="w-full pt-12 min-h-[400px] md:p-20 md:min-h-[900px] bg-[#B1D34B] rounded-3xl items-center text-center flex flex-col">
+          <h1 className=" text-white text-xl font-bold lg:text-2xl">Acompanhamento dos pacientes</h1>
+          <h2>mds do ceuu</h2>
         </div>
         <Image className="md:w-4/5 -mt-[200px] md:-mt-[700px]" src={atend} alt=""></Image>
       </div>
@@ -219,7 +219,7 @@ export default function LadingPage() {
           </div>
         </div>
       </div>
-      <div className="w-full flex-col pt-20 md:px-96 items-center justify-center gap-8 sm:flex">
+      <div className="text-unimed-primary w-full flex-col md:pt-12 md:px-96 items-center justify-center gap-8 sm:flex">
         <motion.div
           id="time"
           initial={{ opacity: 0.0, y: 40 }}
@@ -230,7 +230,7 @@ export default function LadingPage() {
             ease: "easeInOut",
           }}    
           >
-            <h1 className=" text-unimed-secundary text-center text-4xl mb-8 font-bold">
+            <h1 className="text-unimed-primary text-center text-4xl mb-8 font-bold">
             Conheça o time
             </h1>
           </motion.div>
@@ -249,29 +249,29 @@ export default function LadingPage() {
           </BackgroundGradient4>
         </div>
         <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-0">
-          <div className="flex w-full flex-col items-center px-2">
+          <div className="text-unimed-primary flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={marina} alt="Marina Vergara"></Image>
             <Subtitle className="font-bold">Marina Vergara</Subtitle>
-            <Subtitle className=" text-sm">marinavergarac@gmail.com</Subtitle>
             <Subtitle className="text-md">Designer / Dev</Subtitle>
+            <Subtitle className=" text-sm">marinavergarac@gmail.com</Subtitle>
           </div>
           <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={mafius} alt="Marina Vergara"></Image>
             <Subtitle className="font-bold">Mateus Levi</Subtitle>
-            <Subtitle className=" text-sm">mateuslevialencar12@gmail.com</Subtitle>
             <Subtitle className="text-md">Dev Fullstack</Subtitle>
+            <Subtitle className=" text-sm">mateuslevialencar12@gmail.com</Subtitle>
           </div>
           <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={sergio} alt="Marina Vergara"></Image>
             <Subtitle className="font-bold">Sérgio Banhos</Subtitle>
-            <Subtitle className=" text-sm">sergiobanhosf@gmail.com</Subtitle>
             <Subtitle className="text-md">Dev Fullstack</Subtitle>
+            <Subtitle className=" text-sm">sergiobanhosf@gmail.com</Subtitle>
           </div>
           <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={thiago} alt="Marina Vergara"></Image>
           <Subtitle className="font-bold">Thiago Santos</Subtitle>
-            <Subtitle className=" text-sm">sr.thiago@gmail.com</Subtitle>
             <Subtitle className="text-md">Product Owner</Subtitle>
+            <Subtitle className=" text-sm">sr.thiago@gmail.com</Subtitle>
           </div>
         </div>
       </div>
