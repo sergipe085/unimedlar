@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { Prisma } from "@prisma/client";
+import { RedirectType, redirect } from "next/navigation";
 
 export type AuthData = {
     user: Prisma.UsuarioGetPayload<{
@@ -20,7 +21,7 @@ export async function auth() {
     const token = cookie.get("Authorization");
 
     if (!token?.value) {
-        throw new Error("no token provided in Authorization Header");
+        redirect("/login", RedirectType.replace);
     }
 
     const authData = jwt.verify(token.value, process.env.JWT_SECRET ?? "secret") as AuthData
