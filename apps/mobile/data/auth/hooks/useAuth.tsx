@@ -60,6 +60,8 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
             expoNotificationToken
         })
 
+        console.log(JSON.stringify(auth))
+
         api.defaults.headers.common = {'Authorization': `${auth.token}`}
 
         setAuthData(auth);
