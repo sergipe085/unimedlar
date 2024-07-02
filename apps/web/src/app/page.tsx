@@ -64,7 +64,7 @@ export default function LadingPage() {
               <Button className="w-full" onClick={async () => null}>Saiba mais</Button>
             </Link>
           </div>
-          <Image className="md:w-1/3" src={home} alt="home screen"></Image>
+          <Image className="md:w-2/5 -mb-36" src={home} alt="home screen"></Image>
       </motion.div>
       <div id="funcionalidades"  className="w-full flex md:px-72 gap-8 md:p-96 p-8">
         <motion.div
@@ -77,48 +77,8 @@ export default function LadingPage() {
           }} 
           className="items-center bg-[#F47920] rounded-3xl flex p-8 md:p-12 flex-col gap-8"  
         >
-          <h1 className="text-white text-xl font-bold lg:text-3xl">Canal de Reclamação Classificatório</h1>
-          <div className="w-full flex flex-col md:flex-row gap-8">
-            <motion.div 
-            initial={{ opacity: 0.0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.3,
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-            className=" bg-gray-200 rounded-3xl p-8 md:-mb-96 flex flex-col gap-2 items-center"  
-            >
-              <h1 className="font-bold text-xl">Criação de um chamado</h1>
-              <Image src={chamados} alt=""></Image>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0.0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
-              className=" bg-gray-200 rounded-3xl p-8 md:-mb-96 flex flex-col gap-2 items-center"    
-            >
-              <h1 className="font-bold text-xl">Visualização dos chamados</h1>
-              <Image src={meusChamados} alt=""></Image>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0.0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }}  
-              className=" bg-gray-200 rounded-3xl p-8 md:-mb-96 flex flex-col gap-2 items-center" 
-              >
-                <h1 className="font-bold text-xl">Status do chamado feito</h1>
-              <Image src={detalhes} alt=""></Image>
-            </motion.div>
-          </div>
+         
+          
         </motion.div>
       </div>
       {/* <Image src={idosa} alt=""></Image> */}
