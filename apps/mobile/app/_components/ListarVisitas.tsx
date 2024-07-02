@@ -4,7 +4,7 @@ import { ThemedText } from '@/app/_components/ThemedText';
 import { ThemedView } from '@/app/_components/ThemedView';
 import { Colors } from '@/constants/Colors';
 import { format, toZonedTime } from 'date-fns-tz';
-import { useDetalhes, useVisitas } from '../(app)/(modules)/_api/useVisitas';
+import { avaliarVisita, useDetalhes, useVisitas } from '../(app)/(modules)/_api/useVisitas';
 import { Visita } from '../(app)/(modules)/_api/interface/visitas';
 import { useEffect, useRef, useState } from 'react';
 import DetalhesVisita from './DetalhesVisita';
@@ -57,6 +57,15 @@ export default function ListarVisitas() {
     const [bodyAvaliacao, setBodyAvaliacao] = useState({} as Avaliacao)
     const [compareceu, setCompareceu] = useState<boolean>()
 
+    const bodyEnviarAvaliacao = {
+        idVisita: visitaSelecionada,
+        qualidadeAtendimento: bodyAvaliacao.qualidadeAtendimento,
+        cumpriuHorario: bodyAvaliacao.cumpriuHorario,
+        compareceu,
+        feedback: bodyAvaliacao.feedback
+    }
+
+    console.log(bodyEnviarAvaliacao)
 
 
     const { detalhes } = useDetalhes(visitaSelecionada)
@@ -145,7 +154,7 @@ export default function ListarVisitas() {
 
         </ThemedView>
             <Modal bottomSheetref={bottomSheetref} detalhes={detalhes}
-                setBodyAvaliacao={setBodyAvaliacao} bodyAvaliacao={bodyAvaliacao} />
+            setBodyAvaliacao={setBodyAvaliacao} bodyAvaliacao={bodyAvaliacao} enviarAvaliacao={() => console.log(bodyEnviarAvaliacao)} />
         </>
     );
 }

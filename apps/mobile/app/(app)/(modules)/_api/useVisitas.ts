@@ -91,3 +91,10 @@ export async function detalhesVisita(idVisita: string): Promise<Detalhes> {
     return data.visita
 }
 
+export async function avaliarVisita(bodyAvaliacao): Promise<Detalhes> {
+    const { data } = await api.post(`/avaliacao`, bodyAvaliacao)
+    console.log(data)
+
+    return data.visita
+}
+

@@ -18,6 +18,7 @@ export default function RootLayout() {
 
   return (
     <Tabs
+    
       screenOptions={{
         tabBarActiveTintColor: globals.colors.primary,
         tabBarShowLabel: true,
