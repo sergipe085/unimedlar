@@ -25,7 +25,8 @@ import search from "../../public/search.png"
 import atend from "../../public/atend.png"
 import frame1 from "../../public/frame1.png"
 import frame2 from "../../public/frame2.png"
-
+import ouvido from "../../public/ouvido.png"
+import dash from "../../public/dash.png"
 
 
 import { FlipWords } from "./_components/flip-words";
@@ -138,6 +139,40 @@ export default function LadingPage() {
         </div>
         <Image className="md:w-4/5 -mt-[200px] md:-mt-[700px]" src={atend} alt=""></Image>
       </div>
+      <motion.div 
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}    
+       className="w-full items-center flex justify-center md:px-20 md:pt-36">
+        <Image className="w-1/4" src={ouvido} alt=""></Image>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}    
+       className="w-full items-center flex justify-center md:px-20 md:pt-36">
+        <Image className="w-3/5" src={dash} alt=""></Image>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}    
+       className="w-full items-center flex justify-center md:px-20 md:pt-36">
+        <Image className="w-3/5" src={frame1} alt=""></Image>
+        <Image className="w-3/5" src={frame2} alt=""></Image>
+      </motion.div>
       {/* <Image src={idosa} alt=""></Image> */}
       <div className="mt-10 bg-cover w-screen zoom-in-125 bg-idosa2 sm:bg-idosa h-[800px] sm:h-svh">
         <div className="bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed">
@@ -150,7 +185,7 @@ export default function LadingPage() {
         </div>
         </div>
       </div>
-      <div className="w-full items-center justify-center flex py-20 flex-col gap-10">
+      <div className="w-full items-center justify-center flex md:py-20 flex-col gap-10">
         <div className="flex flex-col gap-4 text-center md:px-12">
           <Label className="sm:text-3xl">Revolucionando o Home Care com tecnologia de ponta.</Label>
           <Label className="sm:text-xl text-gray-400">Usando as melhores tecnologias com inovação para proporcionar conforto e segurança.</Label>
@@ -230,7 +265,7 @@ export default function LadingPage() {
             ease: "easeInOut",
           }}    
           >
-            <h1 className="text-unimed-primary text-center text-4xl mb-8 font-bold">
+            <h1 className="text-unimed-primary text-center text-4xl font-bold">
             Conheça o time
             </h1>
           </motion.div>
