@@ -44,23 +44,23 @@ export default function Login() {
             <CardDescription>Entrar como Admin</CardDescription>
           </div>
           <div>
-            <Label>Usuário:</Label>
+            <Label>Usuário (teste):</Label>
             <Input
               value={user.username}
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               onChange={(e) => setUser({ ...user, username: e.currentTarget.value })}
               onKeyDown={handleEnterPress}
-              placeholder="Digite seu login"
+              placeholder="teste"
             />
             {/* onChange={(e) => setCpf(e.currentTarget.value)} */}
           </div>
           <div>
-            <Label>Senha:</Label>
+            <Label>Senha (saude123):</Label>
             <Input
               type={verSenha ? "text" : "password"}
               onChange={(e) => setUser({ ...user, password: e.target.value })}
               onKeyDown={handleEnterPress}
-              placeholder="Digite a senha"
+              placeholder="saude123" 
             />
           </div>
           <div className="flex items-center gap-2 justify-end">

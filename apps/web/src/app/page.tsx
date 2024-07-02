@@ -55,7 +55,7 @@ export default function LadingPage() {
           
         </div>
         <Link className=" max-w-xs" href={"/login"}>
-            <Button className="w-full" onClick={async () => null}>Acessar</Button>
+            Acessar sistema
         </Link>
       </div>
       <motion.div 
@@ -228,11 +228,11 @@ export default function LadingPage() {
             delay: 0.3,
             duration: 0.8,
             ease: "easeInOut",
-          }}        
+          }}    
           >
-            <Title>
-            Conheça o time unimed lar
-            </Title>
+            <h1 className=" text-unimed-secundary text-center text-4xl mb-8 font-bold">
+            Conheça o time
+            </h1>
           </motion.div>
         <div className="w-full mt-8 hidden items-center justify-center gap-2  md:flex">
           <BackgroundGradient className=" rounded-[22px]  bg-white dark:bg-zinc-900 origin-bottom" > 
@@ -248,12 +248,12 @@ export default function LadingPage() {
             <Image className=" rounded-3xl 6" src={thiago} alt="Thiago Santos"></Image>
           </BackgroundGradient4>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between">
+        <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-0">
           <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={marina} alt="Marina Vergara"></Image>
             <Subtitle className="font-bold">Marina Vergara</Subtitle>
             <Subtitle className=" text-sm">marinavergarac@gmail.com</Subtitle>
-            <Subtitle className="mt-2">Designer / Dev</Subtitle>
+            <Subtitle className="text-md">Designer / Dev</Subtitle>
           </div>
           <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={mafius} alt="Marina Vergara"></Image>
@@ -265,13 +265,13 @@ export default function LadingPage() {
             <Image className="md:hidden rounded-3xl " src={sergio} alt="Marina Vergara"></Image>
             <Subtitle className="font-bold">Sérgio Banhos</Subtitle>
             <Subtitle className=" text-sm">sergiobanhosf@gmail.com</Subtitle>
-            <Subtitle className="mt-2">Dev Fullstack</Subtitle>
+            <Subtitle className="text-md">Dev Fullstack</Subtitle>
           </div>
           <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={thiago} alt="Marina Vergara"></Image>
           <Subtitle className="font-bold">Thiago Santos</Subtitle>
             <Subtitle className=" text-sm">sr.thiago@gmail.com</Subtitle>
-            <Subtitle className="mt-2">Product Owner</Subtitle>
+            <Subtitle className="text-md">Product Owner</Subtitle>
           </div>
         </div>
       </div>
