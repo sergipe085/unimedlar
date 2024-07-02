@@ -30,8 +30,8 @@ export async function realizarAvaliacao(visitaId: string, nota: number, feedback
                 create: {
                     nota,
                     feedback,
-                     profissionalCumpriuCargaHoraria: cumpriuHorario,
-                     profissionalCompareceu: compareceu
+                    profissionalCumpriuCargaHoraria: cumpriuHorario,
+                    profissionalCompareceu: compareceu
                 }
             }
         },

@@ -22,35 +22,30 @@ export default async function Dashboard() {
             
 
             <div className="w-full">
-                <Subtitle className="font-semibold mt-8">Indicadores de Qualidade</Subtitle>
-                <Subtitle className="mt-2 mb-2">Dados gerais</Subtitle>
+                <Subtitle className="font-semibold mt-8">Indicadores de Gastos</Subtitle>
+                <Subtitle className="mt-2 mb-2">Dados financeiros</Subtitle>
                 <div className=" flex flex-col md:flex-row w-full h-full gap-4">
                     <JPCard className="p-8 w-full">
-                        <Title>{nps}</Title>
-                        <Subtitle>NPS Geral</Subtitle>
+                        <Title>1455,25 R$</Title>
+                        <Subtitle>Previsão do mês</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>{media._avg.nota}</Title>
-                        <Subtitle>Nota média</Subtitle>
+                        <Title>125,44 R$</Title>
+                        <Subtitle>Total gasto</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>92%</Title>
-                        <Subtitle>Presença</Subtitle>
-                    </JPCard>
-                    <JPCard className="p-8 w-full">
-                        <Title>86%</Title>
-                        <Subtitle>Carga horaria</Subtitle>
+                        <Title>22,50 R$</Title>
+                        <Subtitle>Média por paciente</Subtitle>
                     </JPCard>
                 </div>
                 <div className=" flex flex-col w-full h-full flex-wrap pt-8">
-                    <Subtitle className="mt-2 mb-2">Dados por cooperativa</Subtitle>
-                    <TableHeader>COOP.,NPS,NOTA MEDIA,TOTAL AVALIAÇÕES</TableHeader>
+                    <Subtitle className="mt-2 mb-2">Dados por Materiais</Subtitle>
+                    <TableHeader>MATERIAL,QUANTIDADE,VALOR TOTAL</TableHeader>
                     <TableBody>{
-                        cooperativas?.map(coop => {
-                            return (
-                                <TableRow>{[coop.cooperativa,coop.nps.toString(),coop.notaMedia?.toString() ?? "-",coop.totalVisitas.toString()]}</TableRow>
-                            )
-                        })
+                        [
+                            <TableRow>{["CILINDRO DE OXIGENIO", "14", "567,04 R$"]}</TableRow>,
+                            <TableRow>{["SERINGA", "67", "158,81 R$"]}</TableRow>,
+                        ]
                     }</TableBody>
                 </div>
                 <div className=" flex flex-col w-full h-full flex-wrap pt-8">

@@ -107,7 +107,13 @@ export async function getVisitasByPaciente(pacienteId: string) {
             dataVisita: true,
             id: true,
             compareceuEm: true,
-            naoCompareceuEm: true
+            naoCompareceuEm: true,
+            avaliacao: {
+                select: {
+                    profissionalCompareceu: true,
+                    profissionalCumpriuCargaHoraria: true
+                }
+            }
         },
         where: {
             pacienteId

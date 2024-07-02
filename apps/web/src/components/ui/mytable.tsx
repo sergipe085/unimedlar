@@ -28,7 +28,7 @@ export function TableHeader({ children }: TableHeaderProps) {
             {
                 comps.map(comp => {
                     return (
-                        <Subtitle className="w-full font-bold text-[8px] md:text-lg">{ comp }</Subtitle>
+                        <Subtitle className="w-full font-bold text-[8px] md:text-[12px]">{ comp }</Subtitle>
                     )
                 })
             }
