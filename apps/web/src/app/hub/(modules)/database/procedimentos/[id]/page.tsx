@@ -1,6 +1,6 @@
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/mytable";
 import { getProcedimentoById } from "@/data/procedimentos";
 
 type Props = {

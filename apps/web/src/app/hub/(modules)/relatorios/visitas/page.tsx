@@ -1,6 +1,6 @@
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import { TableBody, TableHeader, TableRow } from "@/components/ui/mytable";
 import { getChamados } from "@/data/chamados";
 import { getPacientes } from "@/data/pacientes";
 import { getUsuarios } from "@/data/usuarios";
@@ -22,10 +22,10 @@ export default async function RelatorioVisitas() {
                             <TableRow>
                                 {
                                     [
-                                        visita.atendimento.acompanhamento?.paciente.nome,
+                                        visita.atendimento?.paciente.nome,
                                         visita.dataVisita.toLocaleDateString("pt-BR"),
-                                        visita.iniciadaEm?.toLocaleString("pt-BR") ?? "-",
-                                        visita.finalizadaEm?.toLocaleString("pt-BR") ?? "-",
+                                        // visita.iniciadaEm?.toLocaleString("pt-BR") ?? "-",
+                                        // visita.finalizadaEm?.toLocaleString("pt-BR") ?? "-",
                                     ] as string[]
                                 }
                             </TableRow>

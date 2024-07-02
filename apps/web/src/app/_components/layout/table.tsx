@@ -1,6 +1,6 @@
 "use client"
 
-import { locale } from '@/schemas/lib/syncfusion';
+import { locale } from '../../../lib/syncfusion';
 import { L10n } from '@syncfusion/ej2-base';
 import { Resize } from '@syncfusion/ej2-react-grids';
 import { ColumnDirective, ColumnsDirective, Sort, Toolbar } from '@syncfusion/ej2-react-grids';

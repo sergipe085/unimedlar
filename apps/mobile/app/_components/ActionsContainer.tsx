@@ -41,7 +41,7 @@ export function ActionsContainer({ actions }: Props) {
                     if (action.type && action.type == "full") {
                         return (
 
-                            <Button className="text-white gap-16 flex" key={`action_${index}`} onPress={action.action} type={"default"}>
+                            <Button className="text-white gap-16 flex w-full" key={`action_${index}`} onPress={action.action} type={"default"}>
                                 <View className="flex flex-row items-center">
                                     <ThemedText type="modulo">  
                                         {action.title}

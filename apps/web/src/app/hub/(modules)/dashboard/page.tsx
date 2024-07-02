@@ -1,14 +1,17 @@
 import { JPCard } from "@/app/_components/layout/jp-card";
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/mytable";
 import { auth } from "@/data/auth";
+import { getNotaGeral, getNotaPorCooperativa } from "@/data/notas";
 import { getVisitasDoDia } from "@/data/visitas";
 import { Calendar } from "lucide-react";
 import { cookies } from "next/headers";
 
 export default async function Dashboard() {
     const visitasDoDia = await getVisitasDoDia(new Date());
+    const { nps, media } = await getNotaGeral();
+    const cooperativas = await getNotaPorCooperativa();
 
     return (
         <>
@@ -23,35 +26,35 @@ export default async function Dashboard() {
                 <Subtitle className="mt-2 mb-2">Dados gerais</Subtitle>
                 <div className=" flex flex-col md:flex-row w-full h-full gap-4">
                     <JPCard className="p-8 w-full">
-                        <Title>8.9</Title>
-                        <Subtitle>nota média</Subtitle>
+                        <Title>{nps}</Title>
+                        <Subtitle>NPS Geral</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>7.9</Title>
-                        <Subtitle>pontualidade</Subtitle>
+                        <Title>{media}</Title>
+                        <Subtitle>Nota média</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>9.8</Title>
-                        <Subtitle>competencia</Subtitle>
+                        <Title>92%</Title>
+                        <Subtitle>Presença</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>7.6</Title>
-                        <Subtitle>profissionalismo</Subtitle>
+                        <Title>86%</Title>
+                        <Subtitle>Carga horaria</Subtitle>
                     </JPCard>
                 </div>
                 <div className=" flex flex-col w-full h-full flex-wrap pt-8">
                     <Subtitle className="mt-2 mb-2">Dados por cooperativa</Subtitle>
-                    <TableHeader>COOP.,MEDIA,PROF.,COMP.,PONT.,VISITAS</TableHeader>
+                    <TableHeader>COOP.,NPS,NOTA MEDIA,TOTAL AVALIAÇÕES</TableHeader>
                     <TableBody>{
-                        [
-                            <TableRow>{["COOP A","8.9","8.9","8.9","8.9","12/19"]}</TableRow>,
-                            <TableRow>{["COOP A","8.9","8.9","8.9","8.9","12/19"]}</TableRow>
-                            
-                        ]    
+                        cooperativas?.map(coop => {
+                            return (
+                                <TableRow>{[coop.cooperativa,coop.nps.toString(),coop.notaMedia?.toString() ?? "-",coop.totalVisitas.toString()]}</TableRow>
+                            )
+                        })
                     }</TableBody>
                 </div>
                 <div className=" flex flex-col w-full h-full flex-wrap pt-8">
-                    <Subtitle className="mt-2 mb-2">Visitas do dia</Subtitle>
+                    <Subtitle className="mt-2 mb-2">Dados por visita</Subtitle>
                     <TableHeader>ENDERECO,PROFISSIONAIS,PACIENTE</TableHeader>
                     <TableBody>
                         {
@@ -60,9 +63,9 @@ export default async function Dashboard() {
                                     <TableRow>
                                         {
                                             [
-                                                visita.atendimento.acompanhamento?.paciente.endereco ?? "",
-                                                visita.atendimento.profissionaisNecessarios?.toString() ?? "",
-                                                visita.atendimento.acompanhamento?.paciente.nome ?? "",
+                                                visita.atendimento?.paciente.endereco ?? "",
+                                                visita.atendimento?.profissionaisNecessarios?.toString() ?? "",
+                                                visita.atendimento?.paciente.nome ?? "",
                                             ]
                                         }
                                     </TableRow>

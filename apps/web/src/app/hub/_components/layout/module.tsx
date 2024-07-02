@@ -1,6 +1,6 @@
 import { Icon } from "@/app/_components/icons/Icon";
 import { Subtitle } from "@/app/_components/text/subtitle";
-import { cn } from "@/schemas/lib/utils";
+import { cn } from "../../../../lib/utils";
 import { LucideIcon, PersonStandingIcon } from "lucide-react";
 
 type Props = {

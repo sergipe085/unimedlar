@@ -1,72 +1,117 @@
-import { JPCard } from "@/app/_components/layout/jp-card";
-import { Subtitle } from "@/app/_components/text/subtitle";
-import { Title } from "@/app/_components/text/title";
-import { cn } from "@/schemas/lib/utils";
-import React, { HTMLAttributes } from "react";
+import * as React from "react"
 
-type TableProps = {
-    children: React.ReactNode;
-}
+import { cn } from "@/lib/utils"
 
-export function Table({ children }: TableProps) {
-    <div className="w-full">
-        <div className=" flex flex-col w-full h-full gap-1 md:gap-2 flex-wrap pt-8">
-            { children }
-        </div>
-    </div>
-}
+const Table = React.forwardRef<
+  HTMLTableElement,
+  React.HTMLAttributes<HTMLTableElement>
+>(({ className, ...props }, ref) => (
+  <div className="relative w-full overflow-auto">
+    <table
+      ref={ref}
+      className={cn("w-full caption-bottom text-sm", className)}
+      {...props}
+    />
+  </div>
+))
+Table.displayName = "Table"
 
-type TableHeaderProps = {
-    children: string;
-}
+const TableHeader = React.forwardRef<
+  HTMLTableSectionElement,
+  React.HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+))
+TableHeader.displayName = "TableHeader"
 
-export function TableHeader({ children }: TableHeaderProps) {
-    const comps = children.split(",");
+const TableBody = React.forwardRef<
+  HTMLTableSectionElement,
+  React.HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <tbody
+    ref={ref}
+    className={cn("[&_tr:last-child]:border-0", className)}
+    {...props}
+  />
+))
+TableBody.displayName = "TableBody"
 
-    return (
-        <JPCard className="p-2 md:p-8 h-12 rounded-xl md:rounded-2xl mb-2 flex items-center flex-row justify-center">
-            {
-                comps.map(comp => {
-                    return (
-                        <Subtitle className="w-full font-bold text-[8px] md:text-lg">{ comp }</Subtitle>
-                    )
-                })
-            }
-        </JPCard>
-    )
-}
+const TableFooter = React.forwardRef<
+  HTMLTableSectionElement,
+  React.HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <tfoot
+    ref={ref}
+    className={cn(
+      "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
+      className
+    )}
+    {...props}
+  />
+))
+TableFooter.displayName = "TableFooter"
 
-type TableBodyProps = {
-    children: any[];
-}
+const TableRow = React.forwardRef<
+  HTMLTableRowElement,
+  React.HTMLAttributes<HTMLTableRowElement>
+>(({ className, ...props }, ref) => (
+  <tr
+    ref={ref}
+    className={cn(
+      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      className
+    )}
+    {...props}
+  />
+))
+TableRow.displayName = "TableRow"
 
-export function TableBody({ children }: TableBodyProps) {
-    return (
-        <div className="w-full flex flex-col gap-2">
-            {
-                children.map((sub, index) => {
-                    return sub
-                })
-            }
-            
-        </div>
-    )
-}
+const TableHead = React.forwardRef<
+  HTMLTableCellElement,
+  React.ThHTMLAttributes<HTMLTableCellElement>
+>(({ className, ...props }, ref) => (
+  <th
+    ref={ref}
+    className={cn(
+      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+      className
+    )}
+    {...props}
+  />
+))
+TableHead.displayName = "TableHead"
 
-type TableRowProps = {
-    children: string[]
-} & HTMLAttributes<HTMLDivElement>;
+const TableCell = React.forwardRef<
+  HTMLTableCellElement,
+  React.TdHTMLAttributes<HTMLTableCellElement>
+>(({ className, ...props }, ref) => (
+  <td
+    ref={ref}
+    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
+    {...props}
+  />
+))
+TableCell.displayName = "TableCell"
 
-export function TableRow({ children, className, ...props }: TableRowProps) {
-    return (
-        <JPCard className={cn(" hover:bg-gray-100 cursor-pointer transition-all p-2 md:p-8 h-12 rounded-xl md:rounded-2xl flex items-center flex-row justify-center", className)}>
-            {
-                children.map((comp, index) => {
-                    return (
-                        <Subtitle key={`sub_${index}_${comp}`} className="w-full text-[8px] md:text-lg text-left">{comp}</Subtitle>
-                    )
-                })
-            }
-        </JPCard> 
-    )
+const TableCaption = React.forwardRef<
+  HTMLTableCaptionElement,
+  React.HTMLAttributes<HTMLTableCaptionElement>
+>(({ className, ...props }, ref) => (
+  <caption
+    ref={ref}
+    className={cn("mt-4 text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+TableCaption.displayName = "TableCaption"
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
 }

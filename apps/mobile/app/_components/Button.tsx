@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TouchableOpacity, TouchableOpacityProps, StyleSheet, Text, ActivityIndicator, View } from "react-native";
 import { Card } from "./Card";
 import { globals } from "@/utils/globals";
+import { Colors } from "@/constants/Colors";
 
 type Props = {
     type: "default" | "outline"
@@ -31,7 +32,7 @@ export function Button({ type = "default", ...props }: Props) {
     }
 
     return (
-        <Card type={loading ? "disabled" : type} disabled={loading} onPress={handleClick} className={props.className}>
+        <Card style={{backgroundColor: Colors.unimedColors.verde}} type={loading ? "disabled" : type} disabled={loading} onPress={handleClick} className={props.className}>
             {
                 loading ? (
                     <ActivityIndicator color={"#151515"}/>

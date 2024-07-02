@@ -1,17 +1,16 @@
-import { db } from "@/schemas/lib/db";
+import { db } from "../lib/db";
 
 export async function getVisitas() {
     const visitas = await db.visita.findMany({
         include: {
             atendimento: {
                 include: {
-                    acompanhamento: {
-                        include: {
-                            paciente: true
-                        }
-                    }
+                    paciente: true
                 }
             }
+        },
+        orderBy: {
+            dataVisita: "desc"
         }
     });
 
@@ -22,17 +21,22 @@ export async function getVisitasDoDia(date: Date) {
     const visitas = await db.visita.findMany({
         where: {
             dataVisita: {
-                lt: date
+                equals: date
             }
         },
         include: {
-            atendimento: {
+            paciente: {
                 include: {
-                    acompanhamento: { 
+                    cuidador: {
                         include: {
-                            paciente: true
+                            usuario: true
                         }
                     }
+                }
+            },
+            atendimento: {
+                include: {
+                    paciente: true
                 }
             }
         }
@@ -45,30 +49,17 @@ export async function getVisitasDoDia(date: Date) {
 
 export async function getProximaVisitaDoPaciente(pacienteId: string) {
     const visitas = await db.visita.findFirst({
+        select: {
+            id: true,
+        },
         where: {
             dataVisita: {
-                lte: new Date()
+                gte: new Date()
             },
-            atendimento: {
-                acompanhamento: {
-                    pacienteId
-                }
-            }
+            pacienteId
         },
         orderBy: {
-            dataVisita: "desc"
-        },
-        include: {
-            atendimento: {
-                include: {
-                    acompanhamento: {
-                        include: {
-                            paciente: true
-                        }
-                    },
-                    procedimentos: true
-                }
-            }
+            dataVisita: "asc"
         }
     });
 
@@ -83,11 +74,7 @@ export async function getProximasVisitasDoPaciente(pacienteId: string) {
             dataVisita: {
                 gt: new Date()
             },
-            atendimento: {
-                acompanhamento: {
-                    pacienteId
-                }
-            }
+            pacienteId
         },
         orderBy: {
             dataVisita: "asc"
@@ -105,15 +92,59 @@ export async function getHistoricoVisitasDoPaciente(pacienteId: string) {
             dataVisita: {
                 lte: new Date()
             },
-            atendimento: {
-                acompanhamento: {
-                    pacienteId
-                }
-            }
+            pacienteId
         }
     });
 
     console.log(visitas)
 
     return visitas;
+}
+
+export async function getVisitasByPaciente(pacienteId: string) {
+    const visitas = await db.visita.findMany({
+        select: {
+            dataVisita: true,
+            id: true,
+            compareceuEm: true,
+            naoCompareceuEm: true,
+            avaliacao: {
+                select: {
+                    profissionalCompareceu: true,
+                    profissionalCumpriuCargaHoraria: true
+                }
+            }
+        },
+        where: {
+            pacienteId
+        },
+        orderBy: {
+            dataVisita: "asc"
+        }
+    });
+
+    return visitas;
+}
+
+export async function getVisitaById(id: string) {
+    const visita = db.visita.findUnique({
+        where: {
+            id
+        },
+        include: {
+            atendimento: {
+                include: {
+                    procedimentos: {
+                        include: {
+                            procedimento: true,
+                            medicamento: true
+                        }
+                    }
+                }
+            },
+            avaliacao: true
+        }
+    })
+
+    return visita;
 }

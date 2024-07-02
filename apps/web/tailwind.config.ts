@@ -43,7 +43,8 @@ const config = {
         },
         unimed: {
           bg: "#F6FAF5",
-          primary: "#173509"
+          primary: "#008D52",
+          secundary: "#173509"
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

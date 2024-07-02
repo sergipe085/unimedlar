@@ -1,0 +1,9 @@
+{
+    "crons": [{
+        "path": "/api/visitas/enviar-notificacoes",
+        "schedule": "0 16 * * *"
+    }, {
+        "path": "/api/visitas/enviar-notificacoes",
+        "schedule": "0 21 * * *"
+    }]
+}

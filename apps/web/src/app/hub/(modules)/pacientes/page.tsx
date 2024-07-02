@@ -1,6 +1,6 @@
 import { Subtitle } from "@/app/_components/text/subtitle";
 import { Title } from "@/app/_components/text/title";
-import { TableBody, TableHeader, TableRow } from "@/components/ui/table";
+import { TableBody, TableHeader, TableRow } from "@/components/ui/mytable";
 import { getPacientes } from "@/data/pacientes";
 
 export default async function Pacientes() {

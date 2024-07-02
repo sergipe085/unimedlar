@@ -83,16 +83,17 @@ model Gerente {
 }
 
 model Paciente {
-  id              String           @id @default(cuid())
-  nome            String
-  cpf             String
-  cns             String
-  endereco        String
-  latitude        Float
-  longitude       Float
-  cuidador        Cuidador?        @relation(fields: [cuidadorId], references: [id])
-  cuidadorId      String?
-  acompanhamentos Acompanhamento[]
+  id           String        @id @default(cuid())
+  nome         String
+  cpf          String
+  cns          String
+  endereco     String
+  latitude     Float
+  longitude    Float
+  cuidador     Cuidador?     @relation(fields: [cuidadorId], references: [id])
+  cuidadorId   String?
+  atendimentos Atendimento[]
+  Visita       Visita[]
 
   @@map("pacientes")
 }
@@ -106,15 +107,28 @@ enum UrgenciaChamado {
 }
 
 enum AssuntoChamado {
-  SAUDE_PACIENTE
+  SAUDE_DO_PACIENTE
+  CARGA_HORARIA_DO_PROFFISIONAL
+  COMPARECIMENTO_DO_PROFISSIONAL
+  PROFISSIONAL_FEZ_O_QUE_DEVERIA
+  QUALIDADE_DO_ATENDIMENTO
+  TRATAMENTO_DO_PROFISSIONAL
+  PROFISSIONALISMO_DO_PROFISSIONAL
   FINANCEIRO
   PLANO_DE_SAUDE
+  OUTRO
 }
 
 enum StatusChamado {
   EM_ABERTO
   FECHADO
   CONCLUIDO
+}
+
+enum TipoChamado {
+  RECLAMACAO
+  ELOGIO
+  OUTRO
 }
 
 model Chamado {
@@ -124,12 +138,24 @@ model Chamado {
   autorId    String
   urgencia   UrgenciaChamado
   assunto    AssuntoChamado
+  tipo       TipoChamado     @default(OUTRO)
   status     StatusChamado   @default(EM_ABERTO)
 
   realizadoEm  DateTime  @default(now())
   finalizadoEm DateTime?
 
   @@map("chamados")
+}
+
+model Cooperativa {
+  id           String        @id @default(cuid())
+  nome         String
+  emailGerente String
+  senhaGerente String
+  atendimentos Atendimento[]
+  visitas      Visita[]
+
+  @@map("cooperativas")
 }
 
 enum TiposProfissionais {
@@ -139,58 +165,73 @@ enum TiposProfissionais {
   FISIOTERAPEUTA
 }
 
-model Acompanhamento {
-  id           String        @id @default(cuid())
-  dataInicial  DateTime
-  dataFinal    DateTime
-  paciente     Paciente      @relation(fields: [pacienteId], references: [id])
-  pacienteId   String
-  atendimentos Atendimento[]
+enum Turno {
+  MANHA
+  TARDE
+  NOITE
+}
 
-  @@map("acompanhamentos")
+enum StatusAtendimento {
+  REQUISITADO
+  EM_ANDAMENTO
+  FINALIZADO
+  CANCELADO
 }
 
 model Atendimento {
   id                       String                    @id @default(cuid())
+  titulo                   String
+  dataInicial              DateTime
+  dataFinal                DateTime
+  paciente                 Paciente                  @relation(fields: [pacienteId], references: [id])
+  pacienteId               String
   intervaloEmDia           Float
   duracaoEmHoras           Float                     @default(0)
   procedimentos            ProcedimentoAtendimento[]
-  acompanhamento           Acompanhamento?           @relation(fields: [acompanhamentoId], references: [id])
-  acompanhamentoId         String?
   visitas                  Visita[]
   profissionaisNecessarios TiposProfissionais[]
+  turno                    Turno                     @default(MANHA)
+  status                   StatusAtendimento         @default(REQUISITADO)
+  cooperativaResponsavel   Cooperativa?              @relation(fields: [cooperativaId], references: [id])
+  cooperativaId            String?
 
   @@map("atendimentos")
 }
 
-model Visita {
-  id            String      @id @default(cuid())
-  atendimento   Atendimento @relation(fields: [atendimentoId], references: [id])
-  atendimentoId String
-  dataVisita    DateTime
+enum TipoVisita {
+  PLANEJADA
+  FLUTUANTE
+}
 
-  iniciadaEm   DateTime?
-  finalizadaEm DateTime?
-  avaliacoes   AvaliacaoVisita[]
+model Visita {
+  id                     String           @id @default(cuid())
+  avaliacao              AvaliacaoVisita? @relation(fields: [avaliacaoVisitaId], references: [id])
+  atendimento            Atendimento?     @relation(fields: [atendimentoId], references: [id])
+  paciente               Paciente         @relation(fields: [pacienteId], references: [id])
+  dataVisita             DateTime
+  turno                  Turno            @default(MANHA)
+  tipo                   TipoVisita       @default(PLANEJADA)
+  cooperativaResponsavel Cooperativa?     @relation(fields: [cooperativaId], references: [id])
+  cooperativaId          String?
+
+  compareceuEm    DateTime?
+  naoCompareceuEm DateTime?
+
+  avaliacaoVisitaId String? @unique
+  atendimentoId     String?
+  pacienteId        String
 
   @@map("visitas")
 }
 
-enum CriteriosAvaliacao {
-  COMPETENCIA
-  PONTUALIDADE
-  PROFISSIONALISMO
-  EDUCACAO
-}
-
 model AvaliacaoVisita {
-  id          String             @id @default(cuid())
-  visita      Visita             @relation(fields: [visitasId], references: [id])
-  visitasId   String
-  criterio    CriteriosAvaliacao
-  nota        Float
-  feedback    String?
-  realizadaEm DateTime           @default(now())
+  id                              String   @id @default(cuid())
+  visita                          Visita?
+  nota                            Int
+  feedback                        String?
+  profissionalCompareceu          Boolean?
+  profissionalCumpriuCargaHoraria Boolean?
+  atualizadaEm                    DateTime @default(now()) @updatedAt
 
   @@map("avaliacoesVisita")
 }
@@ -205,7 +246,6 @@ model ProcedimentoAtendimento {
   medicamentoId  String?
   quantidade     Float         @default(1)
   duracaoEmHoras Float         @default(0)
-  visitasId      String?
 
   @@map("procedimentosAtendimento")
 }

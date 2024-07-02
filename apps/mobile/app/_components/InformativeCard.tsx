@@ -3,6 +3,7 @@ import { Card } from "./Card";
 import { LucideIcon } from "lucide-react-native";
 import { globals } from "@/utils/globals";
 import { ThemedText } from "./ThemedText";
+import { Colors } from "@/constants/Colors";
 
 type Props = {
     Icon: LucideIcon;
@@ -26,7 +27,8 @@ export function InformativeCard({ image, Icon, title, description, highlight = f
                 <View 
                     className={`w-full h-full flex flex-row items-center justify-start ${highlight ? 'bg-green-200' : ''}`}
                     style={{
-                        borderRadius: 16
+                        borderRadius: 16,
+                        backgroundColor: Colors.unimedColors.verdeClaro
                     }}
                 >
                     <View className="h-full aspect-square flex items-center justify-center">

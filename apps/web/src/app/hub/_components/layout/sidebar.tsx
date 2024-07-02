@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation"
 import { Module } from "./module"
 import { useState } from "react"
-import { BarChart, ClipboardPlus, Database, LayoutDashboard, LucideIcon, Megaphone, NotepadText, Settings, User } from "lucide-react"
-import { cn } from "@/schemas/lib/utils"
+import { BarChart, CircleGauge, ClipboardPlus, Database, LayoutDashboard, LucideIcon, Megaphone, NotepadText, Settings, User } from "lucide-react"
+import { cn } from "../../../../lib/utils"
 import { Icon } from "@/app/_components/icons/Icon"
 import { Subtitle } from "@/app/_components/text/subtitle"
 import UnilarIcon from "../../../../../public/unilar-verde.svg"
@@ -26,6 +26,11 @@ const modules = [
         Icon: LayoutDashboard
     },
     {
+        name: "BI Financeiro",
+        to: "/hub/financeiro",
+        Icon: CircleGauge
+    },
+    {
         name: "Chamados",
         to: "/hub/chamados",
         Icon: Megaphone
@@ -36,8 +41,8 @@ const modules = [
         Icon: ClipboardPlus
     },
     {
-        name: "Acompanhamentos",
-        to: "/hub/acompanhamentos",
+        name: "Atendimentos",
+        to: "/hub/atendimentos",
         Icon: ClipboardPlus
     },
     {
@@ -102,7 +107,7 @@ function SidebarUnit({ active, name, Icon, className, ...props }: SidebarUnitPro
             { ...props }
         >
             <Icon color="#173509"/>
-            <Subtitle className={`${active ? "font-bold" : "font-normal"} text-unimed-primary text-md`}>{name}</Subtitle>
+            <Subtitle className={`${active ? "font-bold" : "font-normal"} text-unimed-secundary text-md`}>{name}</Subtitle>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { api } from "@/schemas/lib/api";
+import { api } from "../../../lib/api";
 import { redirect } from "next/navigation";
 import React, { createContext, useCallback, useContext,  useEffect,  useState } from "react";
 

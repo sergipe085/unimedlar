@@ -72,6 +72,13 @@ export default function TabLayout() {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="detalhes-visita"
+        options={{
+          // Hide the header for all other routes.
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 }
