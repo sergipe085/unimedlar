@@ -8,13 +8,22 @@ interface bodyAvaliacao {
 
 }
 
+export async function jaTemAvaliacao(visitaId: string) {
+    const visita = await db.visita.findUnique({
+        where: {
+            id: visitaId
+        }
+    })
+
+    return visita?.avaliacaoVisitaId != null;
+}
+
 export async function realizarAvaliacao(visitaId: string, nota: number, feedback: string, cumpriuHorario: boolean, compareceu: boolean) {
     const { avaliacao } = await db.visita.update({
         where: {
             id: visitaId
         },
         data: {
-            
             avaliacao: {
                 create: {
                     nota,
@@ -57,4 +66,18 @@ export async function realizarAvaliacaoFeedback(visitaId: string, feedback: stri
     console.log(avaliacao)
 
     return avaliacao;
+}
+
+export async function realizarAvaliacaoComparecimento(visitaId: string, compareceu: boolean) {
+    const visita = await db.visita.update({
+        where: {
+            id: visitaId
+        },
+        data: {
+            compareceuEm: compareceu ? new Date() : null,
+            naoCompareceuEm: compareceu ? null : new Date()
+        }
+    });
+    
+    return visita;
 }

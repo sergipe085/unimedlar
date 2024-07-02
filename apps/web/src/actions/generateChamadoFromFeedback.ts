@@ -6,6 +6,8 @@ export async function generateChamadoFromFeedback(feedback: string) {
     const { user } = await auth();
     const response = await classificateMessage(feedback);
 
+    console.log(user)
+
     if (response) {
         return await db.chamado.create({
             data: {
@@ -15,7 +17,7 @@ export async function generateChamadoFromFeedback(feedback: string) {
                 reclamacao: feedback,
                 autor: {
                     connect: {
-                        id: user.id
+                        id: user.cuidador?.id
                     }
                 }
             }

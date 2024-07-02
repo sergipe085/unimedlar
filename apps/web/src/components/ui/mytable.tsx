@@ -63,7 +63,7 @@ export function TableRow({ children, className, ...props }: TableRowProps) {
             {
                 children.map((comp, index) => {
                     return (
-                        <Subtitle key={`sub_${index}_${comp}`} className="w-full text-[8px] md:text-lg text-left">{comp}</Subtitle>
+                        <Subtitle key={`sub_${index}_${comp}`} className="w-full text-[8px] md:text-[12px] text-left">{comp}</Subtitle>
                     )
                 })
             }

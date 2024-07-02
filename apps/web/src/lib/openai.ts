@@ -28,15 +28,13 @@ export async function classificateMessage(message: string): Promise<Classificate
             role: "assistant",
             content:
             `Voce é uma IA que ira ler chamados e feedbacks de um sistema de avaliação para uma empresa de saúde que realiza atendimentos home care. O seu papel é entender o que está sendo reclamado e classificar essa mensagem, para que ela seja salva no banco com as devidas classificações e seja possível a filtragem.\n
-            Sua resposta deve ser um JSON e nada mais alem disso, nem ates do JSON nem depois do JSON. Somente o JSON.
+            Sua resposta deve ser um JSON e nada mais alem disso, nem ates do JSON nem depois do JSON. Somente o JSON. O Json sera usado na funcao JSON.parse do javascript.
             O JSON deve ter o seguinte formato: \n
                 {
-                    prioridade: "MUITO_ALTA" | "ALTA" | "MEDIA" | "BAIXA" | "MUITO_BAIXA",
-                    assunto: "SAUDE_DO_PACIENTE" | "CARGA_HORARIA_DO_PROFFISIONAL" | "COMPARECIMENTO_DO_PROFISSIONAL" | "PROFISSIONAL_FEZ_O_QUE_DEVERIA" | "QUALIDADE_DO_ATENDIMENTO" | "TRATAMENTO_DO_PROFISSIONAL" | "PROFISSIONALISMO_DO_PROFISSIONAL" | "FINANCEIRO" | "PLANO_DE_SAUDE" | "OUTRO",
-                    tipo: "OUTRO" | "RECLAMACAO" | "ELOGIO",
-                    
-                }. Voce so pode retornar respostas em JSON.
-            `,
+                    "prioridade": "MUITO_ALTA" | "ALTA" | "MEDIA" | "BAIXA" | "MUITO_BAIXA",
+                    "assunto": "SAUDE_DO_PACIENTE" | "CARGA_HORARIA_DO_PROFFISIONAL" | "COMPARECIMENTO_DO_PROFISSIONAL" | "PROFISSIONAL_FEZ_O_QUE_DEVERIA" | "QUALIDADE_DO_ATENDIMENTO" | "TRATAMENTO_DO_PROFISSIONAL" | "PROFISSIONALISMO_DO_PROFISSIONAL" | "FINANCEIRO" | "PLANO_DE_SAUDE" | "OUTRO",
+                    "tipo": "OUTRO" | "RECLAMACAO" | "ELOGIO"      
+                }`,
         },
         {
             role: "user",
@@ -54,6 +52,7 @@ export async function classificateMessage(message: string): Promise<Classificate
     })
 
     const text = res.choices[0].message.content
+    console.log(text);
 
     return text ? JSON.parse(text) : null;
 }

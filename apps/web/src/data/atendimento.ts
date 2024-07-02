@@ -56,6 +56,12 @@ export async function getDetalhesAtendimento(id: string) {
                         }
                     }
                 }
+            },
+            procedimentos: {
+                include: {
+                    medicamento: true,
+                    procedimento: true
+                }
             }
         }
     })
