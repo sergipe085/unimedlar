@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const cookie = cookies();
     cookie.set("Authorization", `${authData.token}`, {
         httpOnly: true,
-        domain: process.env.NODE_ENV == "development" ? ".localhost" : ".unimedlar.com.br"
+        domain: process.env.NODE_ENV == "development" ? ".localhost" : ".www.unimedlar.com.br"
     });
 
     return new Response(JSON.stringify({
