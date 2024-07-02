@@ -36,35 +36,34 @@ export default function LadingPage() {
 
   return (
     <main className="h-svh bg-white w-full flex flex-col">
-      <div className="p-2 w-full flex bg-white items-center justify-center fixed gap-8 z-50">
+      <div className="p-2 w-full flex flex-row bg-white items-center justify-center fixed gap-8 z-50">
         <Image className="h-12 w-32" src={unimed} alt={"unimed logo"}></Image>
         <div className="hidden sm:flex gap-2">
-          <p>miau</p>
-          <p>miau</p> 
-          <p>miau</p> 
+          <Link href={"#funcionalidades"}>funcionalidades</Link> 
+          <Link href={"#time"}>conheça o time</Link> 
         </div>
       </div>
       <motion.div 
         initial={{ opacity: 0.0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.3,
+          delay: 0,
           duration: 0.8,
           ease: "easeInOut",
         }}    
         className="pt-20 px-4 flex flex-col md:flex-row w-full md:px-20  justify-center bg bg-gradient-to-b from-white to-[#BDEBBC]">
           <div className="md:w-1/2 flex flex-col gap-2 md:gap-8 lg:py-36 p-2">
             <h1 className=" text-[#0A5F55] text-3xl font-bold lg:text-7xl">Inovando o acompanhamento do home care</h1>
-            <h2 className="text-xl md:text-3xl">Monitoramento de Qualidade em Tempo Real para Serviços Domiciliares da Unimed Lar</h2>
+            <Subtitle className="text-xl md:text-3xl">Monitoramento de qualidade em tempo real para Serviços Domiciliares Terceirizados da Unimed Lar</Subtitle>
           </div>
           <Image className="md:w-1/3" src={home} alt="home screen"></Image>
       </motion.div>
-      <div className="w-full flex md:px-72 gap-8 md:p-96 p-8">
+      <div id="funcionalidades"  className="w-full flex md:px-72 gap-8 md:p-96 p-8">
         <motion.div
           initial={{ opacity: 0.0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 0.3,
+            delay: 0,
             duration: 0.8,
             ease: "easeInOut",
           }} 
@@ -197,6 +196,7 @@ export default function LadingPage() {
       </div>
       <div className="w-full flex flex-col pt-20 px-96 items-center justify-center gap-8 hidden sm:flex">
         <motion.div
+          id="time"
           initial={{ opacity: 0.0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
@@ -205,11 +205,11 @@ export default function LadingPage() {
             ease: "easeInOut",
           }}        
           >
-            <p>
+            <Title>
             Conheça o time unimed lar
-            </p>
+            </Title>
           </motion.div>
-        <div className="w-full items-center justify-center gap-2 hidden sm:flex">
+        <div className="w-full mt-8 items-center justify-center gap-2 hidden sm:flex">
           <BackgroundGradient className=" rounded-[22px]  bg-white dark:bg-zinc-900 origin-bottom" > 
             <Image className=" rounded-3xl " src={marina} alt="Marina Vergara"></Image>
           </BackgroundGradient>
@@ -223,12 +223,36 @@ export default function LadingPage() {
             <Image className=" rounded-3xl 6" src={thiago} alt="Thiago Santos"></Image>
           </BackgroundGradient4>
         </div>
+        <div className="w-full flex flex-row justify-between">
+          <div className="flex w-full flex-col items-center">
+            <Subtitle className="font-bold">Marina Vergara</Subtitle>
+            <Subtitle className=" text-sm">marinavergarac@gmail.com</Subtitle>
+            <Subtitle className="mt-2">Designer / Dev</Subtitle>
+          </div>
+          <div className="flex w-full flex-col items-center">
+            <Subtitle className="font-bold">Mateus Levi</Subtitle>
+            <Subtitle className=" text-sm">mateuslevialencar12@gmail.com</Subtitle>
+            <Subtitle className="mt-2">Dev Fullstack</Subtitle>
+          </div>
+          <div className="flex w-full flex-col items-center">
+          <Subtitle className="font-bold">Sérgio Banhos</Subtitle>
+            <Subtitle className=" text-sm">sergiobanhosf@gmail.com</Subtitle>
+            <Subtitle className="mt-2">Dev Fullstack</Subtitle>
+          </div>
+          <div className="flex w-full flex-col items-center">
+          <Subtitle className="font-bold">Thiago Santos</Subtitle>
+            <Subtitle className=" text-sm">sr.thiago@gmail.com</Subtitle>
+            <Subtitle className="mt-2">Product Owner</Subtitle>
+          </div>
+        </div>
       </div>
         {/* <div className="text-xl sm:text-3xl mx-auto font-normal text-neutral-600 dark:text-neutral-400 items-center text-center">
           Com o Unimed Lar você pode<br />
           <FlipWords className="text-2xl sm:text-4xl" words={words} />
         </div> */}
-      
+      <footer className="h-full w-full mt-32 bg-unimed-primary">
+        <div className="h-96"></div>
+      </footer>
     </main>
   );
 }
