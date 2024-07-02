@@ -27,6 +27,7 @@ import frame1 from "../../public/frame1.png"
 import frame2 from "../../public/frame2.png"
 import ouvido from "../../public/ouvido.png"
 import dash from "../../public/dash.png"
+import chamado from "../../public/chamado.png"
 
 
 import { FlipWords } from "./_components/flip-words";
@@ -132,47 +133,128 @@ export default function LadingPage() {
           
         </motion.div>
       </div>
-      <div id="atendimentos" className="w-full p-8 items-center flex flex-col">
+      <div id="atendimentos" className="w-full p-8 items-center flex flex-col  mt-24">
         <div className="w-full pt-12 min-h-[400px] md:p-20 md:min-h-[900px] bg-[#B1D34B] rounded-3xl items-center text-center flex flex-col">
           <h1 className=" text-white text-xl font-bold lg:text-2xl">Acompanhamento dos pacientes</h1>
-          <h2>mds do ceuu</h2>
+          <h2>Facilitamos o acompanhamento e planejamento das visitas dominiciliares dos pacientes.</h2>
         </div>
         <Image className="md:w-4/5 -mt-[200px] md:-mt-[700px]" src={atend} alt=""></Image>
       </div>
-      <motion.div 
-        initial={{ opacity: 0.0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}    
-       className="w-full items-center flex justify-center md:px-20 md:pt-36">
-        <Image className="w-1/4" src={ouvido} alt=""></Image>
-      </motion.div>
-      <motion.div 
-        initial={{ opacity: 0.0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}    
-       className="w-full items-center flex justify-center md:px-20 md:pt-36">
-        <Image className="w-3/5" src={dash} alt=""></Image>
-      </motion.div>
-      <motion.div 
-        initial={{ opacity: 0.0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}    
-       className="w-full items-center flex justify-center md:px-20 md:pt-36">
-        <Image className="w-3/5" src={frame1} alt=""></Image>
-        <Image className="w-3/5" src={frame2} alt=""></Image>
-      </motion.div>
+      <div id="ouvido"  className="w-full flex md:px-60 gap-12 p-8 z-10 bg-white  mt-24">
+        <motion.div
+          initial={{ opacity: 0.0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0,
+            duration: 0.8,
+            ease: "easeInOut",
+          }} 
+          className="items-center flex flex-col text-center justify-center w-full gap-8"  
+        >
+          <motion.div
+            initial={{ opacity: 0.0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="w-full" 
+          > 
+            <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Ouvidoria</h1>
+            <Subtitle>Receba reclamações de maneira rápida e intuitiva, que posteriormente será classificada e organizada com Inteligencia Artificial</Subtitle>
+          </motion.div>
+          <div className="w-full flex md:gap-8 flex-col md:flex-row items-center md:items-start text-start">
+            <Image className="md:w-1/2" src={chamado} alt=""></Image>
+            <div className="w-full flex flex-col md:gap-12 gap-8 pt-14 items-center justify-center">
+
+                <div className="w-full flex flex-col gap-2 items-start">
+                  <div className="w-full flex gap-4 items-center">
+                    <Image className=" w-16" src={visit} alt=""></Image>
+                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Criação da reclamação</h1>
+                  </div>
+                  <h2>Realizar reclamações e feedbacks de maneira fácil</h2>
+                </div>
+                <div className="w-full flex flex-col gap-2 items-start">
+                  <div className="w-full flex gap-4 items-center">
+                    <Image className=" w-16" src={search} alt=""></Image>
+                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Historico dos chamados</h1>
+                  </div>
+                  <h2>Possibilidade de ver o historico dos chamados realizados</h2>
+                </div>
+              <div className="w-full flex flex-col gap-2 items-start">
+                  <div className="w-full flex gap-4 items-center">
+                    <Image className=" w-16" src={ouvi} alt=""></Image>
+                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Notificações</h1>
+                  </div>
+                  <h2>O paciente receberá notificações sobre a mudança da situação de seus chamados</h2>
+                </div>
+            </div>
+          </div>
+          
+        </motion.div>
+      </div>
+      <div id="monitoramento"  className="w-full flex md:px-60 gap-12 p-8 z-10 bg-white ">
+        <motion.div
+          initial={{ opacity: 0.0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0,
+            duration: 0.8,
+            ease: "easeInOut",
+          }} 
+          className="items-center flex flex-col text-center justify-center w-full gap-8"  
+        >
+          <motion.div
+            initial={{ opacity: 0.0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="w-full" 
+          > 
+            <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Monitoramento</h1>
+            <Subtitle>Com os dados coletados, geramos Relatórios e Dashboards VALIOSOS e EM TEMPO REAL relacionados a qualidade do atendimento e gastos de materiais para os gestores da Unimed Lar.</Subtitle>
+          </motion.div>
+          <div className="w-full flex md:gap-8 flex-col md:flex-row items-center justify-center md:items-start text-start">
+            <Image className="md:w-2/2" src={dash} alt=""></Image>
+          </div>
+          
+        </motion.div>
+      </div>
+      <div id="notificacoes"  className="w-full flex md:px-60 gap-12 p-8 z-10 bg-white mt-24">
+        <motion.div
+          initial={{ opacity: 0.0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0,
+            duration: 0.8,
+            ease: "easeInOut",
+          }} 
+          className="items-center flex flex-col text-center justify-center w-full gap-8"  
+        >
+          <motion.div
+            initial={{ opacity: 0.0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="w-full" 
+          > 
+            <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Notificações</h1>
+            <Subtitle>Com os dados coletados, geramos Relatórios e Dashboards VALIOSOS para os gestores da Unimed Lar</Subtitle>
+          </motion.div>
+          <div className="w-full items-center flex justify-center md:px-20">
+          <Image className="w-3/5" src={frame1} alt=""></Image>
+          <Image className="w-3/5" src={frame2} alt=""></Image>
+          </div>
+          
+        </motion.div>
+      </div>
       {/* <Image src={idosa} alt=""></Image> */}
       <div className="mt-10 bg-cover w-screen zoom-in-125 bg-idosa2 sm:bg-idosa h-[800px] sm:h-svh">
         <div className="bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed">
@@ -314,6 +396,40 @@ export default function LadingPage() {
           Com o Unimed Lar você pode<br />
           <FlipWords className="text-2xl sm:text-4xl" words={words} />
         </div> */}
+
+<div id="contato"  className="w-full flex md:px-60 gap-12 p-8 z-10 bg-white ">
+        <motion.div
+          initial={{ opacity: 0.0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0,
+            duration: 0.8,
+            ease: "easeInOut",
+          }} 
+          className="items-center flex flex-col text-center justify-center w-full gap-8 mt-24"  
+        >
+          <motion.div
+            initial={{ opacity: 0.0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="w-full justify-center flex flex-col" 
+          > 
+            <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Quer saber mais?</h1>
+            <Subtitle>Entre em contato com a gente clicando no botao a baixo</Subtitle>
+            
+          </motion.div>
+          <div className="w-full flex md:gap-8 flex-col md:flex-row items-center justify-center text-start">
+            <Link  target="_blank" className="max-w-xl" href={"https://wa.me/+5585985509999"}>
+              <Button>Contato</Button>
+            </Link>
+          </div>
+          
+        </motion.div>
+      </div>
       <footer className="h-full w-full mt-32 bg-unimed-primary">
         <div className="h-96"></div>
       </footer>
