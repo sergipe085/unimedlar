@@ -134,9 +134,9 @@ export default function LadingPage() {
         </motion.div>
       </div>
       <div id="atendimentos" className="w-full p-8 items-center flex flex-col  mt-24">
-        <div className="w-full pt-12 min-h-[400px] md:p-20 md:min-h-[900px] bg-[#B1D34B] rounded-3xl items-center text-center flex flex-col">
-          <h1 className=" text-white text-xl font-bold lg:text-5xl">Acompanhamento dos pacientes</h1>
-          <h2 className="md:text-2xl text-unimed-primary">Facilitamos o acompanhamento e planejamento das visitas dominiciliares dos pacientes.</h2>
+        <div className="w-full pt-12 min-h-[450px] md:p-20 md:min-h-[950px] p-2 bg-[#B1D34B] rounded-3xl items-center text-center flex flex-col gap-8">
+          <h1 className=" text-white text-2xl font-bold lg:text-5xl">Acompanhamento dos pacientes</h1>
+          <h2 className="md:text-2xl text-xl text-unimed-primary">Facilitamos o acompanhamento e planejamento das visitas dominiciliares dos pacientes.</h2>
         </div>
         <Image className="md:w-4/5 -mt-[200px] md:-mt-[700px]" src={atend} alt=""></Image>
       </div>
