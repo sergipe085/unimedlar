@@ -30,7 +30,7 @@ export default async function Dashboard() {
                         <Subtitle>NPS Geral</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>{media._avg.nota}</Title>
+                        <Title>{media}</Title>
                         <Subtitle>Nota média</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">

@@ -28,15 +28,15 @@ export async function getNotaGeral() {
     ]);
 
     // Calcular as porcentagens
-    const promotoresPercent = (promotores / totalVisitas) * 100;
+    const promotoresPercent = ((promotores + passivos) / totalVisitas) * 100;
     const detratoresPercent = (detratores / totalVisitas) * 100;
 
     // Calcular o NPS
     const nps = promotoresPercent - detratoresPercent;
 
     return {
-        nps,
-        media
+        nps: nps.toFixed(0),
+        media: media._avg.nota?.toFixed(1)
     }
 }
 
@@ -99,7 +99,7 @@ export async function getNotaPorCooperativa() {
         ]);
 
         // Calcular as porcentagens
-        const promotoresPercent = (promotores / totalVisitas) * 100;
+        const promotoresPercent = ((promotores + passivos) / totalVisitas) * 100;
         const detratoresPercent = (detratores / totalVisitas) * 100;
 
         // Calcular o NPS
@@ -111,8 +111,8 @@ export async function getNotaPorCooperativa() {
             promotores: promotores,
             passivos: passivos,
             detratores: detratores,
-            nps: nps,
-            notaMedia: mediaNotas._avg.nota,
+            nps: nps.toFixed(0),
+            notaMedia: mediaNotas._avg.nota?.toFixed(1),
         };
     }));
 
