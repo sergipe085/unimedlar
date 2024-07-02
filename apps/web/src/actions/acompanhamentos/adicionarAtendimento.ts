@@ -31,7 +31,12 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
             intervaloEmDia: data.intervaloEmDia,
             duracaoEmHoras: duracaoEmHoras,
             dataInicial: data.dataInicial,
-            dataFinal: data.dataFinal
+            dataFinal: data.dataFinal,
+            procedimentos: {
+                createMany: {
+                    data: data.procedimentos
+                }
+            }
         }
     });
 
@@ -57,7 +62,8 @@ export async function adicionarAtendimento(req: AdicionarAtendimentoDTO) {
                         id: atendimento.pacienteId
                     }
                 },
-                dataVisita: currentDate
+                dataVisita: currentDate,
+                
             }
         })
 

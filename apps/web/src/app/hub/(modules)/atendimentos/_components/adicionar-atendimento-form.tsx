@@ -185,6 +185,7 @@ const AdicionarAtendimentoForm = () => {
                                                         onValueChange={(e) => {
                                                             const newProcedimentos = [...data.procedimentos];
                                                             newProcedimentos[index].procedimentoId = e;
+                                                            newProcedimentos[index].tipo = "medicamento";
                                                             setData({
                                                                 ...data,
                                                                 procedimentos: newProcedimentos
