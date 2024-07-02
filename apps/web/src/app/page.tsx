@@ -232,25 +232,25 @@ export default function LadingPage() {
           </BackgroundGradient4>
         </div>
         <div className="w-full flex flex-col md:flex-row justify-between">
-          <div className="flex w-full flex-col items-center">
+          <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={marina} alt="Marina Vergara"></Image>
             <Subtitle className="font-bold">Marina Vergara</Subtitle>
             <Subtitle className=" text-sm">marinavergarac@gmail.com</Subtitle>
             <Subtitle className="mt-2">Designer / Dev</Subtitle>
           </div>
-          <div className="flex w-full flex-col items-center">
+          <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={mafius} alt="Marina Vergara"></Image>
             <Subtitle className="font-bold">Mateus Levi</Subtitle>
             <Subtitle className=" text-sm">mateuslevialencar12@gmail.com</Subtitle>
-            <Subtitle className="mt-2">Dev Fullstack</Subtitle>
+            <Subtitle className="text-md">Dev Fullstack</Subtitle>
           </div>
-          <div className="flex w-full flex-col items-center">
-          <Image className="md:hidden rounded-3xl " src={sergio} alt="Marina Vergara"></Image>
-          <Subtitle className="font-bold">Sérgio Banhos</Subtitle>
+          <div className="flex w-full flex-col items-center px-2">
+            <Image className="md:hidden rounded-3xl " src={sergio} alt="Marina Vergara"></Image>
+            <Subtitle className="font-bold">Sérgio Banhos</Subtitle>
             <Subtitle className=" text-sm">sergiobanhosf@gmail.com</Subtitle>
             <Subtitle className="mt-2">Dev Fullstack</Subtitle>
           </div>
-          <div className="flex w-full flex-col items-center">
+          <div className="flex w-full flex-col items-center px-2">
             <Image className="md:hidden rounded-3xl " src={thiago} alt="Marina Vergara"></Image>
           <Subtitle className="font-bold">Thiago Santos</Subtitle>
             <Subtitle className=" text-sm">sr.thiago@gmail.com</Subtitle>
