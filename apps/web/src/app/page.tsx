@@ -28,7 +28,7 @@ import frame2 from "../../public/frame2.png"
 import ouvido from "../../public/ouvido.png"
 import dash from "../../public/dash.png"
 import chamado from "../../public/chamado.png"
-
+import um from "../../public/123.png"
 
 import { FlipWords } from "./_components/flip-words";
 
@@ -135,8 +135,8 @@ export default function LadingPage() {
       </div>
       <div id="atendimentos" className="w-full p-8 items-center flex flex-col  mt-24">
         <div className="w-full pt-12 min-h-[400px] md:p-20 md:min-h-[900px] bg-[#B1D34B] rounded-3xl items-center text-center flex flex-col">
-          <h1 className=" text-white text-xl font-bold lg:text-2xl">Acompanhamento dos pacientes</h1>
-          <h2>Facilitamos o acompanhamento e planejamento das visitas dominiciliares dos pacientes.</h2>
+          <h1 className=" text-white text-xl font-bold lg:text-5xl">Acompanhamento dos pacientes</h1>
+          <h2 className="md:text-2xl text-unimed-primary">Facilitamos o acompanhamento e planejamento das visitas dominiciliares dos pacientes.</h2>
         </div>
         <Image className="md:w-4/5 -mt-[200px] md:-mt-[700px]" src={atend} alt=""></Image>
       </div>
@@ -159,35 +159,21 @@ export default function LadingPage() {
               duration: 0.8,
               ease: "easeInOut",
             }}
-            className="w-full" 
-          > 
-            <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Ouvidoria</h1>
-            <Subtitle>Receba reclamações de maneira rápida e intuitiva, que posteriormente será classificada e organizada com Inteligencia Artificial</Subtitle>
+            className="w-full flex flex-col items-center" 
+          >
+            <div className="w-2/3 items-center flex flex-col">
+              <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Ouvidoria</h1>
+              <Subtitle>Receba reclamações de maneira rápida e intuitiva, que posteriormente será classificada e organizada com Inteligencia Artificial</Subtitle>
+            </div>
           </motion.div>
-          <div className="w-full flex md:gap-8 flex-col md:flex-row items-center md:items-start text-start">
-            <Image className="md:w-1/2" src={chamado} alt=""></Image>
-            <div className="w-full flex flex-col md:gap-12 gap-8 pt-14 items-center justify-center">
-
-                <div className="w-full flex flex-col gap-2 items-start">
-                  <div className="w-full flex gap-4 items-center">
-                    <Image className=" w-16" src={visit} alt=""></Image>
-                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Criação da reclamação</h1>
-                  </div>
-                  <h2>Realizar reclamações e feedbacks de maneira fácil</h2>
-                </div>
-                <div className="w-full flex flex-col gap-2 items-start">
-                  <div className="w-full flex gap-4 items-center">
-                    <Image className=" w-16" src={search} alt=""></Image>
-                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Historico dos chamados</h1>
-                  </div>
-                  <h2>Possibilidade de ver o historico dos chamados realizados</h2>
-                </div>
-              <div className="w-full flex flex-col gap-2 items-start">
-                  <div className="w-full flex gap-4 items-center">
-                    <Image className=" w-16" src={ouvi} alt=""></Image>
-                    <h1 className=" text-unimed-primary text-xl font-bold lg:text-2xl">Notificações</h1>
-                  </div>
-                  <h2>O paciente receberá notificações sobre a mudança da situação de seus chamados</h2>
+          <div className="w-full flex md:gap-8 flex-col justify-center md:flex-row items-center  text-start">
+            <Image className="md:w-1/3" src={ouvido} alt=""></Image>
+            <div className="w-full  flex md:gap-12 gap-8 pt-14 items-center justify-center">
+                <Image className="w-[90px]" src={um} alt=""></Image>
+                <div className="w-full flex flex-col gap-2 items-start justify-between h-[480px]">
+                  <h2 className="md:text-3xl">Realizar reclamações e feedbacks de maneira fácil</h2>
+                  <h2 className="md:text-3xl">Possibilidade de ver o historico dos chamados realizados</h2>
+                  <h2 className="md:text-3xl">O paciente receberá notificações sobre a mudança da situação de seus chamados</h2>
                 </div>
             </div>
           </div>
@@ -224,7 +210,7 @@ export default function LadingPage() {
           
         </motion.div>
       </div>
-      <div id="notificacoes"  className="w-full flex md:px-60 gap-12 p-8 z-10 bg-white mt-24">
+      <div id="notificacoes"  className="w-full flex md:px-60 gap-12 p-8 z-10 bg-unimed-primary mt-24">
         <motion.div
           initial={{ opacity: 0.0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -243,14 +229,15 @@ export default function LadingPage() {
               duration: 0.8,
               ease: "easeInOut",
             }}
-            className="w-full" 
+            className="w-full bg-unimed-primary" 
           > 
-            <h1 className=" text-unimed-primary text-3xl font-bold lg:text-5xl">Notificações</h1>
-            <Subtitle>Com os dados coletados, geramos Relatórios e Dashboards VALIOSOS para os gestores da Unimed Lar</Subtitle>
+            <h1 className=" text-white text-3xl font-bold lg:text-5xl">Notificações</h1>
+            <h2 className="text-white md:text-2xl">Com os dados coletados, geramos Relatórios e Dashboards VALIOSOS para os gestores da Unimed Lar</h2>
           </motion.div>
-          <div className="w-full items-center flex justify-center md:px-20">
-          <Image className="w-3/5" src={frame1} alt=""></Image>
-          <Image className="w-3/5" src={frame2} alt=""></Image>
+          <div className="w-full items-center flex flex-col md:flex-row justify-center md:px-20">
+    
+          <Image className="md:w-3/5" src={frame1} alt=""></Image>
+          <Image className="md:w-3/5" src={frame2} alt=""></Image>
           </div>
           
         </motion.div>
@@ -261,8 +248,7 @@ export default function LadingPage() {
         <div className="flex h-full x justify-start pt-12 px-4 sm:px-40 sm:pb-96 sm:pt-24">
           <div className="text-black mb-64 sm:mb-96">
             <h2 className="mb-2 sm:mb-4 text-xl sm:text-4xl font-medium">O tratamento continua, mesmo<br />fora do hospital.</h2>
-            <h4 className="mb-2 sm:text-xl sm:w-2/5">De casa, os pacientes continuam conectados às equipes médicas pelos apps para iOS e iPadOS entre as consultas. As organizações de saúde podem criar apps com o CareKit ou oferecer apps existentes para dar ainda mais autonomia aos pacientes. E o iPhone, o iPad, o Apple Watch, o app Saúde e apps e aparelhos médicos compatíveis com HealthKit facilitam o registro e compartilhamento de dados.</h4>
-            <button className="bg-white p-2">veja oportunidades</button>
+            <h4 className="mb-2 sm:text-xl sm:w-2/5">Na Unimed Lar, nos importamos com o controle de qualidade dos serviços prestados à domicílio pela Unimed Fortaleza. Nossa solução é projetada para garantir que cada paciente receba o melhor cuidado possível, com eficiência e atenção. Melhorando a experiência dos pacientes, otimizando recursos e agilizando respostas, tornando o home care mais eficaz e humanizado.</h4>
           </div>
         </div>
         </div>
