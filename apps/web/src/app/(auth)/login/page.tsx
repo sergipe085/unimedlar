@@ -68,7 +68,8 @@ export default function Login() {
             <Label>Ver senha</Label>
           </div>
           <Button disabled={(user.username == '' || user.password.length < 5) && true} onClick={async () => {
-      
+            console.log("LOGGGGG")
+
             await signIn({
               username: user.username,
               password: user.password,

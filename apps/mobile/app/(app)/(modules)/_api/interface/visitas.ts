@@ -39,12 +39,17 @@ interface Paciente {
   }
   
 export interface Visita {
-    id: string;
-    dataVisita: string;
-    compareceuEm: Date | null;
-    naoCompareceuEm: Date | null;
+  id: string;
+  dataVisita: string;
+  compareceuEm: Date | null;
+  naoCompareceuEm: Date | null; 
+  avaliacao: Avaliacao;
+}
 
-  }
+export interface Avaliacao {
+  profissionalCompareceu: boolean;
+  profissionalCumpriuCargaHoraria: boolean;
+}
   
  export interface Visitas {
     proximaVisita: Visita;

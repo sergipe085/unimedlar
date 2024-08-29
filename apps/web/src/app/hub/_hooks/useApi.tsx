@@ -141,6 +141,9 @@ export function ApiProvider({ children }: IApiProvider) {
                 login: username, 
                 password,
             });
+
+            console.log("RESPONSE LOGIN");
+            console.log(response);
     
             const { token, user, pec_sus } = response.data;
             api.defaults.headers.common['Authorization'] = "Bearer " + token;

@@ -54,11 +54,10 @@ export type Detalhes = {
 
 
 export function useVisitas() {
-    const [visitas, setVisitas] = useState<Visitas>()
+    const [visitas, setVisitas] = useState<Visitas>(null)
 
     useEffect(() => {
         listVisitas().then(setVisitas);
-
     }, [])
 
     return {

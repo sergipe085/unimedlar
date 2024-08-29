@@ -4,9 +4,7 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-    // console.log(await req.text())
     const body = await req.json();
-    console.log(body)
     const { login, password, expoNotificationToken } = loginSchema.parse(body);
 
     const authData = await signin({

@@ -3,6 +3,8 @@ import { LoginDTO } from "@/schemas/loginSchema";
 import { sign } from "jsonwebtoken";
 
 export async function signin({ login, password, expoNotificationToken }: LoginDTO) {
+    console.log("LOGIN")
+
     const user = await db.usuario.findUnique({
         where: {
             login

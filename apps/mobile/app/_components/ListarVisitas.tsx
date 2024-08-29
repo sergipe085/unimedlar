@@ -86,13 +86,17 @@ export default function ListarVisitas() {
 
 
     function getCorVisita(visita: Visita) {
-        if (visita.compareceuEm) {
+        if (!visita.avaliacao) {
+            return "#f6934dad"
+        }
+
+        if (visita.avaliacao.profissionalCompareceu == true) {
             return "#008D52"
-        } else if (visita.naoCompareceuEm) {
+        } else if (visita.avaliacao.profissionalCompareceu == false) {
             return "#E52929"
         } else if (new Date(visita.dataVisita) > new Date() && visita.id != visitas.proximaVisita.id) {
             return "#f6934dad"
-        } else if (visita.id == visitas.proximaVisita.id) {
+        } else if (visita.id == visitas.proximaVisita?.id) {
             return Colors.unimedColors.laranja
         } else {
             return "#909090ac"
@@ -119,8 +123,18 @@ export default function ListarVisitas() {
     function abrir() {
         bottomSheetref.current.expand()
     }
+
+    if (!visitas) {
+        return (
+            <ThemedText>ASUDHASD</ThemedText>
+        )
+    }
+
     return (
         <>
+
+        
+
         <ThemedView style={{ display: 'flex', flexDirection: 'column' }} >
             {/* <ThemedText>{bodyAvaliacao.feedback}</ThemedText>
             <ThemedText>{bodyAvaliacao.cumpriuHorario ? 'sim' : 'nao'}</ThemedText>
@@ -130,14 +144,24 @@ export default function ListarVisitas() {
                 {
                     visitas?.visitas?.map((visita, index) => {
 
-                        return (
-                            <TouchableOpacity key={visita.id} style={{ display: 'flex', alignItems: 'center' }} onPress={() => { setVisitaSelecionada(visita.id); setVisita(index) }}>
-                                <ThemedView style={{ borderWidth: visita.id == visitas.proximaVisita.id ? 2 : 0, borderColor: getCorVisita(visita), borderRadius: 15 }} className='flex flex-col items-center justify-between  p-2 px-4 rounded-xl'>
+                        if (!visita.id) {
+                            return (
+                                <ThemedView >
                                     <View style={{ height: 20, borderRadius: 50, width: 20, backgroundColor: getCorVisita(visita) }}></View>
                                     <ThemedText type='subtitle' style={{ fontSize: 15 }}>{formatarData(visita.dataVisita).dataFormatada}</ThemedText>
                                     <ThemedText type='subtitle' style={{ fontSize: 15 }}>{formatarData(visita.dataVisita).diaDaSemana}</ThemedText>
                                 </ThemedView>
-                                {visita.id == visitas.proximaVisita.id && <ThemedText style={{ fontSize: 13, color: getCorVisita(visita) }}>próxima</ThemedText>}
+                            )
+                        }
+
+                        return (
+                            <TouchableOpacity key={visita?.id} style={{ display: 'flex', alignItems: 'center' }} onPress={() => { setVisitaSelecionada(visita.id); setVisita(index) }}>
+                                <ThemedView style={{ borderWidth: visita?.id == visitas.proximaVisita?.id ? 2 : 0, borderColor: getCorVisita(visita), borderRadius: 15 }} className='flex flex-col items-center justify-between  p-2 px-4 rounded-xl'>
+                                    <View style={{ height: 20, borderRadius: 50, width: 20, backgroundColor: getCorVisita(visita) }}></View>
+                                    <ThemedText type='subtitle' style={{ fontSize: 15 }}>{formatarData(visita.dataVisita).dataFormatada}</ThemedText>
+                                    <ThemedText type='subtitle' style={{ fontSize: 15 }}>{formatarData(visita.dataVisita).diaDaSemana}</ThemedText>
+                                </ThemedView>
+                                {visita?.id == visitas?.proximaVisita?.id && <ThemedText style={{ fontSize: 13, color: getCorVisita(visita) }}>próxima</ThemedText>}
                             </TouchableOpacity>
                         )
                     })

@@ -48,6 +48,11 @@ export async function getVisitasDoDia(date: Date) {
 }
 
 export async function getProximaVisitaDoPaciente(pacienteId: string) {
+    const today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+
     const visitas = await db.visita.findFirst({
         select: {
             id: true,
