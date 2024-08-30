@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
 import { useEffect, useState } from "react";
-import { Visitas } from "./interface/visitas";
+import { Avaliacao, Visitas } from "./interface/visitas";
 
 interface Procedimento {
     id: string;
@@ -48,7 +48,7 @@ export type Detalhes = {
     atendimentoId: string;
     pacienteId: string;
     atendimento: Atendimento;
-    avaliacao: any | null;
+    avaliacao: Avaliacao;
   }
   
 

@@ -18,11 +18,11 @@ export function Modal({ bottomSheetref, detalhes, setBodyAvaliacao, bodyAvaliaca
 
 
   const opcoes = [
-    { opcao: 'MUITO RUIM', url: chorando },
-    { opcao: 'RUIM', url: triste },
-    { opcao: 'REGULAR', url: rostoNeutro },
-    { opcao: 'BOM', url: feliz },
-    { opcao: 'MUITO BOM', url: muitoFeliz },
+    { opcao: 'muito rui,', url: chorando },
+    { opcao: 'ruim', url: triste },
+    { opcao: 'regular', url: rostoNeutro },
+    { opcao: 'bom', url: feliz },
+    { opcao: 'muito bom', url: muitoFeliz },
   ]
 
 

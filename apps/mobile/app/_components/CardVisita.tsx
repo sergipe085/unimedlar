@@ -8,6 +8,7 @@ import { Visitas } from "../(app)/(modules)/_api/interface/visitas";
 import { useDetalhes } from "../(app)/(modules)/_api/useVisitas";
 import { format, toZonedTime } from "date-fns-tz";
 import { router } from "expo-router";
+import { Field } from './field';
 
 interface Props {
     visitaSelecionada: string;
@@ -60,6 +61,12 @@ export function CardVisita({ visitaSelecionada, abrir, setCompareceu }: Props) {
 
     const { detalhes } = useDetalhes(visitaSelecionada);
 
+    if (!detalhes) {
+        return (
+            <ThemedText>Carregando</ThemedText>
+        )
+    }
+
     return (
         <>
             <View style={{ display: 'flex', flexDirection: 'column', width: '100%', borderWidth: 1, borderRadius: 8, borderColor: '#5b5c65', height: 'auto' }}>
@@ -88,27 +95,46 @@ export function CardVisita({ visitaSelecionada, abrir, setCompareceu }: Props) {
                 </View>
 
 
-
-                <View style={{ display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center', gap: 20, paddingVertical: 20 }}>
-                    <TouchableOpacity onPress={() => router.push({
-                        pathname: "detalhes-visita",
-                        params: {
-                            ...detalhes as any
-                        }
-                    })} style={{ backgroundColor: Colors.unimedColors.laranja, padding: 6, paddingHorizontal: 10, borderRadius: 8 }}>
-                        <Text style={{ color: Colors.unimedColors.branco }}>Ver detalhes</Text>
-                    </TouchableOpacity>
-                    {
-                        new Date(detalhes?.dataVisita) < new Date() &&
-                        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '50%' }}>
-                            <ThemedText style={{ color: Colors?.unimedColors?.laranja }}>Essa visita foi realizada?</ThemedText>
-                            <View style={{ display: 'flex', width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <BotaoRedondo type={'sim'} onPress={() => { abrir(); setCompareceu(true); }} />
-                                <BotaoRedondo type={'nao'} onPress={() => setCompareceu(false)} />
-                            </View>
+                {
+                    !detalhes.avaliacao ? (
+                        <View style={{ display: 'flex', flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'center', gap: 20, paddingVertical: 20 }}>
+                            <TouchableOpacity onPress={() => router.push({
+                                pathname: "detalhes-visita",
+                                params: {
+                                    ...detalhes as any
+                                }
+                            })} style={{ backgroundColor: Colors.unimedColors.laranja, padding: 6, paddingHorizontal: 10, borderRadius: 8 }}>
+                                <Text style={{ color: Colors.unimedColors.branco }}>Ver detalhes</Text>
+                            </TouchableOpacity>
+                            {
+                                new Date(detalhes?.dataVisita) < new Date() &&
+                                <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '50%' }}>
+                                    <ThemedText style={{ color: Colors?.unimedColors?.laranja }}>Essa visita foi realizada?</ThemedText>
+                                    <View style={{ display: 'flex', width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <BotaoRedondo type={'sim'} onPress={() => { abrir(); setCompareceu(true); }} />
+                                    <BotaoRedondo type={'nao'} onPress={() => setCompareceu(false)} />
+                                    </View>
+                                </View>
+                            }
                         </View>
-                    }
-                </View>
+                    ) : (
+                        <>
+                            <View className='p-4'>
+                                <ThemedText type='title'>Visita já realizada</ThemedText>
+                                <ThemedText type="default">Veja abaixo a avaliação que você enviou</ThemedText>
+
+                                <View>
+                                    <Field children={["Nota", detalhes.avaliacao.nota]}/>
+                                    <Field children={["Feedback", <Text className=' text-sm'>{detalhes.avaliacao.feedback}</Text>]}/>
+                                    <Field children={["Profissional compareceu", detalhes.avaliacao.profissionalCompareceu]}/>
+                                    <Field children={["Profissional cumpriu horário", detalhes.avaliacao.profissionalCumpriuCargaHoraria]}/>
+                                </View>
+                            </View>
+                        </>
+                    )
+                }
+
+               
             </View>
         </>
     )

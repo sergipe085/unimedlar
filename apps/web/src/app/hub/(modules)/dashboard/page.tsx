@@ -10,7 +10,7 @@ import { cookies } from "next/headers";
 
 export default async function Dashboard() {
     const visitasDoDia = await getVisitasDoDia(new Date());
-    const { nps, media } = await getNotaGeral();
+    const { nps, media, porcentagemPresenca, porcentagemCumpriuCargaHoraria } = await getNotaGeral();
     const cooperativas = await getNotaPorCooperativa();
 
     return (
@@ -34,11 +34,11 @@ export default async function Dashboard() {
                         <Subtitle>Nota média</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>92%</Title>
+                        <Title>{porcentagemPresenca}%</Title>
                         <Subtitle>Presença</Subtitle>
                     </JPCard>
                     <JPCard className="p-8 w-full">
-                        <Title>86%</Title>
+                        <Title>{porcentagemCumpriuCargaHoraria}%</Title>
                         <Subtitle>Carga horaria</Subtitle>
                     </JPCard>
                 </div>

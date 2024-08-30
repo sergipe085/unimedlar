@@ -7,7 +7,8 @@ export async function getVisitas() {
                 include: {
                     paciente: true
                 }
-            }
+            },
+            avaliacao: true
         },
         orderBy: {
             dataVisita: "desc"
@@ -38,7 +39,8 @@ export async function getVisitasDoDia(date: Date) {
                 include: {
                     paciente: true
                 }
-            }
+            },
+            avaliacao: true
         }
     });
 

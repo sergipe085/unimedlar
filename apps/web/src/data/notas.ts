@@ -34,9 +34,23 @@ export async function getNotaGeral() {
     // Calcular o NPS
     const nps = promotoresPercent - detratoresPercent;
 
+    const totalPresenca = await db.avaliacaoVisita.count({
+        where: {
+            profissionalCompareceu: true
+        }
+    })
+
+    const totalCargaHoraria = await db.avaliacaoVisita.count({
+        where: {
+            profissionalCumpriuCargaHoraria: true
+        }
+    })
+
     return {
         nps: nps.toFixed(0),
-        media: media._avg.nota?.toFixed(1)
+        media: media._avg.nota?.toFixed(1),
+        porcentagemPresenca: (totalPresenca * 100/totalVisitas).toFixed(1),
+        porcentagemCumpriuCargaHoraria: (totalCargaHoraria * 100/totalVisitas).toFixed(1),
     }
 }
 

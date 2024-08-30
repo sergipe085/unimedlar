@@ -14,25 +14,29 @@ export default async function RelatorioVisitas() {
             <Title>Relatório Visitas</Title>
             <Subtitle className="mb-4">Visitas domiciliares realizadas e previstas</Subtitle>
             <>
-                <TableHeader>PACIENTE,DATA PREVISTA,INICIADA EM, FINALIZADA EM</TableHeader>
+                <TableHeader>PACIENTE,DATA PREVISTA,NOTA AVALIACAO,PROFISSIONAL COMPARECEU,PROFISSIONAL CUMPRIU HORÁRIO</TableHeader>
                 <TableBody>
                     {
-                    visitas.map(visita => {
-                        return (
-                            <TableRow>
-                                {
-                                    [
-                                        visita.atendimento?.paciente.nome,
-                                        visita.dataVisita.toLocaleDateString("pt-BR"),
-                                        // visita.iniciadaEm?.toLocaleString("pt-BR") ?? "-",
-                                        // visita.finalizadaEm?.toLocaleString("pt-BR") ?? "-",
-                                    ] as string[]
-                                }
-                            </TableRow>
-                                
-                        )
-                    })
-                }</TableBody>
+                        visitas.map(visita => {
+                            return (
+                                <TableRow>
+                                    {
+                                        [
+                                            visita.atendimento?.paciente.nome,
+                                            visita.dataVisita.toLocaleDateString("pt-BR"),
+                                            visita.avaliacao?.nota,
+                                            visita.avaliacao?.profissionalCompareceu ? "SIM" : "NÃO",
+                                            visita.avaliacao?.profissionalCumpriuCargaHoraria ? "SIM" : "NÃO",
+                                            // visita.iniciadaEm?.toLocaleString("pt-BR") ?? "-",
+                                            // visita.finalizadaEm?.toLocaleString("pt-BR") ?? "-",
+                                        ] as string[]
+                                    }
+                                </TableRow>
+                                    
+                            )
+                        })
+                    }
+                </TableBody>
             </>
         </div>
     );

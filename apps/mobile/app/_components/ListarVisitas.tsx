@@ -12,6 +12,7 @@ import { BotaoRedondo } from './BotaoRedondo';
 import { Modal } from './Modal';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import { api } from '@/lib/api';
 
 function formatarData(dataISO) {
     const timeZone = 'UTC'; // Use o fuso horário UTC para evitar mudanças de dia
@@ -171,14 +172,16 @@ export default function ListarVisitas() {
             </ScrollView>
             <ThemedView style={{ display: 'flex', gap: 20 }}>
 
-                <DetalhesVisita visitaSelecionada={visitaSelecionada} abrir={abrir} setCompareceu={setCompareceu} />
+            <DetalhesVisita visitaSelecionada={visitaSelecionada} abrir={abrir} setCompareceu={setCompareceu} />
 
             </ThemedView>
 
 
         </ThemedView>
             <Modal bottomSheetref={bottomSheetref} detalhes={detalhes}
-            setBodyAvaliacao={setBodyAvaliacao} bodyAvaliacao={bodyAvaliacao} enviarAvaliacao={() => console.log(bodyEnviarAvaliacao)} />
+            setBodyAvaliacao={setBodyAvaliacao} bodyAvaliacao={bodyAvaliacao} enviarAvaliacao={async () => {
+                await api.post(`/avaliacao`, bodyEnviarAvaliacao)
+            }} />
         </>
     );
 }
